@@ -4,9 +4,9 @@ import { FaBars, FaTimes } from "react-icons/fa";
 
 const NAVIGATION_LINKS = [
   { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experiences" },
+  { label: "Projects", href: "#projects" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
@@ -22,9 +22,11 @@ export default function Navbar() {
     e.preventDefault();
     const targetElement = document.querySelector(href);
     if (targetElement) {
-      const offset = -85;
+      const offset = 85;
       const elementPosition = targetElement.getBoundingClientRect().top;
+      console.log(elementPosition);
       const offsetPosition = elementPosition + window.scrollY + offset;
+
       window.scrollTo({
         top: offsetPosition,
         behavior: "smooth",

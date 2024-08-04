@@ -21,7 +21,7 @@ export default function Projects() {
   ];
 
   return (
-    <div id="projects">
+    <div className=" container mx-auto pt-5" id="projects">
       <h2 className="mt-20 text-center text-4xl font-semibold">Projects</h2>
       <div className="flex flex-wrap justify-center py-8">
         {PROJECTS.map((project, index) => (
