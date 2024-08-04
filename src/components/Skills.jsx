@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { RiReactjsLine } from "react-icons/ri";
 import { TbBrandNextjs, TbBrandOauth } from "react-icons/tb";
@@ -18,15 +19,12 @@ import {
   FaCss3,
   FaCcStripe,
   FaDatabase,
+  FaBootstrap,
 } from "react-icons/fa";
 import { CgCPlusPlus } from "react-icons/cg";
-import { IoLogoJavascript, IoLogoVercel, TbApi } from "react-icons/io5";
+import { IoLogoJavascript, IoLogoVercel } from "react-icons/io5";
 
 const SKILLS = [
-  {
-    icon: <RiReactjsLine className="text-4xl lg:text-6xl text-cyan-400" />,
-    name: "React.js",
-  },
   {
     icon: <TbBrandNextjs className="text-4xl lg:text-6xl text-white" />,
     name: "Next.js",
@@ -40,8 +38,8 @@ const SKILLS = [
     name: "Node.js",
   },
   {
-    icon: <FaHtml5 className="text-4xl lg:text-6xl text-green-600" />,
-    name: "HTML",
+    icon: <RiReactjsLine className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "React.js",
   },
   {
     icon: <SiExpress className="text-4xl lg:text-6xl text-cyan-400" />,
@@ -52,22 +50,70 @@ const SKILLS = [
     name: "AWS",
   },
   {
+    icon: <SiMysql className="text-4xl lg:text-6xl text-sky-700" />,
+    name: "MySQL",
+  },
+  {
+    icon: <SiRedux className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "Redux",
+  },
+  {
+    icon: <FaCcStripe className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "Stripe",
+  },
+  {
+    icon: <SiRazorpay className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "Razorpay",
+  },
+  {
+    icon: <SiTwilio className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "Twilio",
+  },
+  {
+    icon: <CgCPlusPlus className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "C++",
+  },
+  {
+    icon: <FaPython className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "Python",
+  },
+  {
+    icon: <IoLogoVercel className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "Vercel",
+  },
+  {
     icon: <FaGithub className="text-4xl lg:text-6xl text-sky-700" />,
     name: "GitHub",
   },
   {
-    icon: <SiMysql className="text-4xl lg:text-6xl text-sky-700" />,
-    name: "MySQL",
+    icon: <FaDatabase className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "Database",
+  },
+  {
+    icon: <IoLogoJavascript className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "Javascript",
+  },
+  {
+    icon: <FaBootstrap className="text-4xl lg:text-6xl text-sky-700" />,
+    name: "Bootstrap",
+  },
+  {
+    icon: <FaCss3 className="text-4xl lg:text-6xl text-cyan-400" />,
+    name: "CSS",
+  },
+  {
+    icon: <FaHtml5 className="text-4xl lg:text-6xl text-green-600" />,
+    name: "HTML",
   },
 ];
 
 export default function Skills() {
   return (
     <div className="container mx-auto" id="skills">
-      <h2 className="mb-12 mt-20 text-center text-4xl">Skills</h2>
-      <div className="mx-2 mb-8 flex justify-around items-center rounded-xl bg-gradient-to-b px-4 py-10 lg:px-20 from-zinc-900 to-zinc-950">
+      <h2 className="mb-12 mt-20 text-center text-4xl font-semibold">Skills</h2>
+      <div className="mx-2 mb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center rounded-xl bg-gradient-to-b px-4 py-10 lg:px-20 from-zinc-900 to-zinc-950">
         {SKILLS.map((skill, index) => (
-          <div className="flex flex-col items-center" key={index}>
+          <div className="flex flex-col items-center mb-2" key={index}>
             <div className="flex items-center justify-center mb-2">
               {skill.icon}
             </div>
