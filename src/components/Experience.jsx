@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 export default function Experience() {
   return (
-    <div className="container mx-auto pt-5" id="experiences">
+    <div className="container mx-auto pt-20" id="experiences">
       <h2 className=" mb-12 mt-20 text-center text-4xl font-semibold">
         Work Experience
       </h2>
