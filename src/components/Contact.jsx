@@ -1,5 +1,7 @@
 "use client";
+import axios from "axios";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Contact() {
   const [contactCred, setContactCred] = useState({
@@ -18,7 +20,20 @@ export default function Contact() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(contactCred);
+    const { name, email, phone_no, message } = contactCred;
+    if (!email || !name || !phone_no || !message) {
+      toast.error("Please fill in all the details");
+    } else {
+      axios
+        .post("/api/send-mail", { name, email, phone_no, message })
+        .then((result) => {
+          if (result.data.Success === true) {
+            toast.success("Mail sent.");
+          } else {
+            toast.error("OOPS! Something went wrong.");
+          }
+        });
+    }
   }
   return (
     <div
