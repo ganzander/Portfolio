@@ -9,7 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/drei": "^9.109.5",
+    "@react-three/fiber": "^8.17.5",
+    "@tabler/icons-react": "^3.15.0",
     "axios": "^1.7.3",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.5.4",
     "next": "14.2.5",
     "nodemailer": "^6.9.14",
     "react": "^18",
@@ -17,13 +22,14 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
     "react-toastify": "^10.0.5",
-    "react-vertical-timeline-component": "^3.6.0"
+    "react-vertical-timeline-component": "^3.6.0",
+    "tailwind-merge": "^2.5.2"
   },
   "devDependencies": {
     "daisyui": "^4.12.10",
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.10"
   }
 }
