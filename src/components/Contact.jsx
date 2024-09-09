@@ -37,10 +37,10 @@ export default function Contact() {
   }
   return (
     <div
-      className="container font-[sans-serif] max-w-6xl mx-auto relative rounded-lg mb-12 pt-20"
+      className="container  font-[sans-serif] max-w-6xl mx-auto relative rounded-lg mb-12"
       id="contact"
     >
-      <h2 className="mt-20 mb-12 text-center text-4xl font-semibold">
+      <h2 className="mb-12 mt-80 text-center text-4xl font-semibold">
         Contact Me
       </h2>
       <div className="grid lg:grid-cols-3 items-center">
