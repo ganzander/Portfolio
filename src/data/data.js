@@ -29,20 +29,19 @@ const data = [
           </li>
         </ul>
         <div className="grid grid-cols-2 gap-4">
-          <Image
-            src="https://assets.aceternity.com/templates/startup-1.webp"
-            alt="startup template"
-            width={500}
-            height={500}
-            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
-          />
-          <Image
-            src="https://assets.aceternity.com/templates/startup-2.webp"
-            alt="startup template"
-            width={500}
-            height={500}
-            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-          />
+          <a
+            href="https://drive.google.com/file/d/1d7RkiD7HJmwJf3-apQqsAMhCrQT6MFcZ/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/IFix Tech Global.png"
+              alt="startup template"
+              width={500}
+              height={500}
+              className="rounded-lg object-cover h-20 w-1/2"
+            />
+          </a>
         </div>
       </div>
     ),
@@ -55,7 +54,7 @@ const data = [
           Backend Developer Intern
         </h1>
         <h2 className="text-xl md:text-3xl font-semibold mb-2">
-          Mobile Programming LLC Pvt. Ltd.
+          Mobile Programming India Pvt. Ltd.
         </h2>
         <ul className="text-xs md:text-sm lg:text-xl font-normal mb-8 text-left">
           <li>
@@ -77,20 +76,19 @@ const data = [
           </li>
         </ul>
         <div className="grid grid-cols-2 gap-4">
-          <Image
-            src="https://assets.aceternity.com/templates/startup-1.webp"
-            alt="startup template"
-            width={500}
-            height={500}
-            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full"
-          />
-          <Image
-            src="https://assets.aceternity.com/templates/startup-2.webp"
-            alt="startup template"
-            width={500}
-            height={500}
-            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
-          />
+          <a
+            href="https://drive.google.com/file/d/1f6wYVkVGv-R2JOZ8-_3I3r4zZN0pKFI2/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image
+              src="/Mobile Programming.png"
+              alt="startup template"
+              width={500}
+              height={500}
+              className="rounded-lg object-cover h-20 w-1/2"
+            />
+          </a>
         </div>
       </div>
     ),

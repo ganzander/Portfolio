@@ -51,7 +51,9 @@ export default function Contact() {
       id="contact"
     >
       <WavyBackground className="max-w-4xl mx-auto pb-40">
-        <h2 className="mb-12 text-center text-4xl font-semibold">Contact Me</h2>
+        <h2 className="mb-12 text-center text-4xl font-semibold uppercase">
+          Contact Me
+        </h2>
 
         <div className="bg-gradient-to-b px-4 py-10 lg:px-20 from-zinc-900 to-zinc-950 shadow-[0_2px_10px_-3px_rgba(255, 255, 255, 0.5)] rounded-lg sm:p-10 p-4 z-10 max-lg:-order-1 max-lg:mb-8">
           <form onSubmit={handleSubmit}>
@@ -94,7 +96,7 @@ export default function Contact() {
               ></textarea>
               <button
                 type="submit"
-                className="text-gray-800 w-full relative bg-yellow-400 hover:bg-yellow-500 font-semibold rounded-lg text-sm px-6 py-3 !mt-6"
+                className="text-white w-full relative bg-yellow-500 hover:bg-yellow-200 hover:text-black rounded-lg text-sm px-6 py-3 !mt-6"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

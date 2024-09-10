@@ -13,6 +13,7 @@
 .has-tooltip:hover .tooltip {
   @apply visible z-50;
 }
+
 /* .no-visible-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;

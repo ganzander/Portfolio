@@ -22,87 +22,93 @@ import {
 import { CgCPlusPlus } from "react-icons/cg";
 import { IoLogoJavascript, IoLogoVercel } from "react-icons/io5";
 
-const SKILLS = [
+export const SKILLS1 = [
   {
-    icon: <TbBrandNextjs className="text-4xl lg:text-6xl text-white" />,
+    quote: <TbBrandNextjs className="text-4xl lg:text-6xl" color="black" />,
     name: "Next.js",
   },
   {
-    icon: <SiMongodb className="text-4xl lg:text-6xl text-green-600" />,
+    quote: <SiMongodb className="text-4xl lg:text-6xl" color="#47A248" />, // MongoDB Green
     name: "MongoDB",
   },
   {
-    icon: <FaNodeJs className="text-4xl lg:text-6xl text-green-600" />,
+    quote: <FaNodeJs className="text-4xl lg:text-6xl" color="#339933" />, // Node.js Green
     name: "Node.js",
   },
   {
-    icon: <RiReactjsLine className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <RiReactjsLine className="text-4xl lg:text-6xl" color="#61DAFB" />, // React Blue
     name: "React.js",
   },
   {
-    icon: <SiExpress className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <SiExpress className="text-4xl lg:text-6xl" color="black" />, // Express.js is commonly black
     name: "Express.js",
   },
+
   {
-    icon: <FaAws className="text-4xl lg:text-6xl text-red-600" />,
+    quote: <FaAws className="text-4xl lg:text-6xl" color="#FF9900" />, // AWS Orange
     name: "AWS",
   },
   {
-    icon: <SiMysql className="text-4xl lg:text-6xl text-sky-700" />,
+    quote: <SiMysql className="text-4xl lg:text-6xl" color="#00758F" />, // MySQL Blue
     name: "MySQL",
   },
+];
+export const SKILLS2 = [
   {
-    icon: <SiRedux className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <SiRedux className="text-4xl lg:text-6xl" color="#764ABC" />, // Redux Purple
     name: "Redux",
   },
   {
-    icon: <FaCcStripe className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <FaCcStripe className="text-4xl lg:text-6xl" color="#635BFF" />, // Stripe Purple
     name: "Stripe",
   },
   {
-    icon: <SiRazorpay className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <SiRazorpay className="text-4xl lg:text-6xl" color="#02042B" />, // Razorpay Blue
     name: "Razorpay",
   },
   {
-    icon: <SiTwilio className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <SiTwilio className="text-4xl lg:text-6xl" color="#F22F46" />, // Twilio Red
     name: "Twilio",
   },
   {
-    icon: <CgCPlusPlus className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <CgCPlusPlus className="text-4xl lg:text-6xl" color="#00599C" />, // C++ Blue
     name: "C++",
   },
   {
-    icon: <FaPython className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <FaPython className="text-4xl lg:text-6xl" color="#3776AB" />, // Python Blue
     name: "Python",
   },
+];
+export const SKILLS3 = [
   {
-    icon: <IoLogoVercel className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <IoLogoVercel className="text-4xl lg:text-6xl" color="black" />, // Vercel is commonly black
     name: "Vercel",
   },
   {
-    icon: <FaGithub className="text-4xl lg:text-6xl text-sky-700" />,
+    quote: <FaGithub className="text-4xl lg:text-6xl" color="black" />, // GitHub is commonly black
     name: "GitHub",
   },
+
   {
-    icon: <FaDatabase className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <FaDatabase className="text-4xl lg:text-6xl" color="#003B57" />, // Generic Database (dark blue)
     name: "Database",
   },
   {
-    icon: <IoLogoJavascript className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: (
+      <IoLogoJavascript className="text-4xl lg:text-6xl" color="#F7DF1E" />
+    ), // JavaScript Yellow
     name: "Javascript",
   },
   {
-    icon: <FaBootstrap className="text-4xl lg:text-6xl text-sky-700" />,
+    quote: <FaBootstrap className="text-4xl lg:text-6xl" color="#7952B3" />, // Bootstrap Purple
     name: "Bootstrap",
   },
   {
-    icon: <FaCss3 className="text-4xl lg:text-6xl text-cyan-400" />,
+    quote: <FaCss3 className="text-4xl lg:text-6xl" color="#1572B6" />, // CSS Blue
     name: "CSS",
   },
   {
-    icon: <FaHtml5 className="text-4xl lg:text-6xl text-green-600" />,
+    quote: <FaHtml5 className="text-4xl lg:text-6xl" color="#E34F26" />, // HTML Orange
     name: "HTML",
   },
 ];
-
-export default SKILLS;

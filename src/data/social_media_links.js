@@ -13,17 +13,12 @@ const SOCIAL_MEDIA_LINKS = [
     name: "GitHub",
   },
   {
-    href: "https://leetcode.com/u/Ganesh_Mangla/",
-    icon: <SiLeetcode fontSize={25} className="hover:opacity-80" />,
-    name: "LeetCode",
-  },
-  {
     href: "https://www.instagram.com/ganesh_mangla/",
     icon: <FaInstagram fontSize={25} className="hover:opacity-80" />,
     name: "Instagram",
   },
   {
-    href: "https://www.linkedin.com/in/ganesh-mangla-958a392a8/",
+    href: "https://drive.google.com/file/d/1U0bVjiva4fPbT8B-4XuypPyajftQblKQ/view?usp=drive_link",
     icon: <IoDocument fontSize={25} className="hover:opacity-80" />,
     name: "Resume",
   },

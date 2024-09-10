@@ -1,20 +1,16 @@
 "use client";
-import SKILLS from "@/data/skills";
 import React from "react";
+import MovingCards from "./MovingCards";
 
 export default function Skills() {
   return (
     <div className="container mx-auto pt-5" id="skills">
-      <h2 className="mb-12 text-center text-4xl font-semibold">Skills</h2>
-      <div className="mx-2 pb-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center bg-gradient-to-b px-4 py-10 lg:px-20 from-zinc-900 to-zinc-950">
-        {SKILLS.map((skill, index) => (
-          <div className="flex flex-col items-center mb-2" key={index}>
-            <div className="flex items-center justify-center mb-2">
-              {skill.icon}
-            </div>
-            <h3 className="text-xl lg:text-3xl">{skill.name}</h3>
-          </div>
-        ))}
+      <div className="min-h-screen w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative">
+        <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+        <h2 className="text-4xl lg:text-6xl mb-12 text-center font-semibold uppercase">
+          Skills
+        </h2>
+        <MovingCards />
       </div>
     </div>
   );
