@@ -7,6 +7,7 @@ import {
   SiRedux,
   SiRazorpay,
   SiTwilio,
+  SiPostman,
 } from "react-icons/si";
 import {
   FaAws,
@@ -81,34 +82,38 @@ export const SKILLS2 = [
 ];
 export const SKILLS3 = [
   {
-    quote: <IoLogoVercel className="text-4xl lg:text-6xl" color="black" />, // Vercel is commonly black
+    quote: <SiPostman className="text-4xl lg:text-6xl" color="#E34F26" />,
+    name: "Postman",
+  },
+  {
+    quote: <IoLogoVercel className="text-4xl lg:text-6xl" color="black" />,
     name: "Vercel",
   },
   {
-    quote: <FaGithub className="text-4xl lg:text-6xl" color="black" />, // GitHub is commonly black
+    quote: <FaGithub className="text-4xl lg:text-6xl" color="black" />,
     name: "GitHub",
   },
 
   {
-    quote: <FaDatabase className="text-4xl lg:text-6xl" color="#003B57" />, // Generic Database (dark blue)
+    quote: <FaDatabase className="text-4xl lg:text-6xl" color="#003B57" />,
     name: "Database",
   },
   {
     quote: (
       <IoLogoJavascript className="text-4xl lg:text-6xl" color="#F7DF1E" />
-    ), // JavaScript Yellow
+    ),
     name: "Javascript",
   },
   {
-    quote: <FaBootstrap className="text-4xl lg:text-6xl" color="#7952B3" />, // Bootstrap Purple
+    quote: <FaBootstrap className="text-4xl lg:text-6xl" color="#7952B3" />,
     name: "Bootstrap",
   },
   {
-    quote: <FaCss3 className="text-4xl lg:text-6xl" color="#1572B6" />, // CSS Blue
+    quote: <FaCss3 className="text-4xl lg:text-6xl" color="#1572B6" />,
     name: "CSS",
   },
   {
-    quote: <FaHtml5 className="text-4xl lg:text-6xl" color="#E34F26" />, // HTML Orange
+    quote: <FaHtml5 className="text-4xl lg:text-6xl" color="#E34F26" />,
     name: "HTML",
   },
 ];

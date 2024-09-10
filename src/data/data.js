@@ -10,7 +10,7 @@ const data = [
         <h2 className="text-xl md:text-3xl font-semibold mb-2">
           IFix Tech Global Pvt. Ltd.
         </h2>
-        <ul className="text-xs md:text-sm lg:text-xl font-normal mb-8 text-left">
+        {/* <ul className="text-xs md:text-sm lg:text-xl font-normal mb-8 text-left">
           <li>
             • As a software developer at Ifix Tech Global, I have honed my
             expertise in Backend technologies by developing and deploying
@@ -27,7 +27,7 @@ const data = [
             databases, implementing authentication and communication features,
             and ensuring seamless integration of APIs.
           </li>
-        </ul>
+        </ul> */}
         <div className="grid grid-cols-2 gap-4">
           <a
             href="https://drive.google.com/file/d/1d7RkiD7HJmwJf3-apQqsAMhCrQT6MFcZ/view?usp=sharing"
@@ -56,7 +56,7 @@ const data = [
         <h2 className="text-xl md:text-3xl font-semibold mb-2">
           Mobile Programming India Pvt. Ltd.
         </h2>
-        <ul className="text-xs md:text-sm lg:text-xl font-normal mb-8 text-left">
+        {/* <ul className="text-xs md:text-sm lg:text-xl font-normal mb-8 text-left">
           <li>
             • Implemented CRUD operations for a policy insurance project,
             ensuring data management and integrity.
@@ -74,7 +74,7 @@ const data = [
             managing collections and tables, optimizing queries, involving
             complex queries, database normalization, and performance tuning.
           </li>
-        </ul>
+        </ul> */}
         <div className="grid grid-cols-2 gap-4">
           <a
             href="https://drive.google.com/file/d/1f6wYVkVGv-R2JOZ8-_3I3r4zZN0pKFI2/view?usp=drive_link"
