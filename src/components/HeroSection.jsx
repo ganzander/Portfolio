@@ -30,7 +30,7 @@ export default function HeroSection() {
             I am a skilled full-stack developer with expertise in MERN stack,
             Node.js & MySQL. I build scalable APIs, integrate third-party
             services & explore AI/ML projects. Currently pursuing a B.Tech in
-            Computer Engineering, I'm passionate about development &
+            Computer Engineering, I am passionate about development &
             technologies.
           </p>
           <div className="flex w-full justify-evenly items-center pt-11">

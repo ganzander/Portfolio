@@ -13,7 +13,6 @@ export const TypewriterEffectSmooth = ({
   const [isTyping, setIsTyping] = useState(true);
   const [cursorBlink, setCursorBlink] = useState(true);
 
-  // Current word and its characters
   const currentWord = words[currentWordIndex]?.text || "";
 
   useEffect(() => {
@@ -22,28 +21,25 @@ export const TypewriterEffectSmooth = ({
     if (isTyping) {
       if (currentCharIndex < currentWord.length) {
         typingTimeout = setTimeout(() => {
-          setCurrentCharIndex((prev) => prev + 1); // Typing forward
+          setCurrentCharIndex((prev) => prev + 1);
         }, 100);
       } else {
-        // Start reversing (deleting characters)
-        setTimeout(() => setIsTyping(false), 1000); // Pause before deleting
+        setTimeout(() => setIsTyping(false), 1000);
       }
     } else {
       if (currentCharIndex > 0) {
         typingTimeout = setTimeout(() => {
-          setCurrentCharIndex((prev) => prev - 1); // Deleting backward
+          setCurrentCharIndex((prev) => prev - 1);
         }, 50);
       } else {
-        // Move to the next word after fully deleting the current one
         setIsTyping(true);
-        setCurrentWordIndex((prev) => (prev + 1) % words.length); // Loop through words
+        setCurrentWordIndex((prev) => (prev + 1) % words.length);
       }
     }
 
     return () => clearTimeout(typingTimeout);
   }, [currentCharIndex, isTyping, currentWord.length, words.length]);
 
-  // Blinking cursor effect
   useEffect(() => {
     const cursorBlinkInterval = setInterval(() => {
       setCursorBlink((prev) => !prev);
