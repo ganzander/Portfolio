@@ -50,7 +50,7 @@ export const TypewriterEffectSmooth = ({
     <div className={cn("flex space-x-1 my-6", className)}>
       <motion.div className="overflow-hidden pb-2">
         <div
-          className="text-xs sm:text-base md:text-l lg:text:xl xl:text-3xl font-semibold dark:text-blue-300 text-blue-500"
+          className="text-xl sm:text-3xl lg:text-5xl font-semibold dark:text-blue-300 text-blue-500"
           style={{
             whiteSpace: "nowrap",
           }}
@@ -61,7 +61,7 @@ export const TypewriterEffectSmooth = ({
       <motion.span
         animate={{ opacity: cursorBlink ? 1 : 0 }}
         className={cn(
-          "block rounded-sm w-[4px] h-4 sm:h-5 xl:h-10 bg-blue-500",
+          "block rounded-sm w-[4px]  h-7 sm:h-10 lg:h-[50px] bg-blue-500",
           cursorClassName
         )}
       ></motion.span>
