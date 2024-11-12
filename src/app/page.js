@@ -7,7 +7,7 @@ import Skills from "@/components/Skills";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden bg-black tracking-tighter text-gray-200 antialiased">
+    <main className="overflow-x-hidden dark:bg-black bg-[#eee] tracking-tighter text-gray-200 antialiased">
       <HeroSection />
       <Skills />
       <Experience />

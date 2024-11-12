@@ -9,7 +9,7 @@ import words from "@/data/words";
 export default function HeroSection() {
   return (
     <div
-      className="min-h-screen bg-white dark:bg-black/[0.96] h-screen w-full flex flex-col items-center"
+      className="min-h-screen bg-[#eee] dark:bg-black/[0.96] h-screen w-full flex flex-col items-center"
       id="#"
     >
       <Navbar />

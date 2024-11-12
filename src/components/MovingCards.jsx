@@ -6,13 +6,13 @@ import { SKILLS1, SKILLS2, SKILLS3 } from "@/data/skills";
 export default function MovingCards() {
   return (
     <>
-      <div className="rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+      <div className="rounded-md flex flex-col antialiased bg-[#eee] dark:bg-black dark:bg-grid-white/[0.1] bg-grid-black/[0.35] items-center justify-center relative overflow-hidden">
         <InfiniteMovingCards items={SKILLS1} direction="right" speed="slow" />
       </div>
-      <div className="rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+      <div className="rounded-md flex flex-col antialiased bg-[#eee] dark:bg-black dark:bg-grid-white/[0.1] bg-grid-black/[0.35] items-center justify-center relative overflow-hidden">
         <InfiniteMovingCards items={SKILLS2} direction="left" speed="slow" />
       </div>
-      <div className="rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+      <div className="rounded-md flex flex-col antialiased bg-[#eee] dark:bg-black dark:bg-grid-white/[0.1] bg-grid-black/[0.35] items-center justify-center relative overflow-hidden">
         <InfiniteMovingCards items={SKILLS3} direction="right" speed="slow" />
       </div>
     </>

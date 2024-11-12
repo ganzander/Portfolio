@@ -11,13 +11,13 @@ const tabs = [
         rel="noopener noreferrer"
       >
         <div className="w-full overflow-hidden relative h-full rounded-2xl p-10 text-xl md:text-4xl font-bold text-black bg-gradient-to-br from-purple-700 to-violet-900">
-          <h1 className="pb-10 text-4xl">Savor Haven</h1>
-          <Image
+          <h1 className="pb-10 tracking-tighter text-2xl md:text-4xl">
+            Savor Haven
+          </h1>
+          <img
             src="/Savor-Haven.png"
             alt="dummy image"
-            width="1000"
-            height="1000"
-            className="object-cover object-left-top h-[60%]  md:h-[90%] absolute -bottom-10 inset-x-0 w-[90%] rounded-lg mx-auto"
+            className="object-contain object-left-top h-[100%] absolute -bottom-10 inset-x-0 w-[90%] rounded-lg mx-auto"
           />
         </div>
       </a>

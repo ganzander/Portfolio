@@ -5,14 +5,13 @@ import MovingCards from "./MovingCards";
 export default function Skills() {
   return (
     <div
-      className="min-h-screen min-w-screen pt-5 dark:bg-black bg-white"
+      className="min-h-screen min-w-screen pt-5 dark:bg-black bg-[#eee]"
       id="skills"
     >
-      <h2 className="dark:text-white text-black text-4xl lg:text-6xl mb-12 text-center font-semibold uppercase">
+      <h2 className="dark:text-white text-black tracking-tighter text-4xl lg:text-6xl mb-7 text-center font-semibold uppercase">
         Skills
       </h2>
-      <div className="pt-10 w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.2] relative">
-        <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      <div className="pt-5 w-full dark:bg-black bg-[#eee] relative">
         <MovingCards />
       </div>
     </div>

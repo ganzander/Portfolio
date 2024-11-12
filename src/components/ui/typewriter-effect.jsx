@@ -12,7 +12,6 @@ export const TypewriterEffectSmooth = ({
   const [currentCharIndex, setCurrentCharIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(true);
   const [cursorBlink, setCursorBlink] = useState(true);
-
   const currentWord = words[currentWordIndex]?.text || "";
 
   useEffect(() => {
@@ -51,7 +50,7 @@ export const TypewriterEffectSmooth = ({
     <div className={cn("flex space-x-1 my-6", className)}>
       <motion.div className="overflow-hidden pb-2">
         <div
-          className="text-xs sm:text-base md:text-l lg:text:xl xl:text-3xl font-semibold text-blue-300"
+          className="text-xs sm:text-base md:text-l lg:text:xl xl:text-3xl font-semibold dark:text-blue-300 text-blue-500"
           style={{
             whiteSpace: "nowrap",
           }}

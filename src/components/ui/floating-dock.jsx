@@ -75,16 +75,35 @@ const FloatingDockMobile = ({ items, className }) => {
                 </Link>
               </motion.div>
             ))}
-            <Link
-              href="#"
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                y: 10,
+                transition: {
+                  delay: items.length * 0.05,
+                },
+              }}
+              transition={{ delay: items.length * 0.05 }}
               onClick={(e) => {
                 handleLinkClick(e, "#");
                 setTheme(theme === "dark" ? "light" : "dark");
               }}
-              className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
             >
-              <div className="h-4 w-4">{item.icon}</div>
-            </Link>
+              <Link
+                href="#"
+                className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
+              >
+                <div className="h-4 w-4">
+                  <IconBulb className="h-full w-full" />
+                </div>
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -113,12 +132,13 @@ const FloatingDockDesktop = ({ items, className }) => {
       {items.map((item) => (
         <IconContainer mouseX={mouseX} key={item.title} {...item} />
       ))}
+
       <IconContainer
         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         mouseX={mouseX}
         title={"Theme"}
         icon={
-          <IconBulb className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+          <IconBulb className="h-full w-full text-neutral-800 dark:text-neutral-300" />
         }
         href={"#"}
       />
@@ -131,7 +151,6 @@ function IconContainer({ mouseX, title, icon, href, ...props }) {
 
   let distance = useTransform(mouseX, (val) => {
     let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-
     return val - bounds.x - bounds.width / 2;
   });
 
@@ -170,7 +189,7 @@ function IconContainer({ mouseX, title, icon, href, ...props }) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <Link href={href}>
+    <Link href={href} {...props}>
       <motion.div
         ref={ref}
         style={{ width, height }}
@@ -192,7 +211,6 @@ function IconContainer({ mouseX, title, icon, href, ...props }) {
         </AnimatePresence>
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
-          {...props}
           className="flex items-center justify-center"
         >
           {icon}

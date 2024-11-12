@@ -23,13 +23,16 @@ export const Timeline = ({ data }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <div className="w-full bg-black md:px-10" ref={containerRef}>
-      <div className="max-w-7xl mx-auto pt-20 pb-0 px-4 md:px-8 lg:px-10">
-        <h2 className="text-center text-5xl font-semibold uppercase">
+    <div className="w-full bg-[#eee] dark:bg-black pt-20" ref={containerRef}>
+      <div className="px-4 md:px-8 lg:px-10">
+        <h2 className="text-center text-black dark:text-white text-4xl lg:text-6xl tracking-tighter font-semibold uppercase">
           Work Experience
         </h2>
       </div>
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-24">
+      <div
+        ref={ref}
+        className="relative text-black dark:text-white max-w-7xl mx-auto pb-24"
+      >
         {data.map((item, index) => (
           <div
             key={index}
@@ -45,10 +48,10 @@ export const Timeline = ({ data }) => {
             </div>
 
             <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-2xl mb-4 text-left ">
+              <h3 className="md:hidden block text-neutral-500 dark:text-neutral-500 text-xl mb-2 text-left">
                 {item.title}
               </h3>
-              <div>{item.content}</div>
+              {item.content}
             </div>
           </div>
         ))}
@@ -63,7 +66,7 @@ export const Timeline = ({ data }) => {
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
+            className="absolute inset-x-0 top-0 w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
           />
         </div>
       </div>

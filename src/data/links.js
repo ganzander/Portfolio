@@ -9,35 +9,35 @@ const links = [
   {
     title: "About",
     icon: (
-      <IconUser className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      <IconUser className="h-full w-full text-neutral-800 dark:text-neutral-300" />
     ),
     href: "#",
   },
   {
     title: "Skills",
     icon: (
-      <IconBrain className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      <IconBrain className="h-full w-full text-neutral-800 dark:text-neutral-300" />
     ),
     href: "#skills",
   },
   {
     title: "Experience",
     icon: (
-      <IconPasswordUser className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      <IconPasswordUser className="h-full w-full text-neutral-800 dark:text-neutral-300" />
     ),
     href: "#experience",
   },
   {
     title: "Projects",
     icon: (
-      <IconWorldCog className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      <IconWorldCog className="h-full w-full text-neutral-800 dark:text-neutral-300" />
     ),
     href: "#projects",
   },
   {
     title: "Contact",
     icon: (
-      <IconPhone className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      <IconPhone className="h-full w-full text-neutral-800 dark:text-neutral-300" />
     ),
     href: "#contact",
   },

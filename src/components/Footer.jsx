@@ -24,8 +24,8 @@ const SOCIAL_MEDIA_LINKS = [
 
 export default function Footer() {
   return (
-    <div className="mb-8 mt-20">
-      <p className="mt-8 text-center text-sm tracking-wide text-gray-400">
+    <div className="py-16 bg-black dark:bg-slate-900">
+      <p className="text-center text-sm tracking-wide text-white font-semibold">
         ©Ganesh Mangla. All rights reserved.
       </p>
     </div>
