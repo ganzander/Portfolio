@@ -52,7 +52,7 @@ export default function Contact() {
     >
       <WavyBackground className="max-w-4xl mx-auto pb-40">
         <h2 className="mb-12 text-center text-4xl font-semibold uppercase">
-          Contact Me
+          Connect With Me
         </h2>
 
         <div className="bg-gradient-to-b px-4 py-10 lg:px-20 from-zinc-900 to-zinc-950 shadow-[0_2px_10px_-3px_rgba(255, 255, 255, 0.5)] rounded-lg sm:p-10 p-4 z-10 max-lg:-order-1 max-lg:mb-8">

@@ -9,7 +9,7 @@ import words from "@/data/words";
 export default function HeroSection() {
   return (
     <div
-      className="min-h-screen h-screen w-full flex flex-col items-center"
+      className="min-h-screen bg-white dark:bg-black/[0.96] h-screen w-full flex flex-col items-center"
       id="#"
     >
       <Navbar />
@@ -17,16 +17,16 @@ export default function HeroSection() {
         className="-top-40 left-0 md:left-60 md:-top-20"
         fill="white"
       />
-      <div className="text-white flex items-center pt-24 justify-center bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
+      <div className="flex items-center pt-24 justify-center  dark:text-white dark:bg-black/[0.96] antialiased bg-grid-white/[0.02] relative overflow-hidden">
         <div className=" p-4 max-w-7xl mx-auto relative z-10 w-full pt-20 md:pt-0">
-          <h3 className="text-xl md:text-2xl font-bold text-start bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
+          <h3 className="text-xl md:text-2xl font-bold text-start bg-clip-text text-black dark:text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
             Hi! I am
           </h3>
-          <h1 className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
+          <h1 className="text-4xl md:text-7xl font-bold text-center bg-clip-text text-black dark:text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 bg-opacity-50">
             Ganesh Mangla.
           </h1>
           <TypewriterEffectSmooth words={words} />
-          <p className="mt-4 w-full font-normal text-base text-neutral-300 max-w-lg text-center mx-auto">
+          <p className="mt-4 w-full font-normal text-base text-black dark:text-neutral-300 max-w-lg text-center mx-auto">
             I am a skilled full-stack developer with expertise in MERN stack,
             Node.js & MySQL. I build scalable APIs, integrate third-party
             services & explore AI/ML projects. Currently pursuing a B.Tech in

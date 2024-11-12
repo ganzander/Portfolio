@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
+import { IconBulb, IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import {
   AnimatePresence,
   motion,
@@ -8,6 +8,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useRef, useState } from "react";
 
@@ -36,6 +37,7 @@ export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
 
 const FloatingDockMobile = ({ items, className }) => {
   const [open, setOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
   return (
     <div
       className={cn("relative block md:hidden -translate-y-[10vh]", className)}
@@ -73,6 +75,16 @@ const FloatingDockMobile = ({ items, className }) => {
                 </Link>
               </motion.div>
             ))}
+            <Link
+              href="#"
+              onClick={(e) => {
+                handleLinkClick(e, "#");
+                setTheme(theme === "dark" ? "light" : "dark");
+              }}
+              className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
+            >
+              <div className="h-4 w-4">{item.icon}</div>
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>
@@ -88,23 +100,33 @@ const FloatingDockMobile = ({ items, className }) => {
 
 const FloatingDockDesktop = ({ items, className }) => {
   let mouseX = useMotionValue(Infinity);
+  const { theme, setTheme } = useTheme();
   return (
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden md:flex h-16 gap-4 items-end  rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3",
+        "mx-auto border shadow-lg dark:border-none dark:shadow-none hidden md:flex h-16 gap-4 items-end  rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3",
         className
       )}
     >
       {items.map((item) => (
         <IconContainer mouseX={mouseX} key={item.title} {...item} />
       ))}
+      <IconContainer
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+        mouseX={mouseX}
+        title={"Theme"}
+        icon={
+          <IconBulb className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        }
+        href={"#"}
+      />
     </motion.div>
   );
 };
 
-function IconContainer({ mouseX, title, icon, href }) {
+function IconContainer({ mouseX, title, icon, href, ...props }) {
   let ref = useRef(null);
 
   let distance = useTransform(mouseX, (val) => {
@@ -170,6 +192,7 @@ function IconContainer({ mouseX, title, icon, href }) {
         </AnimatePresence>
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
+          {...props}
           className="flex items-center justify-center"
         >
           {icon}

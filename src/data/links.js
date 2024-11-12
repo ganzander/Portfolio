@@ -2,7 +2,6 @@ import {
   IconUser,
   IconPhone,
   IconBrain,
-  IconHome,
   IconWorldCog,
   IconPasswordUser,
 } from "@tabler/icons-react";
@@ -35,7 +34,6 @@ const links = [
     ),
     href: "#projects",
   },
-
   {
     title: "Contact",
     icon: (
