@@ -44,7 +44,7 @@ export default function Contact() {
       id="contact"
     >
       {theme === "dark" ? (
-        <WavyBackground className="dark:block hidden max-w-4xl mx-auto pb-40">
+        <WavyBackground className="max-w-4xl mx-auto pb-40">
           <h2 className="dark:text-white text-black tracking-tighter text-4xl lg:text-6xl mb-7 text-center font-semibold uppercase">
             Connect With Me
           </h2>
@@ -114,7 +114,7 @@ export default function Contact() {
           </div>
         </WavyBackground>
       ) : (
-        <div className="block dark:hidden max-w-4xl mx-auto pb-40">
+        <div className="max-w-4xl mx-auto pb-40">
           <h2 className="dark:text-white text-black tracking-tighter text-4xl lg:text-6xl mb-7 text-center font-semibold uppercase">
             Connect With Me
           </h2>

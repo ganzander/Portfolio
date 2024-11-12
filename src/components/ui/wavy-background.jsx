@@ -99,17 +99,14 @@ export const WavyBackground = ({
       )}
     >
       <canvas
-        className="absolute z-0 w-[100vw] hidden dark:block"
+        className="absolute z-0 w-[100vw]"
         ref={canvasRef}
         id="canvas"
         style={{
           ...(isSafari ? { filter: `blur(${blur}px)` } : {}),
         }}
       ></canvas>
-      <div
-        className={cn("relative z-10 hidden dark:block", className)}
-        {...props}
-      >
+      <div className={cn("relative z-10", className)} {...props}>
         {children}
       </div>
     </div>
