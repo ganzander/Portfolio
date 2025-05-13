@@ -1,104 +1,54 @@
 "use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
+
+import * as React from "react";
+import * as TabsPrimitive from "@radix-ui/react-tabs";
+
 import { cn } from "@/lib/utils";
 
-export const Tabs = ({
-  tabs: propTabs,
-  containerClassName,
-  activeTabClassName,
-  tabClassName,
-  contentClassName,
-}) => {
-  const [active, setActive] = useState(propTabs[0]);
-  const [tabs, setTabs] = useState(propTabs);
-
-  const moveSelectedTabToTop = (idx) => {
-    const newTabs = [...propTabs];
-    const selectedTab = newTabs.splice(idx, 1);
-    newTabs.unshift(selectedTab[0]);
-    setTabs(newTabs);
-    setActive(newTabs[0]);
-  };
-
-  const [hovering, setHovering] = useState(false);
-
+function Tabs({ className, ...props }) {
   return (
-    <>
-      <div
-        className={cn(
-          "grid grid-cols-2 md:grid-cols-4 items-center justify-evenly [perspective:1000px] relative no-visible-scrollbar max-w-full w-full",
-          containerClassName
-        )}
-      >
-        {propTabs.map((tab, idx) => (
-          <button
-            key={tab.title}
-            onClick={() => {
-              moveSelectedTabToTop(idx);
-            }}
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-            className={cn("relative px-4 py-2 rounded-full", tabClassName)}
-            style={{
-              transformStyle: "preserve-3d",
-            }}
-          >
-            {active.value === tab.value && (
-              <motion.div
-                layoutId="clickedbutton"
-                transition={{ type: "spring", bounce: 0.3, duration: 0.6 }}
-                className={cn(
-                  "absolute inset-0 bg-gray-300 dark:bg-zinc-800 rounded-full ",
-                  activeTabClassName
-                )}
-              />
-            )}
-
-            <span className="relative block text-black dark:text-white text-lg md:text-xl">
-              {tab.title}
-            </span>
-          </button>
-        ))}
-      </div>
-      <FadeInDiv
-        tabs={tabs}
-        active={active}
-        key={active.value}
-        hovering={hovering}
-        className={cn("mt-28", contentClassName)}
-      />
-    </>
+    <TabsPrimitive.Root
+      data-slot="tabs"
+      className={cn("flex flex-col", className)}
+      {...props}
+    />
   );
-};
+}
 
-export const FadeInDiv = ({ className, tabs, hovering }) => {
-  const isActive = (tab) => {
-    return tab.value === tabs[0].value;
-  };
+function TabsList({ className, ...props }) {
   return (
-    <div className="relative w-full h-full">
-      {tabs.map((tab, idx) => (
-        <motion.div
-          key={tab.value}
-          layoutId={tab.value}
-          style={{
-            scale: 1 - idx * 0.1,
-            top: hovering ? idx * -50 : 0,
-            zIndex: -idx,
-            opacity: idx < 3 ? 1 - idx * 0.1 : 0,
-          }}
-          animate={{
-            y: isActive(tab) ? [0, 40, 0] : 0,
-          }}
-          className={cn(
-            "w-full h-[60%] sm:h-[80%] md:h-[90%] lg:h-full absolute top-0 left-0 bg-white p-5 rounded-lg",
-            className
-          )}
-        >
-          {tab.content}
-        </motion.div>
-      ))}
-    </div>
+    <TabsPrimitive.List
+      data-slot="tabs-list"
+      className={cn(
+        "bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center p-[3px]",
+        className
+      )}
+      {...props}
+    />
   );
-};
+}
+
+function TabsTrigger({ className, ...props }) {
+  return (
+    <TabsPrimitive.Trigger
+      data-slot="tabs-trigger"
+      className={cn(
+        " inline-flex h-[80%] flex-1 items-center justify-center gap-1.5 text-sm font-medium whitespace-nowrap transition-[color,box-shadow]  disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function TabsContent({ className, ...props }) {
+  return (
+    <TabsPrimitive.Content
+      data-slot="tabs-content"
+      className={cn("flex-1 outline-none hover-cursor min-h-[80%]", className)}
+      {...props}
+    />
+  );
+}
+
+export { Tabs, TabsList, TabsTrigger, TabsContent };

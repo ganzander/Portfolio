@@ -1,19 +1,20 @@
-import Contact from "@/components/Contact";
-import Experience from "@/components/Experience";
-import Footer from "@/components/Footer";
-import HeroSection from "@/components/HeroSection";
-import Projects from "@/components/Projects";
-import Skills from "@/components/Skills";
+"use client";
+import AboutSection from "@/components/About/AboutSection";
+import ContactSection from "@/components/Contact/ContactSection";
+import HeroSection from "@/components/Hero/HeroSection";
+import ProjectSection from "@/components/Project/ProjectSection";
+import TestimonialsSection from "@/components/Testimonial/TestimonialSection";
+import WorkExperience from "@/components/WorkExperience/WorkExperience";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden dark:bg-black bg-[#eee] tracking-tighter text-gray-200 antialiased">
+    <main className="min-h-screen">
       <HeroSection />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Contact />
-      <Footer />
+      <AboutSection />
+      <ProjectSection />
+      <WorkExperience />
+      <TestimonialsSection />
+      <ContactSection />
     </main>
   );
 }
