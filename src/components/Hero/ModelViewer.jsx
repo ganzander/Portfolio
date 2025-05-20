@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Loading from "./Loading";
 
 export default function ModelViewer({ modelPath }) {
   const viewerRef = useRef(null);
@@ -25,18 +26,15 @@ export default function ModelViewer({ modelPath }) {
   }, []);
 
   return (
-    <div className="relative w-full h-full rounded-lg overflow-hidden border border-purple-400/30 bg-black bg-opacity-40 shadow-2xl backdrop-blur-sm">
-      {loading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-10">
-          <div className="flex flex-col items-center">
-            <div className="w-12 h-12 border-4 border-t-purple-500 border-purple-300/30 rounded-full animate-spin"></div>
-            <p className="text-white mt-4">Loading 3D model...</p>
-          </div>
+    <div className="relative w-full h-full rounded-lg hover-cursor overflow-hidden bg-opacity-40">
+      {loading && !error && (
+        <div className="absolute inset-0 flex items-center justify-center z-20">
+          <Loading />
         </div>
       )}
 
       {error && (
-        <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-10">
+        <div className="absolute inset-0 flex items-center justify-center z-10">
           <p className="text-red-200 bg-red-900/50 px-4 py-2 rounded-md">
             {error}
           </p>
@@ -51,15 +49,13 @@ export default function ModelViewer({ modelPath }) {
         ar-modes="webxr scene-viewer quick-look"
         environment-image="neutral"
         shadow-intensity="1"
-        camera-controls
-        auto-rotate
+        // camera-controls
+        // auto-rotate
         autoPlay
         exposure="0.8"
         style={{
           width: "100%",
           height: "100%",
-          backgroundColor: "rgba(0,0,0,0.85)",
-          "--poster-color": "transparent",
         }}
         onLoad={() => setLoading(false)}
         onError={() => {

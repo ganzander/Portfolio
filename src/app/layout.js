@@ -14,9 +14,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body
-        className={` ${spaceGrotesk.className}`}
+        className={`overflow-x-hidden ${spaceGrotesk.className}`}
         cz-shortcut-listen="true"
         style={{ cursor: "url('/navigate.png')" }}
       >

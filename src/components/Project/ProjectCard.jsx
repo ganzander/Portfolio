@@ -34,7 +34,7 @@ export function ProjectCard({
         )}
       >
         {/* Top section that appears on hover */}
-        <div className="absolute top-0 left-0 w-full h-0 group-hover:h-1/2 bg-[#F7F6F1] z-20 transition-all duration-500 ease-in-out overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-0 group-hover:h-1/2 bg-gray-50 z-20 transition-all duration-500 ease-in-out overflow-hidden">
           <div className="h-full px-6 py-4 flex flex-col justify-between opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-in-out pointer-events-none group-hover:pointer-events-auto">
             <div className="flex justify-between items-center text-sm text-black">
               <div className="flex items-center gap-2">
@@ -43,7 +43,7 @@ export function ProjectCard({
                   {techStack.slice(0, 4).map((tech, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 border rounded-full flex items-center gap-1 text-xs"
+                      className="px-3 py-1 border rounded-full bg-white flex items-center gap-1 text-xs"
                     >
                       {tech.name}
                     </span>
@@ -77,7 +77,7 @@ export function ProjectCard({
 
         {/* Image & info wrapper */}
         <div className="relative w-full bg-[#F7F6F1]">
-          <div className="relative aspect-[7/4] -rotate-360 w-full overflow-hidden transition-transform duration-500 ease-in-out group-hover:translate-y-1/2 z-10 rounded-t-4xl">
+          <div className="relative aspect-[7/4] -rotate-360 w-full overflow-hidden transition-transform duration-500 ease-in-out group-hover:translate-y-1/2 z-10 rounded-t-3xl">
             <Image
               src={image}
               alt={title}

@@ -89,7 +89,7 @@ export default function TestimonialsSection() {
 
   return (
     <section
-      className="w-full h-screen flex justify-center items-center bg-muted/30"
+      className="w-full h-screen flex justify-center items-center bg-gray-50"
       ref={ref}
     >
       <motion.div
