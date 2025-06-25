@@ -1,32 +1,55 @@
-import React from "react";
+"use client";
+import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
+import { motion, useInView } from "framer-motion";
 
 export default function AboutSection() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-20 px-4 flex justify-center items-center min-h-[60vh] gap-4">
-      <div className="hidden sm:flex w-[50%] relative aspect-square overflow-hidden z-10 rounded-t-4xl">
-        <Image
-          src="/unnamed.jpg"
-          alt="Hero bg Image"
-          fill
-          priority
-          className="object-cover"
-        />
-      </div>
-      <div className="w-full md:w-[50%] mx-auto text-left md:text-center flex flex-col items-center">
-        <h2 className="text-orange-500 font-semibold mb-6 capitalize">
+    <section
+      ref={ref}
+      className="relative flex justify-center items-center min-h-screen gap-4 overflow-hidden"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 80 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-full md:w-[50%] mx-auto text-left md:text-center flex flex-col items-center relative z-10"
+      >
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.1, duration: 0.8 }}
+          className="zentry tracking-wider text-6xl md:text-8xl text-orange-500 font-semibold mb-6 capitalize"
+        >
           Who I Am
-        </h2>
-        <p className="text-xl md:text-2xl lg:text-4xl font-semibold leading-tight mb-10">
-          Hey, I’m Ganesh – a creative technologist passionate about building
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="text-xl md:text-2xl lg:text-4xl font-semibold leading-tight mb-10 relative"
+        >
+          Hey, I'm Ganesh – a creative technologist passionate about building
           immersive digital experiences. From 3D avatars to AI-driven tools, I
           love pushing boundaries where design meets code. Currently building
-          tools that make a difference in people’s lives using cutting-edge web
+          tools that make a difference in people's lives using cutting-edge web
           and AI tech.
-        </p>
-        <Button className="rounded-full hover-cursor">Read More</Button>
-      </div>
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.5, duration: 0.6 }}
+        >
+          <Button className="group relative rounded-full bg-orange-500 overflow-hidden px-6 py-2 text-white">
+            Ask Me Anything
+          </Button>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

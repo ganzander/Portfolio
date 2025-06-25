@@ -44,7 +44,7 @@ export function ProjectDetails({ projectData }) {
             value="photos"
             className="hover-cursor-white text-gray-300 data-[state=active]:border-b-2 data-[state=active]:border-b-gray-300 rounded-none"
           >
-            04. Photos
+            04. Gallery
           </TabsTrigger>
         </TabsList>
       </Tabs>

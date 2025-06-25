@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Loading from "./Loading";
 
 export default function ModelViewer({ modelPath }) {
   const viewerRef = useRef(null);
@@ -26,13 +25,15 @@ export default function ModelViewer({ modelPath }) {
   }, []);
 
   return (
-    <div className="relative w-full h-full rounded-lg hover-cursor overflow-hidden bg-opacity-40">
+    <div className="relative w-full h-full rounded-lg overflow-hidden bg-opacity-40 bg-white/5">
+      {/* Simple Spinner Loader */}
       {loading && !error && (
         <div className="absolute inset-0 flex items-center justify-center z-20">
-          <Loading />
+          <div className="w-10 h-10 border-4 border-orange-400 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
 
+      {/* Error display */}
       {error && (
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <p className="text-red-200 bg-red-900/50 px-4 py-2 rounded-md">
@@ -41,18 +42,21 @@ export default function ModelViewer({ modelPath }) {
         </div>
       )}
 
+      {/* 3D Viewer */}
       <model-viewer
         ref={viewerRef}
         src={modelPath}
         alt="3D Model of Ganesh Kumar Mangla's creative work"
-        ar
-        ar-modes="webxr scene-viewer quick-look"
+        camera-controls
+        disable-zoom
+        interaction-prompt="none"
+        auto-rotate
+        autoPlay
         environment-image="neutral"
         shadow-intensity="1"
-        // camera-controls
-        // auto-rotate
-        autoPlay
-        exposure="0.8"
+        camera-orbit="0deg 90deg auto"
+        min-camera-orbit="auto 90deg auto"
+        max-camera-orbit="auto 90deg auto"
         style={{
           width: "100%",
           height: "100%",

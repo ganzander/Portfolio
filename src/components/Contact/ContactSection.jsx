@@ -152,7 +152,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="w-full min-h-screen flex items-center" ref={ref}>
+    <section
+      className="w-full min-h-screen flex items-center"
+      ref={ref}
+      id="contact-section"
+    >
       <motion.div
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}

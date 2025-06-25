@@ -14,41 +14,19 @@ export default function ProjectPhotos({ projectData }) {
         </div>
 
         <div className="grid grid-cols-2 gap-2 sm:gap-4">
-          <div className="relative h-[240px] rounded-lg overflow-hidden">
-            <Image
-              src={projectData.image}
-              alt="Modern white villa with pool"
-              fill
-              className="object-cover object-left-top"
-            />
-          </div>
-
-          <div className="relative h-[240px] rounded-lg overflow-hidden">
-            <Image
-              src={projectData.image}
-              alt="Aerial view of waterfront development"
-              fill
-              className="object-cover object-right-top"
-            />
-          </div>
-
-          <div className="relative h-[240px] rounded-lg overflow-hidden">
-            <Image
-              src={projectData.image}
-              alt="Villa entrance with steps and lighting"
-              fill
-              className="object-cover object-left-bottom"
-            />
-          </div>
-
-          <div className="relative h-[240px] rounded-lg overflow-hidden">
-            <Image
-              src={projectData.image}
-              alt="Villa exterior with open plan design"
-              fill
-              className="object-cover object-right-bottom"
-            />
-          </div>
+          {projectData?.supportingImages?.slice(0, 4).map((img, idx) => (
+            <div
+              key={idx}
+              className="relative h-[240px] overflow-hidden rounded-lg"
+            >
+              <Image
+                src={img}
+                alt={`Supporting image ${idx + 1}`}
+                fill
+                className="object-cover object-center"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>

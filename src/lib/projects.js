@@ -100,6 +100,7 @@ const projects = [
       "Accelerated content repurposing for creators through automated captioning.",
     liveDemo: "https://captionizer-star.vercel.app/",
     repo: "Not specified",
+    direction: "left",
   },
   {
     id: "02",
@@ -166,6 +167,7 @@ const projects = [
     impact: "Helps creators gain deep insight into viewer sentiments at scale.",
     liveDemo: "https://yt-comments-xpert.vercel.app/",
     repo: "Not specified",
+    direction: "right",
   },
   {
     id: "03",
@@ -174,30 +176,65 @@ const projects = [
     role: "Full Stack Developer",
     duration: "June 2024",
     techStack: [
-      { name: "Next.js", icon: <Rocket size={14} className="text-gray-700" /> },
-      { name: "Gemini AI", icon: <Bot size={14} className="text-gray-700" /> },
-      { name: "Node.js", icon: <Server size={14} className="text-gray-700" /> },
+      {
+        name: "Next.js",
+        description:
+          "Next.js is a powerful React framework that enables server-side rendering, static site generation, and seamless full-stack development. It simplifies routing, API building, and performance optimization out of the box.",
+        svg: "/tech/nextjs.svg",
+      },
+      {
+        name: "Gemini AI",
+        description:
+          "Gemini AI is Google's state-of-the-art multimodal AI system that supports text, image, and code understanding. It powers intelligent features, providing contextual responses and creative generation for a range of tasks.",
+        svg: "/tech/gemini.svg",
+      },
+      {
+        name: "Node.js",
+        description:
+          "Node.js is a JavaScript runtime built on Chrome's V8 engine, designed for building scalable and fast network applications. It enables server-side scripting with non-blocking I/O, ideal for APIs and microservices.",
+        svg: "/tech/nodejs.svg",
+      },
       {
         name: "MongoDB",
-        icon: <Database size={14} className="text-gray-700" />,
+        description:
+          "MongoDB is a document-based NoSQL database designed for high performance and scalability. It stores data in flexible, JSON-like formats, making it ideal for rapid development and unstructured datasets.",
+        svg: "/tech/mongodb.svg",
       },
       {
-        name: "Bootstrap",
-        icon: <LayoutDashboard size={14} className="text-gray-700" />,
+        name: "TailwindCSS",
+        description:
+          "Tailwind CSS is a utility-first CSS framework that allows rapid UI development using low-level utility classes directly in your HTML. It's highly customizable and ideal for creating modern, responsive designs without writing custom CSS.",
+        svg: "/tech/tailwindcss.svg",
       },
-      { name: "CSS", icon: <Paintbrush size={14} className="text-gray-700" /> },
+      {
+        name: "CSS",
+        description:
+          "CSS (Cascading Style Sheets) is used to style HTML elements visually. It controls layout, typography, colors, and animations, enabling pixel-perfect designs across browsers and devices.",
+        svg: "/tech/css.svg",
+      },
       {
         name: "JavaScript",
-        icon: <Code size={14} className="text-gray-700" />,
+        description:
+          "JavaScript is the backbone of dynamic web applications. It enables interactivity, DOM manipulation, and API communication, making it essential for client-side and full-stack development.",
+        svg: "/tech/js.svg",
       },
-      { name: "OAuth", icon: <Shield size={14} className="text-gray-700" /> },
+      {
+        name: "OAuth",
+        description:
+          "OAuth is an open standard protocol for secure delegated access. It allows applications to access user data from external services (like Google, GitHub) without exposing credentials.",
+        svg: "/tech/oauth.svg",
+      },
       {
         name: "Responsive Design",
-        icon: <MonitorCheck size={14} className="text-gray-700" />,
+        description:
+          "Responsive design ensures web applications adapt fluidly across different screen sizes and devices. It combines flexible layouts, media queries, and fluid images for optimal usability.",
+        svg: "/tech/responsive.svg",
       },
       {
-        name: "CI/CD",
-        icon: <GitBranch size={14} className="text-gray-700" />,
+        name: "Vercel",
+        description:
+          "Vercel is a cloud platform optimized for frontend frameworks like Next.js. It offers instant deployments, global CDN, edge functions, and seamless CI/CD for modern web applications.",
+        svg: "/tech/vercel.svg",
       },
     ],
     features: [
@@ -206,8 +243,13 @@ const projects = [
       "Serverless backend architecture",
       "Real-time chat sync and updates",
     ],
-    image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    image: "/project/whisper-gram/1.png",
+    supportingImages: [
+      "/project/whisper-gram/2.png",
+      "/project/whisper-gram/3.png",
+      "/project/whisper-gram/4.png",
+      "/project/whisper-gram/5.png",
+    ],
     description: `
       <div className="space-y-4 text-muted-foreground">
         <p>
@@ -223,6 +265,7 @@ const projects = [
       "Improved messaging efficiency with AI-driven context-aware suggestions.",
     liveDemo: "https://whisper-gram.vercel.app/",
     repo: "Not specified",
+    direction: "down",
   },
   {
     id: "04",
@@ -302,6 +345,7 @@ const projects = [
       "Enhanced restaurant workflows and user satisfaction with digital order management.",
     liveDemo: "https://savor-haven.vercel.app/",
     repo: "Not specified",
+    direction: "down",
   },
 ];
 
