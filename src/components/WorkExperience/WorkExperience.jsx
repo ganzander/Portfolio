@@ -1,14 +1,31 @@
 "use client";
-
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import experiences from "@/lib/experiences";
+import { useEffect, useState } from "react";
+
+function useIsLargeScreen() {
+  const [isLargeScreen, setIsLargeScreen] = useState(
+    typeof window !== "undefined" ? window.innerWidth >= 1024 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return isLargeScreen;
+}
 
 export default function WorkExperience() {
   const [activeIndex, setActiveIndex] = useState(1);
   const activeProfile = experiences[activeIndex];
+
+  const isLargeScreen = useIsLargeScreen();
 
   return (
     <div className="bg-white mx-auto max-w-[90%] min-h-screen flex flex-col justify-evenly items-center py-12 relative">
@@ -24,7 +41,8 @@ export default function WorkExperience() {
         </div>
 
         <div className="gap-8 md:gap-16 w-full">
-          <div className="flex flex-col md:flex-row justify-evenly items-center w-full space-y-8 md:space-y-0">
+          {/* <div className="flex flex-col lg:flex-row justify-evenly items-center w-full space-y-8 md:space-y-0"> */}
+          <div className="flex flex-col lg:flex-row items-center lg:items-start w-full gap-12 lg:gap-8">
             {/* Left panel */}
             <AnimatePresence mode="wait">
               <motion.div
@@ -33,7 +51,7 @@ export default function WorkExperience() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="flex flex-col space-y-2 w-full md:w-[25%] px-4 md:px-0"
+                className="flex flex-col space-y-2 w-full lg:w-[25%] px-4 md:px-0"
               >
                 <h2 className="text-2xl font-medium text-gray-900">
                   {activeProfile.name}
@@ -49,73 +67,79 @@ export default function WorkExperience() {
             </AnimatePresence>
 
             {/* Image carousel */}
-            <div className="h-[350px] md:h-[400px] w-full md:w-[50%] relative">
-              <div className="relative w-full h-full">
-                {experiences.map((profile, index) => {
-                  const position = index - activeIndex;
-                  let xOffset = 0,
-                    yOffset = 0,
-                    zIndex = 10,
-                    opacity = 1,
-                    scale = 1;
+            <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] max-w-[700px] mx-auto">
+              <div className="absolute inset-0">
+                {(isLargeScreen ? experiences : [activeProfile]).map(
+                  (profile, index) => {
+                    const position = index - activeIndex;
 
-                  if (position === 0) {
-                    zIndex = 30;
-                    scale = 1;
-                  } else if (
-                    position === -1 ||
-                    (position === experiences.length - 1 && activeIndex === 0)
-                  ) {
-                    xOffset = -100;
-                    yOffset = -80;
-                    zIndex = 20;
-                    scale = 0.7;
-                    opacity = 0.8;
-                  } else if (
-                    position === 1 ||
-                    (position === -experiences.length + 1 &&
-                      activeIndex === experiences.length - 1)
-                  ) {
-                    xOffset = 100;
-                    yOffset = 80;
-                    zIndex = 20;
-                    scale = 0.7;
-                    opacity = 0.8;
-                  } else if (position === -2 || position === 2) {
-                    xOffset = position < 0 ? -180 : 180;
-                    yOffset = position < 0 ? -160 : 160;
-                    zIndex = 10;
-                    scale = 0.5;
-                    opacity = 0.6;
-                  } else {
-                    opacity = 0;
+                    let xOffset = 0,
+                      yOffset = 0,
+                      zIndex = 10,
+                      opacity = 1,
+                      scale = 1;
+
+                    if (isLargeScreen) {
+                      if (position === 0) {
+                        zIndex = 30;
+                        scale = 1;
+                      } else if (
+                        position === -1 ||
+                        (position === experiences.length - 1 &&
+                          activeIndex === 0)
+                      ) {
+                        xOffset = -100;
+                        yOffset = -80;
+                        zIndex = 20;
+                        scale = 0.7;
+                        opacity = 0.8;
+                      } else if (
+                        position === 1 ||
+                        (position === -experiences.length + 1 &&
+                          activeIndex === experiences.length - 1)
+                      ) {
+                        xOffset = 100;
+                        yOffset = 80;
+                        zIndex = 20;
+                        scale = 0.7;
+                        opacity = 0.8;
+                      } else if (position === -2 || position === 2) {
+                        xOffset = position < 0 ? -180 : 180;
+                        yOffset = position < 0 ? -160 : 160;
+                        zIndex = 10;
+                        scale = 0.5;
+                        opacity = 0.6;
+                      } else {
+                        opacity = 0;
+                      }
+                    }
+
+                    return (
+                      <motion.div
+                        key={profile.id}
+                        initial={{ x: xOffset, y: yOffset, opacity, scale }}
+                        animate={{ x: xOffset, y: yOffset, opacity, scale }}
+                        transition={{ duration: 0.5 }}
+                        className={cn(
+                          "absolute rounded-lg overflow-hidden shadow-lg cursor-pointer",
+                          "w-[200px] md:w-[260px] h-[270px] md:h-[350px]"
+                        )}
+                        style={{
+                          left: "calc(50% - 100px)",
+                          top: "calc(50% - 135px)",
+                          zIndex,
+                        }}
+                        onClick={() => isLargeScreen && setActiveIndex(index)}
+                      >
+                        <img
+                          src={profile.image}
+                          alt={profile.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+                    );
                   }
-
-                  return (
-                    <motion.div
-                      key={profile.id}
-                      initial={{ x: xOffset, y: yOffset, opacity, scale }}
-                      animate={{ x: xOffset, y: yOffset, opacity, scale }}
-                      transition={{ duration: 0.5 }}
-                      className={cn(
-                        "absolute rounded-lg overflow-hidden shadow-lg cursor-pointer",
-                        "w-[200px] md:w-[260px] h-[270px] md:h-[350px]"
-                      )}
-                      style={{
-                        left: "calc(50% - 100px)",
-                        top: "calc(50% - 135px)",
-                        zIndex,
-                      }}
-                      onClick={() => setActiveIndex(index)}
-                    >
-                      <img
-                        src={profile.image}
-                        alt={profile.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </motion.div>
-                  );
-                })}
+                )}
               </div>
             </div>
 
@@ -127,7 +151,7 @@ export default function WorkExperience() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
-                className="flex flex-col w-full md:w-[25%] px-4 md:px-0"
+                className="flex flex-col w-full lg:w-[25%] px-4 md:px-0 sm:mt-20 lg:mt-0"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-4">
                   <div>
@@ -158,7 +182,7 @@ export default function WorkExperience() {
               prev === 0 ? experiences.length - 1 : prev - 1
             )
           }
-          className="p-4 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          className="p-2 md:p-4 rounded-full bg-gray-200 hover-cursor hover:bg-gray-300 transition-colors"
           aria-label="Previous profile"
         >
           <ChevronLeft size={20} />
@@ -169,7 +193,7 @@ export default function WorkExperience() {
               prev === experiences.length - 1 ? 0 : prev + 1
             )
           }
-          className="p-4 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+          className="p-2 md:p-4 rounded-full bg-gray-200 hover-cursor hover:bg-gray-300 transition-colors"
           aria-label="Next profile"
         >
           <ChevronRight size={20} />

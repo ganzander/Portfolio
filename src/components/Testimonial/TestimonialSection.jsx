@@ -100,26 +100,27 @@ export default function TestimonialsSection() {
       >
         <motion.h2
           variants={itemVariants}
-          className="text-4xl md:text-5xl font-bold tracking-tight mb-16"
+          className="zentry text-3xl md:text-8xl font-medium mb-8 md:mb-16"
         >
           What Our Clients Say
         </motion.h2>
 
-        <div className="flex flex-col md:flex-row gap-10 items-start">
-          <motion.div variants={itemVariants} className="flex-1 relative">
-            <div className="absolute -left-10 top-0">
-              <motion.div
-                className="bg-primary rounded-full p-4 text-primary-foreground"
-                initial={{ rotate: 0 }}
-                animate={{ rotate: [0, -10, 0, 10, 0] }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                <Quote className="h-6 w-6" />
-              </motion.div>
-            </div>
+        <div className="flex flex-col md:flex-row gap-10 items-start justify-center">
+          <motion.div
+            variants={itemVariants}
+            className="flex items-start justify-start relative"
+          >
+            <motion.div
+              className="bg-orange-500 rounded-full p-4 text-primary-foreground hidden md:block"
+              initial={{ rotate: 0 }}
+              animate={{ rotate: [0, -10, 0, 10, 0] }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <Quote className="h-6 w-6" />
+            </motion.div>
 
-            <div className="pl-6 border-l border-muted">
-              <div className="h-[180px] md:h-[150px]">
+            <div className="md:pl-6 border-l border-muted">
+              <div className="">
                 <AnimatePresence mode="wait">
                   <motion.blockquote
                     key={testimonials[currentIndex].id}
@@ -127,7 +128,7 @@ export default function TestimonialsSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
-                    className="text-xl md:text-2xl font-medium leading-relaxed mb-8"
+                    className="text-lg md:text-2xl font-medium leading-relaxed mb-8"
                   >
                     {testimonials[currentIndex].quote}
                   </motion.blockquote>

@@ -22,7 +22,7 @@ export default function AboutSection() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ delay: 0.1, duration: 0.8 }}
-          className="zentry tracking-wider text-6xl md:text-8xl text-orange-500 font-semibold mb-6 capitalize"
+          className="zentry text-3xl md:text-8xl font-medium text-orange-500"
         >
           Who I Am
         </motion.h2>
