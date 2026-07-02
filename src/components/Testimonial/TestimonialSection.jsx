@@ -1,9 +1,11 @@
 "use client";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Quote } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const testimonials = [
   {
@@ -49,9 +51,44 @@ const testimonials = [
 ];
 
 export default function TestimonialsSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const sectionRef = useRef(null);
+  const pinRef = useRef(null);
+  const lastIndexRef = useRef(0);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
   const [currentIndex, setCurrentIndex] = useState(0);
+  const total = testimonials.length;
+
+  // Pin the section and advance testimonials on scroll.
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const mm = gsap.matchMedia();
+    mm.add(
+      "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
+      () => {
+        const st = ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${total * 70}%`,
+          pin: pinRef.current,
+          scrub: true,
+          anticipatePin: 1,
+          refreshPriority: 1, // document order among the pinned sections
+          onUpdate: (self) => {
+            const idx = Math.min(
+              total - 1,
+              Math.round(self.progress * (total - 1))
+            );
+            if (idx !== lastIndexRef.current) {
+              lastIndexRef.current = idx;
+              setCurrentIndex(idx);
+            }
+          },
+        });
+        return () => st.kill();
+      }
+    );
+    return () => mm.revert();
+  }, [total]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -88,21 +125,22 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section
-      className="w-full h-screen flex justify-center items-center bg-gray-50"
-      ref={ref}
-    >
-      <motion.div
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        variants={containerVariants}
-        className="max-w-7xl mx-auto px-4"
+    <section ref={sectionRef} className="relative">
+      <div
+        ref={pinRef}
+        className="flex min-h-screen w-full items-center justify-center overflow-hidden"
       >
+        <motion.div
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={containerVariants}
+          className="mx-auto w-full max-w-7xl px-4"
+        >
         <motion.h2
           variants={itemVariants}
-          className="zentry text-3xl md:text-8xl font-medium mb-8 md:mb-16"
+          className="zentry mb-8 text-3xl font-medium md:mb-16 md:text-8xl"
         >
-          What Our Clients Say
+          What Clients <span className="text-gradient">Say</span>
         </motion.h2>
 
         <div className="flex flex-col md:flex-row gap-10 items-start justify-center">
@@ -111,7 +149,7 @@ export default function TestimonialsSection() {
             className="flex items-start justify-start relative"
           >
             <motion.div
-              className="bg-orange-500 rounded-full p-4 text-primary-foreground hidden md:block"
+              className="bg-accent hidden rounded-full p-4 text-white md:block"
               initial={{ rotate: 0 }}
               animate={{ rotate: [0, -10, 0, 10, 0] }}
               transition={{ duration: 0.5, delay: 0.5 }}
@@ -196,7 +234,8 @@ export default function TestimonialsSection() {
             </div>
           </motion.div>
         </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }

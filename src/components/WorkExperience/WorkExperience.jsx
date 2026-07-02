@@ -3,17 +3,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import experiences from "@/lib/experiences";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function useIsLargeScreen() {
-  const [isLargeScreen, setIsLargeScreen] = useState(
-    typeof window !== "undefined" ? window.innerWidth >= 1024 : false
-  );
+  // Start false on both server and client to keep SSR/hydration in sync;
+  // the real value lands in the effect right after mount.
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 1024);
     };
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -27,15 +30,58 @@ export default function WorkExperience() {
 
   const isLargeScreen = useIsLargeScreen();
 
+  const sectionRef = useRef(null);
+  const pinRef = useRef(null);
+  const lastIndexRef = useRef(1);
+
+  // Desktop-only: pin the section and drive the active role by scroll.
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const total = experiences.length;
+
+    const mm = gsap.matchMedia();
+    mm.add(
+      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+      () => {
+        const st = ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${total * 65}%`,
+          pin: pinRef.current,
+          scrub: true,
+          anticipatePin: 1,
+          refreshPriority: 2, // document order among the pinned sections
+          onUpdate: (self) => {
+            const idx = Math.min(
+              total - 1,
+              Math.round(self.progress * (total - 1))
+            );
+            if (idx !== lastIndexRef.current) {
+              lastIndexRef.current = idx;
+              setActiveIndex(idx);
+            }
+          },
+        });
+        return () => st.kill();
+      }
+    );
+
+    return () => mm.revert();
+  }, []);
+
   return (
-    <div className="bg-white mx-auto max-w-[90%] min-h-screen flex flex-col justify-evenly items-center py-12 relative">
+    <section ref={sectionRef} className="relative">
+      <div
+        ref={pinRef}
+        className="relative mx-auto flex min-h-screen max-w-[90%] flex-col items-center justify-evenly py-12"
+      >
       <div className="w-full">
-        <h2 className="zentry text-3xl md:text-8xl font-medium mb-4 text-center md:text-left">
-          Work Experience
+        <h2 className="zentry mb-4 text-center text-3xl font-medium md:text-left md:text-8xl">
+          Work <span className="text-gradient">Experience</span>
         </h2>
 
-        <div className="flex justify-center md:justify-start mb-8">
-          <div className="inline-flex items-center justify-center rounded-full border px-3 py-1 text-sm">
+        <div className="mb-8 flex justify-center md:justify-start">
+          <div className="inline-flex items-center justify-center rounded-full border border-black/10 bg-black/5 px-3 py-1 text-sm text-foreground/70 dark:border-white/15 dark:bg-white/5">
             {activeIndex + 1}/{experiences.length}
           </div>
         </div>
@@ -53,14 +99,14 @@ export default function WorkExperience() {
                 transition={{ duration: 0.3 }}
                 className="flex flex-col space-y-2 w-full lg:w-[25%] px-4 md:px-0"
               >
-                <h2 className="text-2xl font-medium text-gray-900">
+                <h2 className="text-2xl font-medium text-foreground">
                   {activeProfile.name}
                 </h2>
-                <p className="text-gray-900 font-medium">
+                <p className="font-medium text-accent">
                   {activeProfile.companyName}
                 </p>
-                <div className="border-t border-gray-300 mt-2 mb-2" />
-                <p className="text-gray-600 leading-relaxed">
+                <div className="mb-2 mt-2 border-t border-black/10 dark:border-white/10" />
+                <p className="leading-relaxed text-foreground/60">
                   {activeProfile.description}
                 </p>
               </motion.div>
@@ -155,19 +201,21 @@ export default function WorkExperience() {
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-4">
                   <div>
-                    <h3 className="text-sm text-gray-400">Experience</h3>
-                    <p className="text-lg font-medium">
+                    <h3 className="text-sm text-foreground/40">Experience</h3>
+                    <p className="text-lg font-medium text-foreground">
                       {activeProfile.experience}
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-sm text-gray-400">Areas of Focus</h3>
-                    <p className="text-lg font-medium">
+                    <h3 className="text-sm text-foreground/40">
+                      Areas of Focus
+                    </h3>
+                    <p className="text-lg font-medium text-foreground">
                       {activeProfile.focusAreas.join(", ")}
                     </p>
                   </div>
                 </div>
-                <div className="border-t border-gray-300 mt-2" />
+                <div className="mt-2 border-t border-black/10 dark:border-white/10" />
               </motion.div>
             </AnimatePresence>
           </div>
@@ -182,7 +230,7 @@ export default function WorkExperience() {
               prev === 0 ? experiences.length - 1 : prev - 1
             )
           }
-          className="p-2 md:p-4 rounded-full bg-gray-200 hover-cursor hover:bg-gray-300 transition-colors"
+          className="hover-cursor rounded-full border border-black/10 bg-black/5 p-2 text-foreground transition-colors hover:bg-[var(--accent)] hover:text-white dark:border-white/10 dark:bg-white/5 md:p-4"
           aria-label="Previous profile"
         >
           <ChevronLeft size={20} />
@@ -193,12 +241,13 @@ export default function WorkExperience() {
               prev === experiences.length - 1 ? 0 : prev + 1
             )
           }
-          className="p-2 md:p-4 rounded-full bg-gray-200 hover-cursor hover:bg-gray-300 transition-colors"
+          className="hover-cursor rounded-full border border-black/10 bg-black/5 p-2 text-foreground transition-colors hover:bg-[var(--accent)] hover:text-white dark:border-white/10 dark:bg-white/5 md:p-4"
           aria-label="Next profile"
         >
           <ChevronRight size={20} />
         </button>
       </div>
-    </div>
+      </div>
+    </section>
   );
 }

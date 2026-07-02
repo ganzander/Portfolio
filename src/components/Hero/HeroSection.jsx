@@ -1,44 +1,65 @@
 "use client";
 import { motion } from "framer-motion";
+import { ArrowDown, Sparkles } from "lucide-react";
 import { Button } from "../ui/button";
-import ModelViewer from "./ModelViewer";
+import HeroObject from "../three/HeroObject";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-center py-12 overflow-hidden">
-      <div className="w-[90%] h-full mx-auto relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden pt-28 pb-12">
+      {/* ambient glows (parallax) */}
+      <div
+        data-parallax="0.25"
+        className="accent-orb pointer-events-none absolute -top-32 -left-32 h-[32rem] w-[32rem] rounded-full blur-[120px]"
+      />
+      <div
+        data-parallax="-0.2"
+        className="accent-orb-soft pointer-events-none absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full blur-[120px]"
+      />
+
+      <div className="relative z-10 mx-auto h-full w-[90%]">
+        <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
           {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 80 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col items-center md:items-start text-center md:text-left px-4 space-y-6 md:w-1/2"
+            className="flex flex-col items-center space-y-6 px-4 text-center md:w-1/2 md:items-start md:text-left"
           >
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="glass inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm text-foreground/80"
+            >
+              <Sparkles className="h-4 w-4 text-accent" />
+              Available for freelance & full-time
+            </motion.span>
+
             <motion.h1
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-              className="zentry text-4xl md:text-5xl lg:text-8xl font-semibold text-black"
+              className="zentry text-4xl font-semibold leading-[0.95] md:text-6xl lg:text-8xl"
             >
-              Ganesh Kumar Mangla
+              Ganesh Kumar <span className="text-gradient">Mangla</span>
             </motion.h1>
 
             <motion.h3
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-              className="text-xl md:text-2xl font-medium text-black"
+              className="max-w-xl text-lg font-medium text-foreground/70 md:text-2xl"
             >
-              Creative Developer blending design and code to build beautiful web
-              experiences
+              Creative Developer blending design and code to build beautiful,
+              immersive web experiences.
             </motion.h3>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="gap-4 pt-4 hidden md:flex"
+              className="flex flex-wrap justify-center gap-4 pt-4 md:justify-start"
             >
               <Button
                 onClick={() =>
@@ -46,7 +67,7 @@ export default function HeroSection() {
                     .getElementById("project-section")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="bg-orange-500 hover:bg-orange-700 text-white font-medium py-2 px-6 rounded-full transition-all shadow-lg"
+                className="hover-cursor btn-accent rounded-full px-6 py-2 font-medium"
               >
                 View Projects
               </Button>
@@ -56,23 +77,35 @@ export default function HeroSection() {
                     .getElementById("contact-section")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }
-                className="bg-transparent border-2 border-white text-black font-medium py-2 px-6 rounded-full hover:bg-white hover:text-orange-900 transition-all shadow-lg"
+                className="hover-cursor rounded-full border border-black/15 bg-black/5 px-6 py-2 font-medium text-foreground backdrop-blur transition-all hover:bg-black/10 dark:border-white/20 dark:bg-white/5 dark:hover:bg-white/10"
               >
                 Contact Me
               </Button>
             </motion.div>
           </motion.div>
 
+          {/* 3D centerpiece (three.js) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-            className="w-full md:w-1/2 h-[400px] md:h-[600px] mt-8 md:mt-0"
+            className="relative mt-8 h-[380px] w-full md:mt-0 md:h-[600px] md:w-1/2"
           >
-            <ModelViewer modelPath="/model.glb" />
+            <div className="accent-orb absolute inset-10 rounded-full blur-3xl" />
+            <HeroObject />
           </motion.div>
         </div>
       </div>
+
+      {/* scroll cue */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, y: [0, 10, 0] }}
+        transition={{ delay: 1.2, duration: 1.6, repeat: Infinity }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-foreground/50"
+      >
+        <ArrowDown className="h-6 w-6" />
+      </motion.div>
     </section>
   );
 }

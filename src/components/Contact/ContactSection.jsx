@@ -170,17 +170,16 @@ export default function ContactSection() {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            • CONTACT US
+            • GET IN TOUCH
           </motion.p>
 
           <motion.h2
-            className="text-4xl md:text-5xl font-bold tracking-tight"
+            className="text-4xl font-bold tracking-tight md:text-5xl"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Complete this form <br />
-            to contact our team
+            Let&apos;s work <span className="text-gradient">together</span>
           </motion.h2>
 
           <div className="space-y-4">
@@ -210,14 +209,23 @@ export default function ContactSection() {
 
           <motion.div
             variants={itemVariants}
-            className="relative mt-8 rounded-xl overflow-hidden aspect-video"
+            className="glass relative mt-8 aspect-video overflow-hidden rounded-xl"
             transition={{ duration: 0.3 }}
           >
             <img
-              src="/placeholder.svg?height=400&width=600"
-              alt="City skyline"
-              className="object-cover w-full h-full"
+              src="/ganesh.jpg"
+              alt="Ganesh Kumar Mangla"
+              className="h-full w-full object-cover object-top"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+            <div className="absolute bottom-4 left-4">
+              <p className="text-lg font-semibold text-white">
+                Let&apos;s build something great
+              </p>
+              <p className="text-sm text-white/70">
+                Usually replies within 24 hours
+              </p>
+            </div>
           </motion.div>
         </motion.div>
 

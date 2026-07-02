@@ -1,5 +1,9 @@
 import "./globals.css";
 import { Space_Grotesk } from "next/font/google";
+import ThemedBackground from "@/components/three/ThemedBackground";
+import ScrollFX from "@/components/scroll/ScrollFX";
+import Navbar from "@/components/layout/Navbar";
+import { BackgroundThemeProvider } from "@/context/BackgroundThemeContext";
 
 export const metadata = {
   title: "Ganesh | Full Stack Developer Portfolio",
@@ -14,13 +18,23 @@ const spaceGrotesk = Space_Grotesk({
 });
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="overflow-x-hidden">
+    <html
+      lang="en"
+      className="dark overflow-x-hidden"
+      data-bg-theme="ember"
+      suppressHydrationWarning
+    >
       <body
-        className={`overflow-x-hidden ${spaceGrotesk.className}`}
+        className={`grain relative overflow-x-hidden bg-background text-foreground ${spaceGrotesk.className}`}
         cz-shortcut-listen="true"
         style={{ cursor: "url('/navigate.png')" }}
       >
-        {children}
+        <BackgroundThemeProvider>
+          <ThemedBackground />
+          <ScrollFX />
+          <Navbar />
+          <div className="relative z-10">{children}</div>
+        </BackgroundThemeProvider>
       </body>
     </html>
   );

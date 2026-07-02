@@ -140,6 +140,9 @@ export function ProjectCard({
   techStack,
   duration,
   direction = "up",
+  // Set when a parent (e.g. the scroll deck) drives the card's motion itself —
+  // skips the built-in in-view entrance so the card is never hidden.
+  noEntrance = false,
 }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -164,61 +167,65 @@ export function ProjectCard({
   return (
     <motion.div
       ref={ref}
-      initial={directionVariants[direction] || directionVariants["up"]}
-      animate={isInView ? visible : {}}
+      initial={
+        noEntrance ? false : directionVariants[direction] || directionVariants["up"]
+      }
+      animate={noEntrance || isInView ? visible : {}}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="w-full"
     >
       <div
         className={cn(
-          "group relative overflow-hidden rounded-3xl border flex flex-col transition-all duration-500 ease-in-out",
+          "group relative flex flex-col overflow-hidden rounded-3xl border border-black/10 bg-black/[0.02] transition-all duration-500 ease-in-out hover:border-[rgb(var(--accent-rgb)/0.4)] hover:shadow-2xl hover:shadow-[0_25px_50px_-12px_rgb(var(--accent-rgb)/0.12)] dark:border-white/10 dark:bg-white/[0.03]",
           className
         )}
       >
         {/* Hover top section */}
-        <div className="absolute top-0 left-0 w-full h-0 group-hover:h-1/2 bg-gray-50 z-20 transition-all duration-500 ease-in-out overflow-hidden">
-          <div className="h-full px-6 py-4 flex flex-col justify-between opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-in-out pointer-events-none group-hover:pointer-events-auto">
-            <div className="flex justify-between items-center text-sm text-black">
+        <div className="glass-strong absolute left-0 top-0 z-20 h-0 w-full overflow-hidden transition-all duration-500 ease-in-out group-hover:h-1/2">
+          <div className="pointer-events-none flex h-full translate-y-4 flex-col justify-between px-6 py-4 opacity-0 transition-all duration-500 ease-in-out group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+            <div className="flex items-center justify-between text-sm text-foreground">
               <div className="flex items-center gap-2">
-                <span className="font-semibold">{id}</span>
+                <span className="font-semibold text-accent">{id}</span>
                 <div className="flex items-center gap-2">
                   {techStack.slice(0, 4).map((tech, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 border rounded-full bg-white flex items-center gap-1 text-xs"
+                      className="flex items-center gap-1 rounded-full border border-black/10 bg-black/5 px-3 py-1 text-xs dark:border-white/15 dark:bg-white/5"
                     >
                       {tech.name}
                     </span>
                   ))}
                 </div>
               </div>
-              <span className="font-semibold text-base">{duration}</span>
+              <span className="text-base font-semibold text-foreground/70">
+                {duration}
+              </span>
             </div>
 
             <div>
-              <h3 className="text-xl font-semibold leading-snug text-black">
+              <h3 className="text-xl font-semibold leading-snug text-foreground">
                 {title}
               </h3>
-              <p className="text-sm text-gray-600">{subtitle}</p>
+              <p className="text-sm text-foreground/60">{subtitle}</p>
             </div>
 
             <div
-              className="flex justify-end mt-4"
+              className="mt-4 flex justify-end"
               onClick={() => handleProjectClick(project)}
             >
               <Button
                 variant="outline"
-                className="rounded-xl hover-cursor border-black text-black bg-white px-4 py-2 flex items-center gap-2 shadow-sm"
+                className="hover-cursor flex items-center gap-2 rounded-xl border-[rgb(var(--accent-rgb)/0.5)] bg-[rgb(var(--accent-rgb)/0.1)] px-4 py-2 text-[var(--accent-light)] shadow-sm hover:bg-[rgb(var(--accent-rgb)/0.2)]"
               >
                 View Details
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowUpRight className="h-4 w-4" />
               </Button>
             </div>
           </div>
         </div>
 
         {/* Image section */}
-        <div className="relative w-full bg-[#F7F6F1]">
+        <div className="relative w-full bg-neutral-200 dark:bg-[#0d0d10]">
           <div className="relative aspect-[7/4] w-full overflow-hidden transition-transform duration-500 ease-in-out group-hover:translate-y-1/2 z-10 rounded-t-3xl">
             <Image
               src={image}
@@ -238,7 +245,7 @@ export function ProjectCard({
             <Button
               size="icon"
               variant="outline"
-              className="rounded-full hover-cursor bg-white text-black"
+              className="hover-cursor rounded-full border-white/20 bg-black/40 text-white backdrop-blur hover:bg-[var(--accent)] hover:text-white"
               onClick={() => handleProjectClick(project)}
             >
               <ArrowUpRight className="h-4 w-4" />

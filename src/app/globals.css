@@ -27,22 +27,235 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f0f0f0;
-  border-radius: 10px;
+  background: #0d0d0f;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: linear-gradient(180deg, var(--accent, #f97316), var(--accent-strong, #ea580c));
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--accent-light, #fb923c);
+}
+
+/* Firefox */
+html {
+  scrollbar-color: #ea580c #0d0d0f;
 }
 
 
 body {
   cursor: url('/navigate.png') 16 16, auto;
+  background-color: var(--background);
+  transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+/* Smooth color transitions when toggling theme */
+.glass,
+.glass-strong,
+section,
+nav {
+  transition: background-color 0.45s ease, border-color 0.45s ease,
+    color 0.45s ease;
+}
+
+/* Light-mode surface tweaks (dark remains the designed default) */
+:root:not(.dark) .glass {
+  background: rgba(0, 0, 0, 0.035);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+:root:not(.dark) .glass-strong {
+  background: rgba(255, 255, 255, 0.72);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+:root:not(.dark) .grain::after {
+  opacity: 0.02;
+}
+
+/* Warm ambient wash for light mode so the page isn't flat white */
+:root:not(.dark) body {
+  background-image: radial-gradient(
+      60rem 60rem at 15% -10%,
+      rgba(249, 115, 22, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      50rem 50rem at 100% 20%,
+      rgba(249, 115, 22, 0.06),
+      transparent 55%
+    );
+  background-attachment: fixed;
+}
+
+/* ---------- Design system utilities ---------- */
+
+/* Glassmorphism surface */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-strong {
+  background: rgba(20, 18, 16, 0.6);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Accent gradient text (follows the active theme) */
+.text-gradient {
+  background: linear-gradient(
+    120deg,
+    var(--accent-light) 0%,
+    var(--accent) 45%,
+    var(--accent-strong) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Soft ambient glow */
+.glow-orange {
+  box-shadow: 0 0 40px -8px rgb(var(--accent-rgb) / 0.55),
+    0 0 90px -20px rgb(var(--accent-rgb) / 0.35);
+}
+
+/* ---------- Background themes (data-bg-theme on <html>) ---------- */
+/* Each theme completely retints the page base + ambient glow to match its
+   particle scene. Swapped by the navbar ThemeSwitcher. */
+
+html[data-bg-theme="ember"] {
+  --background: oklch(0.15 0.012 60);
+  --bg-glow-a: rgba(249, 115, 22, 0.12);
+  --bg-glow-b: rgba(234, 88, 12, 0.07);
+  --accent: #f97316;
+  --accent-strong: #ea580c;
+  --accent-light: #ffb877;
+  --accent-rgb: 249 115 22;
+}
+
+html[data-bg-theme="nebula"] {
+  --background: oklch(0.14 0.035 275);
+  --bg-glow-a: rgba(99, 102, 241, 0.16);
+  --bg-glow-b: rgba(56, 189, 248, 0.08);
+  --accent: #818cf8;
+  --accent-strong: #6366f1;
+  --accent-light: #c7d2fe;
+  --accent-rgb: 129 140 248;
+}
+
+html[data-bg-theme="aurora"] {
+  --background: oklch(0.14 0.03 190);
+  --bg-glow-a: rgba(45, 212, 191, 0.14);
+  --bg-glow-b: rgba(74, 222, 128, 0.07);
+  --accent: #2dd4bf;
+  --accent-strong: #14b8a6;
+  --accent-light: #99f6e4;
+  --accent-rgb: 45 212 191;
+}
+
+html[data-bg-theme="starfield"] {
+  --background: oklch(0.11 0.012 260);
+  --bg-glow-a: rgba(148, 163, 184, 0.1);
+  --bg-glow-b: rgba(226, 232, 240, 0.04);
+  --accent: #93c5fd;
+  --accent-strong: #60a5fa;
+  --accent-light: #dbeafe;
+  --accent-rgb: 147 197 253;
+}
+
+html[data-bg-theme="magma"] {
+  --background: oklch(0.13 0.025 25);
+  --bg-glow-a: rgba(239, 68, 68, 0.16);
+  --bg-glow-b: rgba(251, 146, 60, 0.08);
+  --accent: #ef4444;
+  --accent-strong: #dc2626;
+  --accent-light: #fca5a5;
+  --accent-rgb: 239 68 68;
+}
+
+/* Accent fallback (matches ember) before any theme attribute lands */
+html {
+  --accent: #f97316;
+  --accent-strong: #ea580c;
+  --accent-light: #ffb877;
+  --accent-rgb: 249 115 22;
+}
+
+/* ---------- Accent utilities (follow the active background theme) ---------- */
+.text-accent {
+  color: var(--accent);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  color: #fff;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 24px -10px rgb(var(--accent-rgb) / 0.5);
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-strong);
+  box-shadow: 0 12px 28px -8px rgb(var(--accent-rgb) / 0.6);
+}
+
+.accent-orb {
+  background: rgb(var(--accent-rgb) / 0.18);
+}
+
+.accent-orb-soft {
+  background: rgb(var(--accent-rgb) / 0.09);
+}
+
+
+html[data-bg-theme] body {
+  background-image: radial-gradient(
+      55rem 55rem at 12% -8%,
+      var(--bg-glow-a, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      48rem 48rem at 100% 30%,
+      var(--bg-glow-b, transparent),
+      transparent 55%
+    );
+  background-attachment: fixed;
+}
+
+/* Subtle film-grain / noise overlay for depth */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Reveal helper (paired with GSAP / IntersectionObserver) */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .hover-cursor:hover {
@@ -97,8 +310,8 @@ body {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --background: oklch(0.987 0.006 75);
+  --foreground: oklch(0.18 0.01 60);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
