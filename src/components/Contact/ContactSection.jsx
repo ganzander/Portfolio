@@ -11,13 +11,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Github,
-  Linkedin,
-  Twitter,
-  CheckCircle,
-  Loader2,
-} from "lucide-react";
+import { Github, Linkedin, CheckCircle, Loader2 } from "lucide-react";
 import { site } from "@/lib/site";
 
 export default function ContactSection() {
@@ -138,12 +132,12 @@ export default function ContactSection() {
     // No backend — hand off to the visitor's mail client with everything
     // prefilled so the message actually reaches me.
     const subject = encodeURIComponent(
-      `Portfolio contact from ${formState.firstName} ${formState.lastName}`
+      `Portfolio contact from ${formState.firstName} ${formState.lastName}`,
     );
     const body = encodeURIComponent(
       `${formState.message}\n\n—\n${formState.firstName} ${formState.lastName}\n${formState.email}${
         formState.location ? `\n${formState.location}` : ""
-      }`
+      }`,
     );
     window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
 
@@ -212,9 +206,12 @@ export default function ContactSection() {
                   Icon: Linkedin,
                   label: "LinkedIn",
                 },
-                { href: site.socials.twitter, Icon: Twitter, label: "Twitter" },
               ].map(({ href, Icon, label }, i) => (
-                <motion.div key={label} custom={i} variants={socialIconVariants}>
+                <motion.div
+                  key={label}
+                  custom={i}
+                  variants={socialIconVariants}
+                >
                   <Button
                     asChild
                     size="icon"

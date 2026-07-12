@@ -3,12 +3,6 @@
 import { ArrowUpRight, Award, BadgeCheck, Calendar } from "lucide-react";
 import certifications from "@/lib/certifications";
 
-/**
- * Certifications — credential cards with a ghost index numeral, a conic
- * "seal" emblem that spins on hover, an accent light-bar and hover lift.
- * Content lives in src/lib/certifications.js; reveals are scroll-driven via
- * the global ScrollFX data-attributes.
- */
 export default function CertificationsSection() {
   return (
     <section
@@ -22,9 +16,6 @@ export default function CertificationsSection() {
 
       <div className="mx-auto w-[92%] max-w-7xl">
         <div data-reveal className="mb-10 flex flex-col gap-3 md:mb-14">
-          <span className="text-sm font-medium uppercase tracking-widest text-accent">
-            / Credentials
-          </span>
           <h2 className="zentry text-3xl font-medium sm:text-5xl md:text-8xl">
             Certifi<span className="text-gradient">cations</span>
           </h2>

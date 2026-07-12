@@ -15,7 +15,10 @@ export default function SkillsSection() {
   const [selected, setSelected] = useState(null);
 
   return (
-    <section id="skills-section" className="relative overflow-hidden py-16 md:py-24">
+    <section
+      id="skills-section"
+      className="relative overflow-hidden py-16 md:py-24"
+    >
       {/* ambient accent orb */}
       <div
         data-parallax="0.15"
@@ -24,9 +27,6 @@ export default function SkillsSection() {
 
       <div className="mx-auto w-[92%] max-w-7xl">
         <div data-reveal className="mb-10 flex flex-col gap-3 md:mb-14">
-          <span className="text-sm font-medium uppercase tracking-widest text-accent">
-            / My arsenal
-          </span>
           <h2 className="zentry text-3xl font-medium sm:text-5xl md:text-8xl">
             Skills &amp; <span className="text-gradient">Tools</span>
           </h2>
@@ -41,7 +41,7 @@ export default function SkillsSection() {
             <div className="accent-orb pointer-events-none absolute inset-14 rounded-full opacity-50 blur-3xl" />
             <SkillGlobe skills={globeSkills} onSelect={setSelected} />
             <p className="pointer-events-none absolute inset-x-0 -bottom-1 text-center text-xs text-foreground/35">
-              Hover a logo to see its name — click it to explore
+              Hover a logo to see its name - click it to explore
             </p>
           </div>
 

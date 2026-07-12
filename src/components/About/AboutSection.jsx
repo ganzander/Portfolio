@@ -17,7 +17,7 @@ export default function AboutSection() {
 
   useEffect(() => {
     const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
     if (prefersReduced) return;
 
@@ -51,12 +51,12 @@ export default function AboutSection() {
           words,
           { autoAlpha: 0.12, y: 14 },
           { autoAlpha: 1, y: 0, stagger: 0.5, ease: "none" },
-          0.15
+          0.15,
         )
         .from(
           ctaRef.current,
           { autoAlpha: 0, y: 30, ease: "power2.out" },
-          ">-0.1"
+          ">-0.1",
         );
     }, sectionRef);
 
@@ -79,10 +79,6 @@ export default function AboutSection() {
         </span>
 
         <div className="relative z-10 mx-auto flex w-[90%] max-w-4xl flex-col items-center text-center">
-          <span className="mb-4 text-sm font-medium uppercase tracking-widest text-accent">
-            / Who I am
-          </span>
-
           <h2
             ref={headingRef}
             className="zentry mb-8 text-4xl font-medium leading-none md:text-8xl"

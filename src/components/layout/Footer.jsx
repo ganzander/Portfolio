@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { site } from "@/lib/site";
 
 const NAV = [
@@ -56,7 +56,6 @@ export default function Footer() {
           {[
             { href: site.socials.github, Icon: Github, label: "GitHub" },
             { href: site.socials.linkedin, Icon: Linkedin, label: "LinkedIn" },
-            { href: site.socials.twitter, Icon: Twitter, label: "Twitter" },
             { href: `mailto:${site.email}`, Icon: Mail, label: "Email" },
           ].map(({ href, Icon, label }) => (
             <a
@@ -71,11 +70,6 @@ export default function Footer() {
             </a>
           ))}
         </div>
-      </div>
-
-      <div className="border-t border-white/5 py-4 text-center text-xs text-foreground/35">
-        © {new Date().getFullYear()} {site.name} · Built with Next.js, GSAP
-        &amp; three.js
       </div>
     </footer>
   );

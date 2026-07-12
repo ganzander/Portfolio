@@ -37,89 +37,89 @@ export default function ProjectSection() {
     gsap.registerPlugin(ScrollTrigger);
     const mm = gsap.matchMedia();
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-        const cards = cardRefs.current.filter(Boolean);
-        if (!cards.length) return;
+      const cards = cardRefs.current.filter(Boolean);
+      if (!cards.length) return;
 
-        // Start: first card in place, the rest waiting below the viewport.
-        cards.forEach((card, i) => {
-          gsap.set(card, { yPercent: i === 0 ? 0 : 140, scale: 1, opacity: 1 });
-        });
+      // Start: first card in place, the rest waiting below the viewport.
+      cards.forEach((card, i) => {
+        gsap.set(card, { yPercent: i === 0 ? 0 : 140, scale: 1, opacity: 1 });
+      });
 
-        const tl = gsap.timeline({
-          defaults: { ease: "none" },
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: `+=${total * 80}%`,
-            pin: pinRef.current,
-            scrub: true,
-            anticipatePin: 1,
-            // Document-order refresh priority: this trigger is created a
-            // beat later than the other pins, so without an explicit
-            // priority the other sections compute their starts without our
-            // pin spacer and end up overlapping.
-            refreshPriority: 3,
-            // Re-capture tween values whenever ScrollTrigger refreshes, so
-            // late layout (CSS, fonts, images) can't leave stale pixel
-            // conversions cached in the yPercent tweens.
-            invalidateOnRefresh: true,
-            onUpdate: (self) => {
-              // Map progress to the card that is front-most: each incoming
-              // card lands at timeline time 0.35 + i (holds at both ends).
-              const time = self.progress * (0.7 + (total - 1));
-              const idx = Math.min(
-                total - 1,
-                Math.max(0, Math.round(time - 0.35))
-              );
-              if (idx !== lastIndexRef.current) {
-                lastIndexRef.current = idx;
-                setActive(idx);
-              }
-            },
-          },
-        });
-
-        // Small hold on the first card before the deck starts moving.
-        tl.to({}, { duration: 0.35 });
-
-        for (let i = 1; i < cards.length; i++) {
-          // Incoming card rides up over the stack…
-          tl.fromTo(
-            cards[i],
-            { yPercent: 140 },
-            { yPercent: 0, duration: 1 },
-            `step-${i}`
-          )
-            // …while the card underneath recedes for depth.
-            .to(
-              cards[i - 1],
-              { scale: 0.93, opacity: 0.45, duration: 1 },
-              `step-${i}`
+      const tl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: `+=${total * 80}%`,
+          pin: pinRef.current,
+          scrub: true,
+          anticipatePin: 1,
+          // Document-order refresh priority: this trigger is created a
+          // beat later than the other pins, so without an explicit
+          // priority the other sections compute their starts without our
+          // pin spacer and end up overlapping.
+          refreshPriority: 3,
+          // Re-capture tween values whenever ScrollTrigger refreshes, so
+          // late layout (CSS, fonts, images) can't leave stale pixel
+          // conversions cached in the yPercent tweens.
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            // Map progress to the card that is front-most: each incoming
+            // card lands at timeline time 0.35 + i (holds at both ends).
+            const time = self.progress * (0.7 + (total - 1));
+            const idx = Math.min(
+              total - 1,
+              Math.max(0, Math.round(time - 0.35)),
             );
-        }
+            if (idx !== lastIndexRef.current) {
+              lastIndexRef.current = idx;
+              setActive(idx);
+            }
+          },
+        },
+      });
 
-        // Hold on the last card before the pin releases.
-        tl.to({}, { duration: 0.35 });
+      // Small hold on the first card before the deck starts moving.
+      tl.to({}, { duration: 0.35 });
 
-        // This trigger was created after the other sections' pins — re-sort
-        // into document order and refresh so every pin's start accounts for
-        // our pin spacer.
-        ScrollTrigger.sort();
-        ScrollTrigger.refresh();
+      for (let i = 1; i < cards.length; i++) {
+        // Incoming card rides up over the stack…
+        tl.fromTo(
+          cards[i],
+          { yPercent: 140 },
+          { yPercent: 0, duration: 1 },
+          `step-${i}`,
+        )
+          // …while the card underneath recedes for depth.
+          .to(
+            cards[i - 1],
+            { scale: 0.93, opacity: 0.45, duration: 1 },
+            `step-${i}`,
+          );
+      }
 
-        // Re-measure once the page has fully settled (CSS/fonts/images) —
-        // with invalidateOnRefresh this re-captures every tween's values.
-        const refresh = () => ScrollTrigger.refresh();
-        const t = setTimeout(refresh, 600);
-        window.addEventListener("load", refresh);
-        if (document.fonts?.ready) document.fonts.ready.then(refresh);
+      // Hold on the last card before the pin releases.
+      tl.to({}, { duration: 0.35 });
 
-        return () => {
-          clearTimeout(t);
-          window.removeEventListener("load", refresh);
-          tl.scrollTrigger?.kill();
-          tl.kill();
-        };
+      // This trigger was created after the other sections' pins — re-sort
+      // into document order and refresh so every pin's start accounts for
+      // our pin spacer.
+      ScrollTrigger.sort();
+      ScrollTrigger.refresh();
+
+      // Re-measure once the page has fully settled (CSS/fonts/images) —
+      // with invalidateOnRefresh this re-captures every tween's values.
+      const refresh = () => ScrollTrigger.refresh();
+      const t = setTimeout(refresh, 600);
+      window.addEventListener("load", refresh);
+      if (document.fonts?.ready) document.fonts.ready.then(refresh);
+
+      return () => {
+        clearTimeout(t);
+        window.removeEventListener("load", refresh);
+        tl.scrollTrigger?.kill();
+        tl.kill();
+      };
     });
     return () => mm.revert();
   }, [total, reduced]);
@@ -132,9 +132,6 @@ export default function ProjectSection() {
       >
         <div className="mx-auto w-full max-w-6xl">
           <div className="mb-10 flex flex-col gap-3">
-            <span className="text-sm font-medium uppercase tracking-widest text-accent">
-              / Selected work
-            </span>
             <div className="flex items-end justify-between gap-4">
               <h2 className="zentry text-3xl font-medium sm:text-5xl md:text-8xl">
                 Featured <span className="text-gradient">Projects</span>

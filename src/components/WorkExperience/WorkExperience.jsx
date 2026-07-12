@@ -6,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-/** Company logo chip — renders the logo image, or an initials monogram. */
 function CompanyLogo({ exp, size = "md", active = false }) {
   const initials = exp.companyName
     .split(" ")
@@ -27,7 +26,7 @@ function CompanyLogo({ exp, size = "md", active = false }) {
         <img
           src={exp.logo}
           alt={exp.companyName}
-          className="h-full w-full object-contain p-1"
+          className="max-h-full max-w-full object-cover"
         />
       ) : (
         <span
@@ -89,7 +88,7 @@ export default function WorkExperience() {
           },
         });
         return () => st.kill();
-      }
+      },
     );
     return () => mm.revert();
   }, [total]);
@@ -102,9 +101,6 @@ export default function WorkExperience() {
       >
         {/* header */}
         <div className="flex flex-col gap-3">
-          <span className="text-sm font-medium uppercase tracking-widest text-accent">
-            / Career path
-          </span>
           <div className="flex items-end justify-between gap-4">
             <h2 className="zentry text-3xl font-medium sm:text-5xl md:text-8xl">
               Work <span className="text-gradient">Experience</span>
@@ -125,7 +121,10 @@ export default function WorkExperience() {
             <div
               ref={fillRef}
               className="absolute left-[17px] top-4 w-px bg-[var(--accent)]"
-              style={{ height: 0, boxShadow: "0 0 12px rgb(var(--accent-rgb) / 0.8)" }}
+              style={{
+                height: 0,
+                boxShadow: "0 0 12px rgb(var(--accent-rgb) / 0.8)",
+              }}
             />
             <ul className="flex flex-col gap-8">
               {experiences.map((exp, i) => {

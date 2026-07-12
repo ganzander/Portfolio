@@ -25,13 +25,6 @@ export const metadata = {
     type: "website",
     images: ["/ganesh.jpg"],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Ganesh Kumar Mangla | Full Stack Developer",
-    description:
-      "Next.js, AI integrations and interactive 3D — 4+ shipped products.",
-    images: ["/ganesh.jpg"],
-  },
 };
 
 const spaceGrotesk = Space_Grotesk({

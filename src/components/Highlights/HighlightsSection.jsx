@@ -16,7 +16,7 @@ export default function HighlightsSection() {
 
   useEffect(() => {
     const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
+      "(prefers-reduced-motion: reduce)",
     ).matches;
 
     gsap.registerPlugin(ScrollTrigger);
@@ -45,7 +45,10 @@ export default function HighlightsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden py-16 md:py-24">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden py-16 md:py-24"
+    >
       <div
         data-parallax="-0.12"
         className="accent-orb-soft pointer-events-none absolute -left-40 bottom-0 h-[24rem] w-[24rem] rounded-full blur-[120px]"
@@ -53,9 +56,6 @@ export default function HighlightsSection() {
 
       <div className="mx-auto w-[92%] max-w-7xl">
         <div data-reveal className="mb-12 flex flex-col gap-3">
-          <span className="text-sm font-medium uppercase tracking-widest text-accent">
-            / Track record
-          </span>
           <h2 className="zentry text-3xl font-medium sm:text-5xl md:text-8xl">
             Proof, not <span className="text-gradient">promises</span>
           </h2>
@@ -90,7 +90,6 @@ export default function HighlightsSection() {
               className="glass group rounded-3xl p-6 transition-all duration-500 hover:border-[rgb(var(--accent-rgb)/0.45)]"
             >
               <h3 className="mb-2 text-lg font-semibold text-foreground">
-                <span className="text-accent">/ </span>
                 {p.title}
               </h3>
               <p className="text-sm leading-relaxed text-foreground/60">
