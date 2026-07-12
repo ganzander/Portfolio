@@ -1,61 +1,87 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Calendar } from "lucide-react";
 import experiences from "@/lib/experiences";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-function useIsLargeScreen() {
-  // Start false on both server and client to keep SSR/hydration in sync;
-  // the real value lands in the effect right after mount.
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  return isLargeScreen;
+/** Company logo chip — renders the logo image, or an initials monogram. */
+function CompanyLogo({ exp, size = "md", active = false }) {
+  const initials = exp.companyName
+    .split(" ")
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase();
+  const dims = size === "lg" ? "h-12 w-12 rounded-2xl" : "h-9 w-9 rounded-xl";
+  return (
+    <span
+      className={`grid shrink-0 place-items-center overflow-hidden border transition-all duration-300 ${dims} ${
+        active
+          ? "glow-orange border-[rgb(var(--accent-rgb)/0.6)] bg-[rgb(var(--accent-rgb)/0.15)]"
+          : "border-white/15 bg-white/5"
+      }`}
+    >
+      {exp.logo ? (
+        <img
+          src={exp.logo}
+          alt={exp.companyName}
+          className="h-full w-full object-contain p-1"
+        />
+      ) : (
+        <span
+          className={`text-xs font-bold ${
+            active ? "text-accent" : "text-foreground/60"
+          } ${size === "lg" ? "text-sm" : ""}`}
+        >
+          {initials}
+        </span>
+      )}
+    </span>
+  );
 }
 
+/**
+ * Work Experience — scroll-pinned timeline master-detail.
+ *  - Left: career timeline; the accent line fills with scroll progress and
+ *    each role's node lights up as it becomes active.
+ *  - Right: glass detail card (role, company, dates, impact, focus areas)
+ *    that crossfades between roles.
+ *  - Mobile / reduced-motion: a plain revealed timeline list, no pin.
+ */
 export default function WorkExperience() {
-  const [activeIndex, setActiveIndex] = useState(1);
-  const activeProfile = experiences[activeIndex];
-
-  const isLargeScreen = useIsLargeScreen();
+  const [activeIndex, setActiveIndex] = useState(0);
+  const active = experiences[activeIndex];
+  const total = experiences.length;
 
   const sectionRef = useRef(null);
   const pinRef = useRef(null);
-  const lastIndexRef = useRef(1);
+  const fillRef = useRef(null);
+  const lastIndexRef = useRef(0);
 
-  // Desktop-only: pin the section and drive the active role by scroll.
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    const total = experiences.length;
-
     const mm = gsap.matchMedia();
     mm.add(
-      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
+      "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
       () => {
         const st = ScrollTrigger.create({
           trigger: sectionRef.current,
           start: "top top",
-          end: `+=${total * 65}%`,
+          end: `+=${total * 60}%`,
           pin: pinRef.current,
           scrub: true,
           anticipatePin: 1,
           refreshPriority: 2, // document order among the pinned sections
+          invalidateOnRefresh: true,
           onUpdate: (self) => {
-            const idx = Math.min(
-              total - 1,
-              Math.round(self.progress * (total - 1))
-            );
+            // continuous timeline fill…
+            if (fillRef.current) {
+              fillRef.current.style.height = `${self.progress * 100}%`;
+            }
+            // …and stepped active role
+            const idx = Math.min(total - 1, Math.floor(self.progress * total));
             if (idx !== lastIndexRef.current) {
               lastIndexRef.current = idx;
               setActiveIndex(idx);
@@ -65,188 +91,162 @@ export default function WorkExperience() {
         return () => st.kill();
       }
     );
-
     return () => mm.revert();
-  }, []);
+  }, [total]);
 
   return (
     <section ref={sectionRef} className="relative">
       <div
         ref={pinRef}
-        className="relative mx-auto flex min-h-screen max-w-[90%] flex-col items-center justify-evenly py-12"
+        className="relative mx-auto flex min-h-screen w-[92%] max-w-7xl flex-col justify-center gap-10 py-24"
       >
-      <div className="w-full">
-        <h2 className="zentry mb-4 text-center text-3xl font-medium md:text-left md:text-8xl">
-          Work <span className="text-gradient">Experience</span>
-        </h2>
-
-        <div className="mb-8 flex justify-center md:justify-start">
-          <div className="inline-flex items-center justify-center rounded-full border border-black/10 bg-black/5 px-3 py-1 text-sm text-foreground/70 dark:border-white/15 dark:bg-white/5">
-            {activeIndex + 1}/{experiences.length}
+        {/* header */}
+        <div className="flex flex-col gap-3">
+          <span className="text-sm font-medium uppercase tracking-widest text-accent">
+            / Career path
+          </span>
+          <div className="flex items-end justify-between gap-4">
+            <h2 className="zentry text-3xl font-medium sm:text-5xl md:text-8xl">
+              Work <span className="text-gradient">Experience</span>
+            </h2>
+            <span className="hidden shrink-0 text-lg font-medium text-foreground/50 md:block">
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(total).padStart(2, "0")}
+            </span>
           </div>
         </div>
 
-        <div className="gap-8 md:gap-16 w-full">
-          {/* <div className="flex flex-col lg:flex-row justify-evenly items-center w-full space-y-8 md:space-y-0"> */}
-          <div className="flex flex-col lg:flex-row items-center lg:items-start w-full gap-12 lg:gap-8">
-            {/* Left panel */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeProfile.id + "-left"}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col space-y-2 w-full lg:w-[25%] px-4 md:px-0"
-              >
-                <h2 className="text-2xl font-medium text-foreground">
-                  {activeProfile.name}
-                </h2>
-                <p className="font-medium text-accent">
-                  {activeProfile.companyName}
-                </p>
-                <div className="mb-2 mt-2 border-t border-black/10 dark:border-white/10" />
-                <p className="leading-relaxed text-foreground/60">
-                  {activeProfile.description}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Image carousel */}
-            <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] max-w-[700px] mx-auto">
-              <div className="absolute inset-0">
-                {(isLargeScreen ? experiences : [activeProfile]).map(
-                  (profile, index) => {
-                    const position = index - activeIndex;
-
-                    let xOffset = 0,
-                      yOffset = 0,
-                      zIndex = 10,
-                      opacity = 1,
-                      scale = 1;
-
-                    if (isLargeScreen) {
-                      if (position === 0) {
-                        zIndex = 30;
-                        scale = 1;
-                      } else if (
-                        position === -1 ||
-                        (position === experiences.length - 1 &&
-                          activeIndex === 0)
-                      ) {
-                        xOffset = -100;
-                        yOffset = -80;
-                        zIndex = 20;
-                        scale = 0.7;
-                        opacity = 0.8;
-                      } else if (
-                        position === 1 ||
-                        (position === -experiences.length + 1 &&
-                          activeIndex === experiences.length - 1)
-                      ) {
-                        xOffset = 100;
-                        yOffset = 80;
-                        zIndex = 20;
-                        scale = 0.7;
-                        opacity = 0.8;
-                      } else if (position === -2 || position === 2) {
-                        xOffset = position < 0 ? -180 : 180;
-                        yOffset = position < 0 ? -160 : 160;
-                        zIndex = 10;
-                        scale = 0.5;
-                        opacity = 0.6;
-                      } else {
-                        opacity = 0;
-                      }
-                    }
-
-                    return (
-                      <motion.div
-                        key={profile.id}
-                        initial={{ x: xOffset, y: yOffset, opacity, scale }}
-                        animate={{ x: xOffset, y: yOffset, opacity, scale }}
-                        transition={{ duration: 0.5 }}
-                        className={cn(
-                          "absolute rounded-lg overflow-hidden shadow-lg cursor-pointer",
-                          "w-[200px] md:w-[260px] h-[270px] md:h-[350px]"
-                        )}
-                        style={{
-                          left: "calc(50% - 100px)",
-                          top: "calc(50% - 135px)",
-                          zIndex,
-                        }}
-                        onClick={() => isLargeScreen && setActiveIndex(index)}
+        {/* ── Desktop: pinned master-detail ── */}
+        <div className="hidden items-center gap-10 md:grid md:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+          {/* timeline */}
+          <div className="relative py-2">
+            {/* rail + scroll-driven fill (centered under the logo chips) */}
+            <div className="absolute bottom-4 left-[17px] top-4 w-px bg-white/10" />
+            <div
+              ref={fillRef}
+              className="absolute left-[17px] top-4 w-px bg-[var(--accent)]"
+              style={{ height: 0, boxShadow: "0 0 12px rgb(var(--accent-rgb) / 0.8)" }}
+            />
+            <ul className="flex flex-col gap-8">
+              {experiences.map((exp, i) => {
+                const isActive = i === activeIndex;
+                return (
+                  <li key={exp.id} className="relative flex items-start gap-4">
+                    <span className="relative z-10">
+                      <CompanyLogo exp={exp} active={isActive} />
+                    </span>
+                    <div>
+                      <p
+                        className={`font-semibold transition-colors duration-300 ${
+                          isActive ? "text-foreground" : "text-foreground/45"
+                        }`}
                       >
-                        <img
-                          src={profile.image}
-                          alt={profile.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </motion.div>
-                    );
-                  }
-                )}
-              </div>
-            </div>
+                        {exp.companyName}
+                      </p>
+                      <p
+                        className={`text-sm transition-colors duration-300 ${
+                          isActive ? "text-accent" : "text-foreground/35"
+                        }`}
+                      >
+                        {exp.name}
+                      </p>
+                      <p className="text-xs text-foreground/35">
+                        {exp.experience}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
-            {/* Right panel */}
+          {/* detail card */}
+          <div className="relative min-h-[480px] lg:min-h-[430px]">
             <AnimatePresence mode="wait">
               <motion.div
-                key={activeProfile.id + "-right"}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col w-full lg:w-[25%] px-4 md:px-0 sm:mt-20 lg:mt-0"
+                key={active.id}
+                initial={{ opacity: 0, y: 28, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -20, scale: 0.98 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className="glass absolute inset-0 flex flex-col justify-center overflow-y-auto rounded-3xl p-6 lg:p-12"
               >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-4">
+                <span className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-[rgb(var(--accent-rgb)/0.35)] bg-[rgb(var(--accent-rgb)/0.1)] px-3 py-1 text-xs font-medium text-accent">
+                  <Calendar className="h-3.5 w-3.5" />
+                  {active.experience}
+                </span>
+
+                <div className="flex items-center gap-4">
+                  <CompanyLogo exp={active} size="lg" active />
                   <div>
-                    <h3 className="text-sm text-foreground/40">Experience</h3>
-                    <p className="text-lg font-medium text-foreground">
-                      {activeProfile.experience}
-                    </p>
-                  </div>
-                  <div>
-                    <h3 className="text-sm text-foreground/40">
-                      Areas of Focus
+                    <h3 className="zentry text-3xl font-medium leading-tight lg:text-5xl">
+                      {active.name}
                     </h3>
-                    <p className="text-lg font-medium text-foreground">
-                      {activeProfile.focusAreas.join(", ")}
+                    <p className="mt-1 text-lg font-medium text-accent">
+                      {active.companyName}
                     </p>
                   </div>
                 </div>
-                <div className="mt-2 border-t border-black/10 dark:border-white/10" />
+
+                <div className="my-5 border-t border-white/10" />
+
+                <p className="leading-relaxed text-foreground/70">
+                  {active.description}
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {active.focusAreas.map((area) => (
+                    <span
+                      key={area}
+                      className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-xs text-foreground/70"
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
-      </div>
 
-      {/* Navigation Buttons */}
-      <div className="w-full flex justify-center mt-8 gap-4">
-        <button
-          onClick={() =>
-            setActiveIndex((prev) =>
-              prev === 0 ? experiences.length - 1 : prev - 1
-            )
-          }
-          className="hover-cursor rounded-full border border-black/10 bg-black/5 p-2 text-foreground transition-colors hover:bg-[var(--accent)] hover:text-white dark:border-white/10 dark:bg-white/5 md:p-4"
-          aria-label="Previous profile"
-        >
-          <ChevronLeft size={20} />
-        </button>
-        <button
-          onClick={() =>
-            setActiveIndex((prev) =>
-              prev === experiences.length - 1 ? 0 : prev + 1
-            )
-          }
-          className="hover-cursor rounded-full border border-black/10 bg-black/5 p-2 text-foreground transition-colors hover:bg-[var(--accent)] hover:text-white dark:border-white/10 dark:bg-white/5 md:p-4"
-          aria-label="Next profile"
-        >
-          <ChevronRight size={20} />
-        </button>
-      </div>
+        {/* ── Mobile / reduced-motion: plain timeline list ── */}
+        <div data-reveal="stagger" className="flex flex-col gap-5 md:hidden">
+          {experiences.map((exp) => (
+            <div
+              key={exp.id}
+              className="glass relative rounded-2xl border-l-2 border-l-[rgb(var(--accent-rgb)/0.5)] p-5"
+            >
+              <span className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-[rgb(var(--accent-rgb)/0.35)] bg-[rgb(var(--accent-rgb)/0.1)] px-2.5 py-0.5 text-[11px] font-medium text-accent">
+                <Calendar className="h-3 w-3" />
+                {exp.experience}
+              </span>
+              <div className="flex items-center gap-3">
+                <CompanyLogo exp={exp} />
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {exp.name}
+                  </h3>
+                  <p className="text-sm font-medium text-accent">
+                    {exp.companyName}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-2 text-sm leading-relaxed text-foreground/60">
+                {exp.description}
+              </p>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {exp.focusAreas.map((area) => (
+                  <span
+                    key={area}
+                    className="rounded-full border border-white/10 bg-white/[0.05] px-2.5 py-0.5 text-[11px] text-foreground/65"
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

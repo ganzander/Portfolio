@@ -5,23 +5,23 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-function useIsLargeScreen() {
-  // Start false on BOTH server and client so SSR html matches hydration
-  // (reading window.innerWidth during render causes a hydration mismatch
-  // that regenerates the tree and breaks GSAP's cached measurements).
-  const [isLarge, setIsLarge] = useState(false);
+function usePrefersReducedMotion() {
+  // Starts false on server AND client so SSR html matches hydration; the
+  // real value lands right after mount.
+  const [reduced, setReduced] = useState(false);
   useEffect(() => {
-    const onResize = () => setIsLarge(window.innerWidth >= 1024);
-    onResize();
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const onChange = () => setReduced(mq.matches);
+    onChange();
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
   }, []);
-  return isLarge;
+  return reduced;
 }
 
 export default function ProjectSection() {
   const [active, setActive] = useState(0);
-  const isLarge = useIsLargeScreen();
+  const reduced = usePrefersReducedMotion();
 
   const sectionRef = useRef(null);
   const pinRef = useRef(null);
@@ -29,16 +29,14 @@ export default function ProjectSection() {
   const lastIndexRef = useRef(0);
   const total = projects.length;
 
-  // Desktop-only: pin the section; each card slides up and stacks OVER the
-  // previous one as you scroll (deck effect), driven by a scrubbed timeline.
-  // Re-runs when `isLarge` flips so refs exist once the deck branch renders.
+  // All screen sizes: pin the section; each card slides up and stacks OVER
+  // the previous one as you scroll (deck effect), driven by a scrubbed
+  // timeline. Only prefers-reduced-motion opts out (static list instead).
   useEffect(() => {
-    if (!isLarge) return;
+    if (reduced) return;
     gsap.registerPlugin(ScrollTrigger);
     const mm = gsap.matchMedia();
-    mm.add(
-      "(min-width: 1024px) and (prefers-reduced-motion: no-preference)",
-      () => {
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
         const cards = cardRefs.current.filter(Boolean);
         if (!cards.length) return;
 
@@ -56,10 +54,10 @@ export default function ProjectSection() {
             pin: pinRef.current,
             scrub: true,
             anticipatePin: 1,
-            // Document-order refresh priority: this trigger is created later
-            // than the other pins (it waits for isLarge), so without an
-            // explicit priority the other sections compute their starts
-            // without our pin spacer and end up overlapping.
+            // Document-order refresh priority: this trigger is created a
+            // beat later than the other pins, so without an explicit
+            // priority the other sections compute their starts without our
+            // pin spacer and end up overlapping.
             refreshPriority: 3,
             // Re-capture tween values whenever ScrollTrigger refreshes, so
             // late layout (CSS, fonts, images) can't leave stale pixel
@@ -122,10 +120,9 @@ export default function ProjectSection() {
           tl.scrollTrigger?.kill();
           tl.kill();
         };
-      }
-    );
+    });
     return () => mm.revert();
-  }, [total, isLarge]);
+  }, [total, reduced]);
 
   return (
     <section ref={sectionRef} className="relative" id="project-section">
@@ -139,21 +136,22 @@ export default function ProjectSection() {
               / Selected work
             </span>
             <div className="flex items-end justify-between gap-4">
-              <h2 className="zentry text-3xl font-medium md:text-8xl">
+              <h2 className="zentry text-3xl font-medium sm:text-5xl md:text-8xl">
                 Featured <span className="text-gradient">Projects</span>
               </h2>
-              <span className="hidden shrink-0 text-lg font-medium text-foreground/50 lg:block">
+              <span className="shrink-0 text-base font-medium text-foreground/50 md:text-lg">
                 {String(active + 1).padStart(2, "0")} /{" "}
                 {String(total).padStart(2, "0")}
               </span>
             </div>
           </div>
 
-          {isLarge ? (
+          {!reduced ? (
             <>
               {/* Card deck — every card mounted, stacked; scroll slides the
-                  next one up OVER the current one. */}
-              <div className="relative mx-auto min-h-[460px] w-full max-w-3xl">
+                  next one up OVER the current one. Height follows the card's
+                  7/4 image aspect so it works on every viewport width. */}
+              <div className="relative mx-auto aspect-[7/4] w-full max-w-3xl">
                 {projects.map((project, i) => (
                   <div
                     key={project.id}
@@ -178,7 +176,7 @@ export default function ProjectSection() {
               </div>
 
               {/* progress dots */}
-              <div className="mt-10 flex items-center justify-center gap-3">
+              <div className="mt-6 flex items-center justify-center gap-3 md:mt-10">
                 {projects.map((p, i) => (
                   <span
                     key={p.id}
@@ -193,7 +191,7 @@ export default function ProjectSection() {
               </p>
             </>
           ) : (
-            /* Mobile / reduced-motion: simple stacked list */
+            /* Reduced-motion: simple stacked list */
             <div className="grid gap-12">
               {projects.map((project) => (
                 <ProjectCard

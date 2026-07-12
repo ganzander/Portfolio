@@ -6,9 +6,32 @@ import Navbar from "@/components/layout/Navbar";
 import { BackgroundThemeProvider } from "@/context/BackgroundThemeContext";
 
 export const metadata = {
-  title: "Ganesh | Full Stack Developer Portfolio",
+  title: "Ganesh Kumar Mangla | Full Stack Developer — Next.js, AI & 3D",
   description:
-    "Portfolio of Ganesh, a Full Stack Developer specializing in React, Next.js, AI integrations, and 3D experiences.",
+    "Full Stack Developer with production experience across Next.js, Node.js, AI integrations (Gemini, Groq, AWS) and interactive three.js experiences. 4+ shipped products. Open to full-time & freelance.",
+  keywords: [
+    "Full Stack Developer",
+    "Next.js developer",
+    "React developer",
+    "Three.js",
+    "GSAP",
+    "AI integration",
+    "Ganesh Kumar Mangla",
+  ],
+  openGraph: {
+    title: "Ganesh Kumar Mangla | Full Stack Developer",
+    description:
+      "Next.js, AI integrations and interactive 3D — 4+ shipped products. Open to full-time & freelance.",
+    type: "website",
+    images: ["/ganesh.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ganesh Kumar Mangla | Full Stack Developer",
+    description:
+      "Next.js, AI integrations and interactive 3D — 4+ shipped products.",
+    images: ["/ganesh.jpg"],
+  },
 };
 
 const spaceGrotesk = Space_Grotesk({

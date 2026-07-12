@@ -50,6 +50,16 @@ export const defaultBackgroundConfig = {
   // Respect the OS "reduce motion" setting (renders one static frame).
   respectReducedMotion: true,
 
+  // Hero orb style: "pulse" | "planet" | "curtains" | "constellation" | "molten".
+  // Each theme sets its own so the centerpiece matches the backdrop
+  // (see HeroObject.jsx for what each style renders).
+  heroStyle: "pulse",
+
+  // Hero orb: show the cloud of orbiting dots around it. Off by default —
+  // every theme background already has its own particles, so the extra dots
+  // read as clutter. Flip to true per theme if you want them back.
+  heroDots: false,
+
   // Overrides applied only in light mode (merged over the base config).
   // Additive blending disappears on white, so light mode uses normal blending
   // with darker, warmer particles so the field stays visible.
@@ -91,6 +101,7 @@ export const backgroundThemes = {
     config: {
       ...defaultBackgroundConfig,
       sceneType: "nebula", // drifting gas clouds + stars
+      heroStyle: "planet", // ringed gas-giant centerpiece
       countDesktop: 700,
       countMobile: 350,
       warmColor: "#6366f1",
@@ -108,6 +119,7 @@ export const backgroundThemes = {
     config: {
       ...defaultBackgroundConfig,
       sceneType: "aurora", // flowing aurora-borealis curtains
+      heroStyle: "curtains", // waving aurora light curtains
       countDesktop: 600,
       countMobile: 300,
       warmColor: "#2dd4bf",
@@ -125,6 +137,7 @@ export const backgroundThemes = {
     config: {
       ...defaultBackgroundConfig,
       sceneType: "stars", // dense twinkling starfield
+      heroStyle: "constellation", // star nodes joined into a sphere
       countDesktop: 3200,
       countMobile: 1400,
       warmColor: "#f8fafc",
@@ -143,6 +156,8 @@ export const backgroundThemes = {
     config: {
       ...defaultBackgroundConfig,
       sceneType: "magma", // molten pool low on screen + slow drifting embers
+      heroStyle: "molten", // violently breathing molten core
+      heroDots: true, // sparks orbit the molten orb
       riseSpeed: 1.0,
       swayAmp: 30,
       countDesktop: 700,

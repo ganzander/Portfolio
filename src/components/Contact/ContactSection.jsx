@@ -12,12 +12,13 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
-  Instagram,
+  Github,
+  Linkedin,
   Twitter,
-  InstagramIcon as TiktokIcon,
   CheckCircle,
   Loader2,
 } from "lucide-react";
+import { site } from "@/lib/site";
 
 export default function ContactSection() {
   const ref = useRef(null);
@@ -134,6 +135,18 @@ export default function ContactSection() {
 
     setIsSubmitting(true);
 
+    // No backend — hand off to the visitor's mail client with everything
+    // prefilled so the message actually reaches me.
+    const subject = encodeURIComponent(
+      `Portfolio contact from ${formState.firstName} ${formState.lastName}`
+    );
+    const body = encodeURIComponent(
+      `${formState.message}\n\n—\n${formState.firstName} ${formState.lastName}\n${formState.email}${
+        formState.location ? `\n${formState.location}` : ""
+      }`
+    );
+    window.location.href = `mailto:${site.email}?subject=${subject}&body=${body}`;
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
@@ -148,7 +161,7 @@ export default function ContactSection() {
           message: "",
         });
       }, 3000);
-    }, 1500);
+    }, 800);
   };
 
   return (
@@ -161,7 +174,7 @@ export default function ContactSection() {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12"
+        className="mx-auto grid w-full max-w-7xl gap-12 px-4 py-20 md:grid-cols-2 md:py-24"
       >
         <motion.div variants={itemVariants} className="space-y-8">
           <motion.p
@@ -189,22 +202,42 @@ export default function ContactSection() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              FOLLOW US:
+              FIND ME ON:
             </motion.p>
             <div className="flex gap-4">
-              {[TiktokIcon, Instagram, Twitter].map((Icon, i) => (
-                <motion.div key={i} custom={i} variants={socialIconVariants}>
+              {[
+                { href: site.socials.github, Icon: Github, label: "GitHub" },
+                {
+                  href: site.socials.linkedin,
+                  Icon: Linkedin,
+                  label: "LinkedIn",
+                },
+                { href: site.socials.twitter, Icon: Twitter, label: "Twitter" },
+              ].map(({ href, Icon, label }, i) => (
+                <motion.div key={label} custom={i} variants={socialIconVariants}>
                   <Button
+                    asChild
                     size="icon"
                     variant="outline"
-                    className="rounded-full"
+                    className="hover-cursor rounded-full hover:border-[rgb(var(--accent-rgb)/0.6)] hover:text-accent"
                   >
-                    <Icon className="h-5 w-5" />
-                    <span className="sr-only">Social Media</span>
+                    <a href={href} target="_blank" rel="noreferrer">
+                      <Icon className="h-5 w-5" />
+                      <span className="sr-only">{label}</span>
+                    </a>
                   </Button>
                 </motion.div>
               ))}
             </div>
+            <motion.a
+              href={`mailto:${site.email}`}
+              className="hover-cursor inline-block text-sm text-accent hover:underline"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              {site.email}
+            </motion.a>
           </div>
 
           <motion.div

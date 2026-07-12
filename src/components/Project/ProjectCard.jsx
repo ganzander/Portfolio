@@ -209,12 +209,27 @@ export function ProjectCard({
               <p className="text-sm text-foreground/60">{subtitle}</p>
             </div>
 
-            <div
-              className="mt-4 flex justify-end"
-              onClick={() => handleProjectClick(project)}
-            >
+            <div className="mt-4 flex justify-end gap-2">
+              {project?.liveDemo && project.liveDemo.startsWith("http") && (
+                <Button
+                  asChild
+                  variant="outline"
+                  className="hover-cursor flex items-center gap-2 rounded-xl border-white/20 bg-white/5 px-4 py-2 text-foreground shadow-sm hover:bg-white/10"
+                >
+                  <a
+                    href={project.liveDemo}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Live Demo
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                </Button>
+              )}
               <Button
                 variant="outline"
+                onClick={() => handleProjectClick(project)}
                 className="hover-cursor flex items-center gap-2 rounded-xl border-[rgb(var(--accent-rgb)/0.5)] bg-[rgb(var(--accent-rgb)/0.1)] px-4 py-2 text-[var(--accent-light)] shadow-sm hover:bg-[rgb(var(--accent-rgb)/0.2)]"
               >
                 View Details

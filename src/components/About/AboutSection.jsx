@@ -39,13 +39,14 @@ export default function AboutSection() {
         },
       });
 
+      // NOTE: the ghost word is NOT animated horizontally — GSAP transforms
+      // would override its CSS -translate-x-1/2 centering and shift it right.
       tl.from(headingRef.current, {
         scale: 0.7,
         autoAlpha: 0,
         y: 60,
         ease: "power2.out",
       })
-        .to(ghostRef.current, { xPercent: -12, ease: "none" }, 0)
         .fromTo(
           words,
           { autoAlpha: 0.12, y: 14 },
@@ -101,7 +102,14 @@ export default function AboutSection() {
           </p>
 
           <div ref={ctaRef}>
-            <Button className="hover-cursor btn-accent group relative overflow-hidden rounded-full px-6 py-2">
+            <Button
+              onClick={() =>
+                document
+                  .getElementById("contact-section")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="hover-cursor btn-accent group relative overflow-hidden rounded-full px-6 py-2"
+            >
               Ask Me Anything
             </Button>
           </div>
