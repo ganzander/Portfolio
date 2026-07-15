@@ -5,11 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { stats, principles } from "@/lib/site";
 
-/**
- * Recruiter-facing highlights: headline numbers that count up as they
- * scroll into view, plus three how-I-work value props. Replaces the old
- * placeholder client-testimonials section with verifiable content.
- */
 export default function HighlightsSection() {
   const sectionRef = useRef(null);
   const numRefs = useRef([]);

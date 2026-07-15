@@ -14,23 +14,39 @@ export const site = {
 };
 
 export const stats = [
-  { value: 4, suffix: "+", label: "Products shipped to production" },
-  { value: 4, suffix: "", label: "Companies worked with" },
-  { value: 15, suffix: "+", label: "Technologies used in production" },
-  { value: 3, suffix: "", label: "AI-powered apps live today" },
+  {
+    value: 4,
+    suffix: "+",
+    label: "Production AI & Full-Stack Applications",
+  },
+  {
+    value: 15,
+    suffix: "+",
+    label: "Technologies Used in Production",
+  },
+  {
+    value: 3,
+    suffix: "+",
+    label: "Years Building Scalable Software",
+  },
+  {
+    value: 100,
+    suffix: "%",
+    label: "Focus on Production-Ready Solutions",
+  },
 ];
 
 export const principles = [
   {
-    title: "Ship end to end",
-    text: "From Figma to deployed URL — frontend, backend, auth, data and CI/CD, owned as one piece.",
+    title: "Build for Production",
+    text: "Designing reliable AI systems with scalable backend architectures, observability, and maintainability from day one.",
   },
   {
-    title: "AI where it matters",
-    text: "Gemini, Groq and AWS Transcribe integrated into real products people use — not demos.",
+    title: "AI Beyond Chatbots",
+    text: "Building agentic workflows, RAG pipelines, and intelligent automation that solve real business problems.",
   },
   {
-    title: "Performance is a feature",
-    text: "60fps scroll experiences, code-split three.js scenes and reduced-motion fallbacks by default.",
+    title: "Engineering at Scale",
+    text: "Developing secure, cloud-native applications with clean architecture, efficient APIs, and performance-first design.",
   },
 ];

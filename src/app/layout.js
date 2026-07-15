@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
       <body
         className={`grain relative overflow-x-hidden bg-background text-foreground ${spaceGrotesk.className}`}
         cz-shortcut-listen="true"
-        style={{ cursor: "url('/navigate.png')" }}
+        style={{ cursor: "url('/cursor.png')" }}
       >
         <BackgroundThemeProvider>
           <ThemedBackground />
