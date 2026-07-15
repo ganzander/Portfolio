@@ -1,8 +1,8 @@
 export const site = {
   name: "Ganesh Kumar Mangla",
-  role: "Full Stack Developer",
+  role: "Full Stack AI Developer",
   tagline:
-    "Full Stack Developer specializing in Next.js, AI integrations and interactive 3D web experiences.",
+    "AI Engineer focused on autonomous agents, retrieval systems, and scalable backend architecture.",
   location: "India · open to remote",
   availability: "Open to full-time & freelance",
   email: "ganeshmangla2003@gmail.com",

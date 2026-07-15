@@ -1,6 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowDown, FileText, Github, Linkedin, Mail, MapPin, Sparkles } from "lucide-react";
+import {
+  ArrowDown,
+  FileText,
+  Github,
+  Linkedin,
+  Mail,
+  MapPin,
+  Sparkles,
+} from "lucide-react";
 import { Button } from "../ui/button";
 import HeroObject from "../three/HeroObject";
 import { site } from "@/lib/site";
@@ -56,8 +64,8 @@ export default function HeroSection() {
               transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
               className="max-w-xl text-lg font-medium text-foreground/70 md:text-2xl"
             >
-              {site.role} building beautiful, immersive web products with
-              Next.js, AI integrations and real-time 3D.
+              {site.role} building production-ready AI agents, scalable backend
+              systems, and LLM-powered applications.
             </motion.h3>
 
             <motion.div
@@ -106,7 +114,11 @@ export default function HeroSection() {
             >
               {[
                 { href: site.socials.github, Icon: Github, label: "GitHub" },
-                { href: site.socials.linkedin, Icon: Linkedin, label: "LinkedIn" },
+                {
+                  href: site.socials.linkedin,
+                  Icon: Linkedin,
+                  label: "LinkedIn",
+                },
                 { href: `mailto:${site.email}`, Icon: Mail, label: "Email" },
               ].map(({ href, Icon, label }) => (
                 <a

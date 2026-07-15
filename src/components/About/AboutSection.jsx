@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const PARAGRAPH =
-  "Hey, I'm Ganesh — a creative technologist obsessed with building immersive digital experiences. From 3D interfaces to AI-driven tools, I love pushing boundaries where design meets code, crafting products that make a real difference in people's lives.";
+  "Hey, I'm Ganesh — an AI Engineer passionate about building production-ready intelligent systems. From autonomous AI agents and RAG pipelines to scalable backend architectures, I enjoy transforming complex ideas into reliable products that solve real-world business problems.";
 
 export default function AboutSection() {
   const sectionRef = useRef(null);
@@ -34,13 +34,11 @@ export default function AboutSection() {
           scrub: 1,
           pin: pinRef.current,
           anticipatePin: 1,
-          refreshPriority: 4, // document order among the pinned sections
+          refreshPriority: 4,
           invalidateOnRefresh: true,
         },
       });
 
-      // NOTE: the ghost word is NOT animated horizontally — GSAP transforms
-      // would override its CSS -translate-x-1/2 centering and shift it right.
       tl.from(headingRef.current, {
         scale: 0.7,
         autoAlpha: 0,
@@ -83,7 +81,7 @@ export default function AboutSection() {
             ref={headingRef}
             className="zentry mb-8 text-4xl font-medium leading-none md:text-8xl"
           >
-            Design meets <span className="text-gradient">code</span>
+            Engineering <span className="text-gradient">Agentic AI</span>
           </h2>
 
           <p
