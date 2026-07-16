@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#120a16"/><stop offset="1" stop-color="#140a13"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1090 210) rotate(120) scale(640)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#a855f7" stop-opacity="0.5"/><stop offset="1" stop-color="#a855f7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientTransform="translate(150 730) rotate(-45) scale(540)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f472b6" stop-opacity="0.26"/><stop offset="1" stop-color="#f472b6" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#ffffff" fill-opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="800" fill="url(#bg)"/>
+  <rect width="1400" height="800" fill="url(#dots)"/>
+  <rect width="1400" height="800" fill="url(#glow)"/>
+  <rect width="1400" height="800" fill="url(#glow2)"/>
+
+  <!-- Relevant: a supportive parenting community connected around a heart -->
+  <g stroke="#c084fc" stroke-opacity="0.45" stroke-width="2.5" fill="none">
+    <line x1="1060" y1="250" x2="940" y2="190"/>
+    <line x1="1060" y1="250" x2="1180" y2="190"/>
+    <line x1="1060" y1="250" x2="920" y2="340"/>
+    <line x1="1060" y1="250" x2="1190" y2="340"/>
+  </g>
+
+  <!-- central heart node (community care) -->
+  <circle cx="1060" cy="250" r="40" fill="#a855f7"/>
+  <path d="M1060 272 c-20 -14 -30 -26 -30 -38 a13 13 0 0 1 30 -6 a13 13 0 0 1 30 6 c0 12 -10 24 -30 38 z" fill="#ffffff"/>
+
+  <!-- member avatars (parents) -->
+  <g>
+    <g transform="translate(940,190)"><circle r="24" fill="#f472b6"/><circle cy="-6" r="8" fill="#fce7f3"/><path d="M-12 14 a12 12 0 0 1 24 0 z" fill="#fce7f3"/></g>
+    <g transform="translate(1180,190)"><circle r="24" fill="#c084fc"/><circle cy="-6" r="8" fill="#f3e8ff"/><path d="M-12 14 a12 12 0 0 1 24 0 z" fill="#f3e8ff"/></g>
+    <g transform="translate(920,340)"><circle r="24" fill="#818cf8"/><circle cy="-6" r="8" fill="#e0e7ff"/><path d="M-12 14 a12 12 0 0 1 24 0 z" fill="#e0e7ff"/></g>
+    <g transform="translate(1190,340)"><circle r="24" fill="#e879f9"/><circle cy="-6" r="8" fill="#fdf4ff"/><path d="M-12 14 a12 12 0 0 1 24 0 z" fill="#fdf4ff"/></g>
+  </g>
+
+  <text x="90" y="560" font-family="Inter, Segoe UI, sans-serif" font-size="30" font-weight="600" fill="#c084fc" letter-spacing="6">04 — PARENTING COMMUNITY PLATFORM</text>
+  <text x="86" y="670" font-family="Inter, Segoe UI, sans-serif" font-size="140" font-weight="800" fill="#ffffff" letter-spacing="-2">TwalkOn</text>
+  <text x="92" y="726" font-family="Inter, Segoe UI, sans-serif" font-size="30" fill="#94a3b8">Supabase · Stripe · RBAC · Next.js</text>
+</svg>

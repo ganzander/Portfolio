@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0a0f14"/><stop offset="1" stop-color="#0a0d14"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1090 210) rotate(120) scale(640)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22d3ee" stop-opacity="0.5"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientTransform="translate(150 730) rotate(-45) scale(540)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e879f9" stop-opacity="0.26"/><stop offset="1" stop-color="#e879f9" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="face" cx="0.5" cy="0.4" r="0.7">
+      <stop stop-color="#155e75"/><stop offset="1" stop-color="#0c2a38"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#ffffff" fill-opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="800" fill="url(#bg)"/>
+  <rect width="1400" height="800" fill="url(#dots)"/>
+  <rect width="1400" height="800" fill="url(#glow)"/>
+  <rect width="1400" height="800" fill="url(#glow2)"/>
+
+  <!-- Relevant: a 3D talking head speaking, with a lip-synced voice waveform -->
+  <!-- head -->
+  <path d="M1050 170 C1104 170 1132 210 1132 258 C1132 310 1097 342 1050 342 C1003 342 968 310 968 258 C968 210 996 170 1050 170 Z" fill="url(#face)" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="2.5"/>
+  <ellipse cx="1024" cy="252" rx="10" ry="12" fill="#a5f3fc"/>
+  <ellipse cx="1076" cy="252" rx="10" ry="12" fill="#a5f3fc"/>
+  <ellipse cx="1050" cy="298" rx="22" ry="13" fill="#e879f9" fill-opacity="0.9"/>
+  <ellipse cx="1050" cy="296" rx="13" ry="6" fill="#3b0764"/>
+  <path d="M1050 170 L1050 342 M968 258 L1132 258" stroke="#22d3ee" stroke-opacity="0.15" stroke-width="1.5"/>
+
+  <!-- voice / lip-sync waveform -->
+  <g stroke-linecap="round" stroke-width="7">
+    <line x1="900" y1="410" x2="900" y2="440" stroke="#22d3ee"/>
+    <line x1="930" y1="392" x2="930" y2="458" stroke="#22d3ee"/>
+    <line x1="960" y1="372" x2="960" y2="478" stroke="#67e8f9"/>
+    <line x1="990" y1="402" x2="990" y2="448" stroke="#67e8f9"/>
+    <line x1="1020" y1="380" x2="1020" y2="470" stroke="#67e8f9"/>
+    <line x1="1050" y1="360" x2="1050" y2="490" stroke="#a855f7"/>
+    <line x1="1080" y1="380" x2="1080" y2="470" stroke="#e879f9"/>
+    <line x1="1110" y1="398" x2="1110" y2="452" stroke="#e879f9"/>
+    <line x1="1140" y1="374" x2="1140" y2="476" stroke="#e879f9"/>
+    <line x1="1170" y1="402" x2="1170" y2="448" stroke="#f0abfc"/>
+    <line x1="1200" y1="414" x2="1200" y2="436" stroke="#f0abfc"/>
+  </g>
+
+  <text x="90" y="560" font-family="Inter, Segoe UI, sans-serif" font-size="30" font-weight="600" fill="#22d3ee" letter-spacing="6">05 — REAL-TIME AGENTIC AVATAR</text>
+  <text x="86" y="668" font-family="Inter, Segoe UI, sans-serif" font-size="120" font-weight="800" fill="#ffffff" letter-spacing="-2">3D Avatar</text>
+  <text x="92" y="726" font-family="Inter, Segoe UI, sans-serif" font-size="30" fill="#94a3b8">R3F · RAG · ElevenLabs · Rhubarb · FFmpeg</text>
+</svg>

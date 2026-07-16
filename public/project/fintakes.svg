@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0f0d07"/><stop offset="1" stop-color="#120e06"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1090 210) rotate(120) scale(640)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f59e0b" stop-opacity="0.48"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientTransform="translate(150 730) rotate(-45) scale(540)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#84cc16" stop-opacity="0.22"/><stop offset="1" stop-color="#84cc16" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#ffffff" fill-opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="800" fill="url(#bg)"/>
+  <rect width="1400" height="800" fill="url(#dots)"/>
+  <rect width="1400" height="800" fill="url(#glow)"/>
+  <rect width="1400" height="800" fill="url(#glow2)"/>
+
+  <!-- Relevant: an AI-curated news article + a rising market line -->
+  <!-- news card -->
+  <g>
+    <rect x="860" y="150" width="240" height="150" rx="16" fill="#ffffff" fill-opacity="0.05" stroke="#f59e0b" stroke-opacity="0.35"/>
+    <rect x="884" y="176" width="40" height="40" rx="8" fill="#fbbf24"/>
+    <rect x="940" y="180" width="140" height="10" rx="5" fill="#e2e8f0" fill-opacity="0.8"/>
+    <rect x="940" y="198" width="110" height="8" rx="4" fill="#64748b"/>
+    <rect x="884" y="234" width="196" height="8" rx="4" fill="#64748b"/>
+    <rect x="884" y="252" width="170" height="8" rx="4" fill="#64748b"/>
+    <rect x="884" y="270" width="120" height="8" rx="4" fill="#64748b"/>
+  </g>
+
+  <!-- rising market line with data points -->
+  <polyline points="880,400 960,340 1030,368 1110,286 1190,320 1270,214" fill="none" stroke="#fbbf24" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <g fill="#fcd34d">
+    <circle cx="880" cy="400" r="8"/><circle cx="1030" cy="368" r="8"/><circle cx="1190" cy="320" r="8"/>
+  </g>
+  <circle cx="1270" cy="214" r="10" fill="#f59e0b"/>
+  <path d="M1270 214 l-18 14 h12 v18 h12 v-18 h12 z" fill="#84cc16"/>
+
+  <text x="90" y="560" font-family="Inter, Segoe UI, sans-serif" font-size="30" font-weight="600" fill="#f59e0b" letter-spacing="6">03 — AI FINANCIAL NEWS PLATFORM</text>
+  <text x="86" y="670" font-family="Inter, Segoe UI, sans-serif" font-size="140" font-weight="800" fill="#ffffff" letter-spacing="-2">Fintakes</text>
+  <text x="92" y="726" font-family="Inter, Segoe UI, sans-serif" font-size="30" fill="#94a3b8">Express.js · AI retrieval · Brave · Cron</text>
+</svg>

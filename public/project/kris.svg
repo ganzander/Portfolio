@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="800" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08110f"/><stop offset="1" stop-color="#071312"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1090 200) rotate(120) scale(640)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2dd4bf" stop-opacity="0.5"/><stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="0" cy="0" r="1" gradientTransform="translate(150 730) rotate(-45) scale(540)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4ade80" stop-opacity="0.24"/><stop offset="1" stop-color="#4ade80" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.4" fill="#ffffff" fill-opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="1400" height="800" fill="url(#bg)"/>
+  <rect width="1400" height="800" fill="url(#dots)"/>
+  <rect width="1400" height="800" fill="url(#glow)"/>
+  <rect width="1400" height="800" fill="url(#glow2)"/>
+
+  <!-- Relevant: orchestrator routing to worker agents + a support chat bubble -->
+  <g stroke="#2dd4bf" stroke-opacity="0.5" stroke-width="2.5" fill="none">
+    <line x1="1060" y1="190" x2="940" y2="300"/>
+    <line x1="1060" y1="190" x2="1060" y2="300"/>
+    <line x1="1060" y1="190" x2="1180" y2="300"/>
+  </g>
+  <!-- orchestrator -->
+  <rect x="1018" y="150" width="84" height="56" rx="14" fill="#2dd4bf"/>
+  <circle cx="1060" cy="178" r="10" fill="#052e2b"/>
+  <!-- worker agents -->
+  <g fill="#99f6e4">
+    <rect x="898" y="300" width="84" height="56" rx="14"/>
+    <rect x="1018" y="300" width="84" height="56" rx="14"/>
+    <rect x="1138" y="300" width="84" height="56" rx="14"/>
+  </g>
+  <g fill="#065f56" opacity="0.7">
+    <rect x="914" y="318" width="36" height="6" rx="3"/><rect x="914" y="332" width="24" height="6" rx="3"/>
+    <rect x="1034" y="318" width="36" height="6" rx="3"/><rect x="1034" y="332" width="24" height="6" rx="3"/>
+    <rect x="1154" y="318" width="36" height="6" rx="3"/><rect x="1154" y="332" width="24" height="6" rx="3"/>
+  </g>
+
+  <!-- customer chat bubble -->
+  <g>
+    <rect x="900" y="404" width="230" height="76" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#2dd4bf" stroke-opacity="0.3"/>
+    <path d="M930 480 l0 30 l30 -22 z" fill="#ffffff" fill-opacity="0.06" stroke="#2dd4bf" stroke-opacity="0.3"/>
+    <circle cx="950" cy="442" r="7" fill="#5eead4"/>
+    <circle cx="978" cy="442" r="7" fill="#5eead4" fill-opacity="0.6"/>
+    <circle cx="1006" cy="442" r="7" fill="#5eead4" fill-opacity="0.3"/>
+  </g>
+
+  <text x="90" y="560" font-family="Inter, Segoe UI, sans-serif" font-size="30" font-weight="600" fill="#2dd4bf" letter-spacing="6">02 — MULTI-AGENT SUPPORT SYSTEM</text>
+  <text x="86" y="670" font-family="Inter, Segoe UI, sans-serif" font-size="150" font-weight="800" fill="#ffffff" letter-spacing="-2">Kris</text>
+  <text x="92" y="726" font-family="Inter, Segoe UI, sans-serif" font-size="30" fill="#94a3b8">LangGraph · FastAPI · WebSocket · Bedrock</text>
+</svg>

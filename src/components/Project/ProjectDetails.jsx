@@ -2,7 +2,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import GeneralInfo from "./GeneralInfo";
 import ProjectAbout from "./ProjectAbout";
 import TechStack from "./TechStack";
-import ProjectPhotos from "./ProjectPhotos";
 
 export function ProjectDetails({ projectData }) {
   return (
@@ -17,34 +16,25 @@ export function ProjectDetails({ projectData }) {
         <TabsContent value="techStack">
           <TechStack projectData={projectData} />
         </TabsContent>
-        <TabsContent value="photos">
-          <ProjectPhotos projectData={projectData} />
-        </TabsContent>
 
-        <TabsList className="h-[10%] grid grid-cols-2 sm:grid-cols-4 rounded-b-2xl w-full relative bg-gradient-to-b from-black/90 to-black/70 overflow-hidden">
+        <TabsList className="h-[10%] grid grid-cols-3 rounded-b-2xl w-full relative bg-gradient-to-b from-black/95 to-black/85 border-t border-white/10 overflow-hidden">
           <TabsTrigger
             value="general-info"
-            className="hover-cursor-white text-gray-300 data-[state=active]:border-b-2 data-[state=active]:border-b-gray-300 rounded-none"
+            className="hover-cursor-white text-gray-300 data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-b-[var(--accent)] rounded-none"
           >
             01. General info
           </TabsTrigger>
           <TabsTrigger
             value="about"
-            className="hover-cursor-white text-gray-300 data-[state=active]:border-b-2 data-[state=active]:border-b-gray-300 rounded-none"
+            className="hover-cursor-white text-gray-300 data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-b-[var(--accent)] rounded-none"
           >
             02. About
           </TabsTrigger>
           <TabsTrigger
             value="techStack"
-            className="hover-cursor-white text-gray-300 data-[state=active]:border-b-2 data-[state=active]:border-b-gray-300 rounded-none"
+            className="hover-cursor-white text-gray-300 data-[state=active]:text-white data-[state=active]:border-b-2 data-[state=active]:border-b-[var(--accent)] rounded-none"
           >
             03. Tech Stack
-          </TabsTrigger>
-          <TabsTrigger
-            value="photos"
-            className="hover-cursor-white text-gray-300 data-[state=active]:border-b-2 data-[state=active]:border-b-gray-300 rounded-none"
-          >
-            04. Gallery
           </TabsTrigger>
         </TabsList>
       </Tabs>
