@@ -10,6 +10,7 @@ export const site = {
   socials: {
     github: "https://github.com/ganzander",
     linkedin: "https://www.linkedin.com/in/ganesh-mangla-958a392a8/",
+    whatsapp: "+91XXXXXXXXXX", // Replace with your actual WhatsApp number (include country code, e.g., +91...)
   },
 };
 
