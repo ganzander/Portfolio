@@ -1,51 +1,178 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800" fill="none">
   <defs>
+    <!-- Background Gradients -->
     <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="800" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#0a0f14"/><stop offset="1" stop-color="#0a0d14"/>
+      <stop stop-color="#050811"/>
+      <stop offset="1" stop-color="#0a122c"/>
     </linearGradient>
-    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1090 210) rotate(120) scale(640)" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#22d3ee" stop-opacity="0.5"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(1090 270) rotate(120) scale(600)" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#06b6d4" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#06b6d4" stop-opacity="0"/>
     </radialGradient>
     <radialGradient id="glow2" cx="0" cy="0" r="1" gradientTransform="translate(150 730) rotate(-45) scale(540)" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#e879f9" stop-opacity="0.26"/><stop offset="1" stop-color="#e879f9" stop-opacity="0"/>
+      <stop stop-color="#d946ef" stop-opacity="0.25"/>
+      <stop offset="1" stop-color="#d946ef" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="face" cx="0.5" cy="0.4" r="0.7">
-      <stop stop-color="#155e75"/><stop offset="1" stop-color="#0c2a38"/>
-    </radialGradient>
+    
+    <!-- Face Fill Gradient -->
+    <linearGradient id="face-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#06b6d4" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#d946ef" stop-opacity="0.15"/>
+    </linearGradient>
+
+    <!-- Wave Gradients -->
+    <linearGradient id="wave-cyan" x1="860" y1="0" x2="1240" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0891b2" stop-opacity="0.2"/>
+      <stop offset="50%" stop-color="#22d3ee" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0891b2" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="wave-purple" x1="860" y1="0" x2="1240" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.1"/>
+      <stop offset="50%" stop-color="#e879f9" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.1"/>
+    </linearGradient>
+    <linearGradient id="wave-pink" x1="860" y1="0" x2="1240" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#db2777" stop-opacity="0.05"/>
+      <stop offset="50%" stop-color="#f472b6" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#db2777" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="glow-cyan" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="glow-pink" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Dot Pattern -->
     <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1.4" fill="#ffffff" fill-opacity="0.06"/>
     </pattern>
   </defs>
+
+  <!-- Background -->
   <rect width="1400" height="800" fill="url(#bg)"/>
   <rect width="1400" height="800" fill="url(#dots)"/>
   <rect width="1400" height="800" fill="url(#glow)"/>
   <rect width="1400" height="800" fill="url(#glow2)"/>
 
-  <!-- Relevant: a 3D talking head speaking, with a lip-synced voice waveform -->
-  <!-- head -->
-  <path d="M1050 170 C1104 170 1132 210 1132 258 C1132 310 1097 342 1050 342 C1003 342 968 310 968 258 C968 210 996 170 1050 170 Z" fill="url(#face)" stroke="#22d3ee" stroke-opacity="0.55" stroke-width="2.5"/>
-  <ellipse cx="1024" cy="252" rx="10" ry="12" fill="#a5f3fc"/>
-  <ellipse cx="1076" cy="252" rx="10" ry="12" fill="#a5f3fc"/>
-  <ellipse cx="1050" cy="298" rx="22" ry="13" fill="#e879f9" fill-opacity="0.9"/>
-  <ellipse cx="1050" cy="296" rx="13" ry="6" fill="#3b0764"/>
-  <path d="M1050 170 L1050 342 M968 258 L1132 258" stroke="#22d3ee" stroke-opacity="0.15" stroke-width="1.5"/>
-
-  <!-- voice / lip-sync waveform -->
-  <g stroke-linecap="round" stroke-width="7">
-    <line x1="900" y1="410" x2="900" y2="440" stroke="#22d3ee"/>
-    <line x1="930" y1="392" x2="930" y2="458" stroke="#22d3ee"/>
-    <line x1="960" y1="372" x2="960" y2="478" stroke="#67e8f9"/>
-    <line x1="990" y1="402" x2="990" y2="448" stroke="#67e8f9"/>
-    <line x1="1020" y1="380" x2="1020" y2="470" stroke="#67e8f9"/>
-    <line x1="1050" y1="360" x2="1050" y2="490" stroke="#a855f7"/>
-    <line x1="1080" y1="380" x2="1080" y2="470" stroke="#e879f9"/>
-    <line x1="1110" y1="398" x2="1110" y2="452" stroke="#e879f9"/>
-    <line x1="1140" y1="374" x2="1140" y2="476" stroke="#e879f9"/>
-    <line x1="1170" y1="402" x2="1170" y2="448" stroke="#f0abfc"/>
-    <line x1="1200" y1="414" x2="1200" y2="436" stroke="#f0abfc"/>
+  <!-- High-Tech Scan lines (visual interest) -->
+  <g opacity="0.1">
+    <line x1="800" y1="100" x2="1300" y2="100" stroke="#22d3ee" stroke-width="1"/>
+    <line x1="800" y1="520" x2="1300" y2="520" stroke="#22d3ee" stroke-width="1"/>
+    <line x1="800" y1="100" x2="800" y2="520" stroke="#22d3ee" stroke-width="1"/>
+    <line x1="1300" y1="100" x2="1300" y2="520" stroke="#22d3ee" stroke-width="1"/>
   </g>
 
+  <!-- UI Target Reticle & Brackets -->
+  <g stroke="#22d3ee" fill="none" stroke-width="1.5">
+    <!-- Outer radar rings -->
+    <circle cx="1060" cy="260" r="150" stroke-opacity="0.1" stroke-dasharray="6 8"/>
+    <circle cx="1060" cy="260" r="180" stroke-opacity="0.05"/>
+    <circle cx="1060" cy="260" r="80" stroke-opacity="0.15"/>
+    
+    <!-- Corner brackets -->
+    <path d="M 860 140 H 890" stroke-opacity="0.4"/>
+    <path d="M 860 140 V 170" stroke-opacity="0.4"/>
+    
+    <path d="M 1260 140 H 1230" stroke-opacity="0.4"/>
+    <path d="M 1260 140 V 170" stroke-opacity="0.4"/>
+    
+    <path d="M 860 480 H 890" stroke-opacity="0.4"/>
+    <path d="M 860 480 V 450" stroke-opacity="0.4"/>
+    
+    <path d="M 1260 480 H 1230" stroke-opacity="0.4"/>
+    <path d="M 1260 480 V 450" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- Holographic 3D Wireframe Face (AI Model) -->
+  <g transform="translate(10, 0)">
+    <!-- Outer Jaw/Face Outline -->
+    <path d="M 1000 170 C 1000 120, 1100 120, 1100 170 C 1100 170, 1130 190, 1130 250 C 1130 310, 1110 330, 1080 355 L 1050 375 L 1020 355 C 990 330, 970 310, 970 250 C 970 190, 1000 170, 1000 170 Z" 
+          fill="url(#face-grad)" stroke="#22d3ee" stroke-width="2.5" stroke-opacity="0.75" filter="url(#glow-cyan)"/>
+
+    <!-- Mesh Lines -->
+    <path d="M 975 220 Q 1050 240 1125 220" stroke="#22d3ee" stroke-opacity="0.3" fill="none"/>
+    <path d="M 970 255 Q 1050 280 1130 255" stroke="#22d3ee" stroke-opacity="0.4" fill="none"/>
+    <path d="M 978 290 Q 1050 320 1122 290" stroke="#22d3ee" stroke-opacity="0.3" fill="none"/>
+    <path d="M 992 325 Q 1050 355 1108 325" stroke="#22d3ee" stroke-opacity="0.2" fill="none"/>
+
+    <path d="M 1010 160 Q 1020 260 1020 355" stroke="#22d3ee" stroke-opacity="0.25" fill="none"/>
+    <path d="M 1050 145 V 375" stroke="#22d3ee" stroke-opacity="0.5" fill="none" stroke-dasharray="2 4"/>
+    <path d="M 1090 160 Q 1080 260 1080 355" stroke="#22d3ee" stroke-opacity="0.25" fill="none"/>
+
+    <!-- Eyes (Sleek tech circles) -->
+    <circle cx="1015" cy="235" r="9" fill="none" stroke="#22d3ee" stroke-width="2" filter="url(#glow-cyan)"/>
+    <circle cx="1015" cy="235" r="3" fill="#22d3ee"/>
+    
+    <circle cx="1085" cy="235" r="9" fill="none" stroke="#22d3ee" stroke-width="2" filter="url(#glow-cyan)"/>
+    <circle cx="1085" cy="235" r="3" fill="#22d3ee"/>
+
+    <!-- Nose Bridge -->
+    <path d="M 1050 220 L 1042 275 L 1050 283 L 1058 275 Z" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-opacity="0.6"/>
+
+    <!-- Mouth / Lips -->
+    <path d="M 1030 315 Q 1050 305 1070 315 Q 1050 330 1030 315" fill="#e879f9" fill-opacity="0.3" stroke="#e879f9" stroke-width="2" filter="url(#glow-pink)"/>
+
+    <!-- Wireframe Nodes -->
+    <g fill="#22d3ee">
+      <circle cx="1000" cy="170" r="3"/>
+      <circle cx="1100" cy="170" r="3"/>
+      <circle cx="972" cy="235" r="3"/>
+      <circle cx="1128" cy="235" r="3"/>
+      <circle cx="1050" cy="220" r="3"/>
+      <circle cx="1020" cy="275" r="3.5" fill="#e879f9" filter="url(#glow-pink)"/>
+      <circle cx="1080" cy="275" r="3.5" fill="#e879f9" filter="url(#glow-pink)"/>
+      <circle cx="1050" cy="305" r="3"/>
+      <circle cx="1050" cy="375" r="4" fill="#22d3ee" filter="url(#glow-cyan)"/>
+      <circle cx="1020" cy="355" r="3"/>
+      <circle cx="1080" cy="355" r="3"/>
+    </g>
+  </g>
+
+  <!-- Vector Database Visual Node (Database) -->
+  <g transform="translate(870, 360)">
+    <rect width="90" height="54" rx="6" fill="#0b1329" stroke="#06b6d4" stroke-width="1.2" stroke-opacity="0.5"/>
+    <ellipse cx="45" cy="14" rx="20" ry="6" fill="#0891b2" fill-opacity="0.3" stroke="#22d3ee" stroke-width="1.2"/>
+    <path d="M 25 14 V 22 A 20 6 0 0 0 65 22 V 14" fill="none" stroke="#22d3ee" stroke-width="1.2"/>
+    <path d="M 25 22 V 30 A 20 6 0 0 0 65 30 V 22" fill="none" stroke="#22d3ee" stroke-width="1.2"/>
+    <ellipse cx="45" cy="22" rx="20" ry="6" fill="none" stroke="#22d3ee" stroke-width="1.2" stroke-opacity="0.5" stroke-dasharray="3 2"/>
+    <text x="45" y="44" font-family="sans-serif" font-size="7" font-weight="bold" fill="#22d3ee" text-anchor="middle" letter-spacing="0.5">POSTGRES RAG</text>
+  </g>
+
+  <!-- High-tech HUD Overlay Data (Backend) -->
+  <g font-family="Consolas, Monaco, monospace" font-size="11" fill="#22d3ee" opacity="0.65">
+    <text x="875" y="130">SYS.STATUS: ONLINE</text>
+    <text x="875" y="150" fill="#e879f9">BACKEND: NODEJS_API</text>
+    <text x="1125" y="130" text-anchor="end">FPS: 60 / 60</text>
+    <text x="1125" y="150" text-anchor="end" fill="#e879f9">LATENCY: 42MS</text>
+  </g>
+
+  <!-- Continuous Beautiful Overlapping Audio Waves (Voice Sync) -->
+  <g filter="url(#glow-cyan)">
+    <path d="M 860 440 C 910 370, 950 510, 1000 440 C 1050 370, 1100 510, 1150 440 C 1200 370, 1220 480, 1240 440" 
+          fill="none" stroke="url(#wave-pink)" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 860 440 C 890 520, 935 360, 980 440 C 1025 520, 1075 320, 1125 440 C 1175 560, 1210 380, 1240 440" 
+          fill="none" stroke="url(#wave-purple)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 860 440 C 900 320, 945 320, 990 440 C 1035 560, 1070 340, 1110 440 C 1150 540, 1200 340, 1240 440" 
+          fill="none" stroke="url(#wave-cyan)" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- HUD Audio tag -->
+  <rect x="1010" y="468" width="100" height="18" rx="4" fill="#06b6d4" fill-opacity="0.15" stroke="#06b6d4" stroke-opacity="0.3" stroke-width="1"/>
+  <text x="1060" y="481" font-family="Consolas, Monaco, monospace" font-size="10" fill="#22d3ee" font-weight="bold" text-anchor="middle">ELEVENLABS SYNC</text>
+
+  <!-- Typography (Left Section) -->
   <text x="90" y="560" font-family="Inter, Segoe UI, sans-serif" font-size="30" font-weight="600" fill="#22d3ee" letter-spacing="6">05 — REAL-TIME AGENTIC AVATAR</text>
   <text x="86" y="668" font-family="Inter, Segoe UI, sans-serif" font-size="120" font-weight="800" fill="#ffffff" letter-spacing="-2">3D Avatar</text>
-  <text x="92" y="726" font-family="Inter, Segoe UI, sans-serif" font-size="30" fill="#94a3b8">R3F · RAG · ElevenLabs · Rhubarb · FFmpeg</text>
+  <text x="92" y="726" font-family="Inter, Segoe UI, sans-serif" font-size="30" fill="#94a3b8">ElevenLabs · Node.js · PostgreSQL</text>
 </svg>
