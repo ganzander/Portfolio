@@ -379,3 +379,7 @@ html[data-bg-theme] body {
     @apply bg-background text-foreground;
   }
 }
+
+*, *::before, *::after {
+  cursor: url('/cursor.png') 16 16, auto !important;
+}

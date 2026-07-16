@@ -175,8 +175,9 @@ export function ProjectCard({
       className="w-full"
     >
       <div
+        onClick={() => handleProjectClick(project)}
         className={cn(
-          "group relative flex flex-col overflow-hidden rounded-3xl border border-black/10 bg-black/[0.02] transition-all duration-500 ease-in-out hover:border-[rgb(var(--accent-rgb)/0.4)] hover:shadow-2xl hover:shadow-[0_25px_50px_-12px_rgb(var(--accent-rgb)/0.12)] dark:border-white/10 dark:bg-white/[0.03]",
+          "group relative flex flex-col overflow-hidden rounded-3xl border border-black/10 bg-black/[0.02] transition-all duration-500 ease-in-out hover:border-[rgb(var(--accent-rgb)/0.4)] hover:shadow-2xl hover:shadow-[0_25px_50px_-12px_rgb(var(--accent-rgb)/0.12)] dark:border-white/10 dark:bg-white/[0.03] cursor-pointer",
           className
         )}
       >
@@ -265,12 +266,6 @@ export function ProjectCard({
             >
               <ArrowUpRight className="h-4 w-4" />
             </Button>
-          </div>
-
-          {/* Bottom text */}
-          <div className="group-hover:hidden absolute bottom-4 left-4 text-white text-2xl font-normal z-30">
-            {id}
-            <h3 className="text-xl font-normal mb-1">{title}</h3>
           </div>
         </div>
       </div>

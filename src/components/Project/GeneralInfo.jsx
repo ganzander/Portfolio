@@ -17,7 +17,7 @@ export default function GeneralInfo({ projectData }) {
             src={projectData.image}
             alt={projectData.title}
             fill
-            className="object-cover"
+            className="object-contain"
           />
           <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-white/10" />
         </div>
