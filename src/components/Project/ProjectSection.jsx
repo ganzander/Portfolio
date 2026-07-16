@@ -172,17 +172,6 @@ export default function ProjectSection() {
                 ))}
               </div>
 
-              {/* progress dots */}
-              <div className="mt-6 flex items-center justify-center gap-3 md:mt-10">
-                {projects.map((p, i) => (
-                  <span
-                    key={p.id}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      i === active ? "bg-accent w-10" : "w-4 bg-white/20"
-                    }`}
-                  />
-                ))}
-              </div>
               <p className="mt-4 text-center text-sm text-foreground/40">
                 Keep scrolling to explore each project
               </p>
