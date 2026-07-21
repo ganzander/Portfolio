@@ -6,22 +6,28 @@ import Navbar from "@/components/layout/Navbar";
 import { BackgroundThemeProvider } from "@/context/BackgroundThemeContext";
 
 export const metadata = {
-  title: "Ganesh Kumar Mangla | Full Stack Developer — Next.js, AI & 3D",
+  title: "Ganesh Kumar Mangla | Backend AI Engineer — AI Systems, RAG & Scalable Architecture",
   description:
-    "Full Stack Developer with production experience across Next.js, Node.js, AI integrations (Gemini, Groq, AWS) and interactive three.js experiences. 4+ shipped products. Open to full-time & freelance.",
+    "Backend AI Engineer specializing in production-ready AI agents, LangChain/LangGraph RAG pipelines, LLM infrastructure, Python, Node.js, and high-performance backend architecture. 4+ shipped products.",
   keywords: [
-    "Full Stack Developer",
-    "Next.js developer",
-    "React developer",
-    "Three.js",
-    "GSAP",
-    "AI integration",
+    "Backend AI Engineer",
+    "AI Engineer",
+    "Backend Engineer",
+    "AI Agent Engineer",
+    "LangGraph Developer",
+    "LangChain",
+    "RAG Architecture",
+    "LLM Infrastructure",
+    "FastAPI",
+    "Node.js Backend",
+    "Python AI",
+    "Vector Databases",
     "Ganesh Kumar Mangla",
   ],
   openGraph: {
-    title: "Ganesh Kumar Mangla | Full Stack Developer",
+    title: "Ganesh Kumar Mangla | Backend AI Engineer",
     description:
-      "Next.js, AI integrations and interactive 3D — 4+ shipped products. Open to full-time & freelance.",
+      "Backend AI Engineer specializing in production-ready AI agents, RAG systems, and scalable backend architecture. Open to full-time & freelance.",
     type: "website",
     images: ["/ganesh.jpg"],
   },
