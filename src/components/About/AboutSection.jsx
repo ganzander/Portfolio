@@ -71,7 +71,7 @@ export default function AboutSection() {
         <span
           ref={ghostRef}
           aria-hidden="true"
-          className="zentry pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-[26vw] font-medium leading-none text-black/[0.04] dark:text-white/[0.035]"
+          className="zentry pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 select-none whitespace-nowrap text-[24vw] font-medium leading-none text-black/[0.04] dark:text-white/[0.035] sm:text-[22vw] md:text-[20vw] lg:text-[26vw]"
         >
           ABOUT
         </span>
@@ -79,14 +79,14 @@ export default function AboutSection() {
         <div className="relative z-10 mx-auto flex w-[90%] max-w-4xl flex-col items-center text-center">
           <h2
             ref={headingRef}
-            className="zentry mb-8 text-4xl font-medium leading-none md:text-8xl"
+            className="zentry mb-6 text-3xl font-medium leading-tight sm:text-5xl sm:leading-none md:mb-8 md:text-6xl lg:text-8xl"
           >
             Engineering <span className="text-gradient">AI Systems</span>
           </h2>
 
           <p
             ref={wordsRef}
-            className="mb-10 flex flex-wrap justify-center gap-x-2 gap-y-1 text-xl font-semibold leading-relaxed text-foreground/85 md:text-3xl"
+            className="mb-8 flex flex-wrap justify-center gap-x-2 gap-y-1 px-2 text-lg font-semibold leading-relaxed text-foreground/85 sm:text-xl md:mb-10 md:px-0 md:text-3xl"
           >
             {PARAGRAPH.split(" ").map((w, i) => (
               <span key={i} className="inline-block">

@@ -15,7 +15,7 @@ import { site } from "@/lib/site";
 
 export default function HeroSection() {
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden pt-28 pb-12">
+    <section className="relative flex min-h-screen w-full items-center justify-center overflow-hidden pt-24 pb-12 sm:pt-28">
       {/* ambient glows (parallax) */}
       <div
         data-parallax="0.25"
@@ -33,7 +33,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 80 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col items-center space-y-6 px-4 text-center md:w-1/2 md:items-start md:text-left"
+            className="flex w-full flex-col items-center space-y-5 px-2 text-center md:w-1/2 md:items-start md:space-y-6 md:px-4 md:text-left"
           >
             <motion.span
               initial={{ opacity: 0, y: 20 }}
@@ -53,7 +53,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.8, ease: "easeOut" }}
-              className="zentry text-4xl font-semibold leading-[0.95] sm:text-5xl md:text-6xl lg:text-8xl"
+              className="zentry text-4xl font-semibold leading-[0.95] sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
             >
               Ganesh Kumar <span className="text-gradient">Mangla</span>
             </motion.h1>
@@ -62,7 +62,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
-              className="max-w-xl text-lg font-medium text-foreground/70 md:text-2xl"
+              className="max-w-xl text-base font-medium text-foreground/70 sm:text-lg md:text-2xl"
             >
               {site.shortTagline}
             </motion.h3>
@@ -71,7 +71,7 @@ export default function HeroSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex flex-wrap justify-center gap-4 pt-4 md:justify-start"
+              className="flex w-full flex-wrap justify-center gap-3 pt-2 md:justify-start md:gap-4 md:pt-4"
             >
               <Button
                 onClick={() =>
@@ -139,7 +139,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-            className="relative mt-4 h-[300px] w-full sm:h-[380px] md:mt-0 md:h-[600px] md:w-1/2"
+            className="relative mt-4 h-[260px] w-full sm:h-[360px] md:mt-0 md:h-[500px] md:w-1/2 lg:h-[600px]"
           >
             <div className="accent-orb absolute inset-10 rounded-full blur-3xl" />
             <HeroObject />

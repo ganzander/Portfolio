@@ -6,8 +6,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function usePrefersReducedMotion() {
-  // Starts false on server AND client so SSR html matches hydration; the
-  // real value lands right after mount.
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -29,9 +27,6 @@ export default function ProjectSection() {
   const lastIndexRef = useRef(0);
   const total = projects.length;
 
-  // All screen sizes: pin the section; each card slides up and stacks OVER
-  // the previous one as you scroll (deck effect), driven by a scrubbed
-  // timeline. Only prefers-reduced-motion opts out (static list instead).
   useEffect(() => {
     if (reduced) return;
     gsap.registerPlugin(ScrollTrigger);
@@ -40,9 +35,19 @@ export default function ProjectSection() {
       const cards = cardRefs.current.filter(Boolean);
       if (!cards.length) return;
 
-      // Start: first card in place, the rest waiting below the viewport.
+      // Start: first card in place, rest pushed below viewport and invisible.
+      // On mobile with aspect-square, cards are taller so we need a larger
+      // offset to fully hide them — they animate from invisible → visible.
+      const isMobile = window.innerWidth < 768;
+      const startY = isMobile ? 200 : 140;
+      const scrollPercent = isMobile ? total * 50 : total * 80;
+
       cards.forEach((card, i) => {
-        gsap.set(card, { yPercent: i === 0 ? 0 : 140, scale: 1, opacity: 1 });
+        gsap.set(card, {
+          yPercent: i === 0 ? 0 : startY,
+          scale: 1,
+          opacity: i === 0 ? 1 : 0,
+        });
       });
 
       const tl = gsap.timeline({
@@ -50,22 +55,13 @@ export default function ProjectSection() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: `+=${total * 80}%`,
+          end: `+=${scrollPercent}%`,
           pin: pinRef.current,
           scrub: true,
           anticipatePin: 1,
-          // Document-order refresh priority: this trigger is created a
-          // beat later than the other pins, so without an explicit
-          // priority the other sections compute their starts without our
-          // pin spacer and end up overlapping.
           refreshPriority: 3,
-          // Re-capture tween values whenever ScrollTrigger refreshes, so
-          // late layout (CSS, fonts, images) can't leave stale pixel
-          // conversions cached in the yPercent tweens.
           invalidateOnRefresh: true,
           onUpdate: (self) => {
-            // Map progress to the card that is front-most: each incoming
-            // card lands at timeline time 0.35 + i (holds at both ends).
             const time = self.progress * (0.7 + (total - 1));
             const idx = Math.min(
               total - 1,
@@ -79,15 +75,15 @@ export default function ProjectSection() {
         },
       });
 
-      // Small hold on the first card before the deck starts moving.
       tl.to({}, { duration: 0.35 });
 
       for (let i = 1; i < cards.length; i++) {
-        // Incoming card rides up over the stack…
+        // Incoming card slides up FROM INVISIBLE below the viewport, then
+        // becomes fully visible as it docks over the previous one.
         tl.fromTo(
           cards[i],
-          { yPercent: 140 },
-          { yPercent: 0, duration: 1 },
+          { yPercent: startY, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 1, ease: "power2.out" },
           `step-${i}`,
         )
           // …while the card underneath recedes for depth.
@@ -98,17 +94,11 @@ export default function ProjectSection() {
           );
       }
 
-      // Hold on the last card before the pin releases.
       tl.to({}, { duration: 0.35 });
 
-      // This trigger was created after the other sections' pins — re-sort
-      // into document order and refresh so every pin's start accounts for
-      // our pin spacer.
       ScrollTrigger.sort();
       ScrollTrigger.refresh();
 
-      // Re-measure once the page has fully settled (CSS/fonts/images) —
-      // with invalidateOnRefresh this re-captures every tween's values.
       const refresh = () => ScrollTrigger.refresh();
       const t = setTimeout(refresh, 600);
       window.addEventListener("load", refresh);
@@ -128,12 +118,12 @@ export default function ProjectSection() {
     <section ref={sectionRef} className="relative" id="project-section">
       <div
         ref={pinRef}
-        className="relative flex min-h-screen flex-col justify-center overflow-hidden px-4 py-20"
+        className="relative flex min-h-screen flex-col justify-center overflow-hidden px-4 py-16 md:py-20"
       >
         <div className="mx-auto w-full max-w-6xl">
-          <div className="mb-10 flex flex-col gap-3">
+          <div className="mb-8 flex flex-col gap-3 md:mb-10">
             <div className="flex items-end justify-between gap-4">
-              <h2 className="zentry text-3xl font-medium sm:text-5xl md:text-8xl">
+              <h2 className="zentry text-3xl font-medium sm:text-5xl md:text-7xl lg:text-8xl">
                 Featured <span className="text-gradient">Projects</span>
               </h2>
               <span className="shrink-0 text-base font-medium text-foreground/50 md:text-lg">
@@ -146,9 +136,11 @@ export default function ProjectSection() {
           {!reduced ? (
             <>
               {/* Card deck — every card mounted, stacked; scroll slides the
-                  next one up OVER the current one. Height follows the card's
-                  7/4 image aspect so it works on every viewport width. */}
-              <div className="relative mx-auto aspect-[7/4] w-full max-w-3xl">
+                  next one up OVER the current one. On mobile we use a taller
+                  (square-ish) ratio so the deck doesn't take the whole viewport. */}
+              <div
+                className="relative mx-auto w-full max-w-3xl aspect-square sm:aspect-[5/4] md:aspect-[7/4]"
+              >
                 {projects.map((project, i) => (
                   <div
                     key={project.id}
@@ -178,7 +170,7 @@ export default function ProjectSection() {
             </>
           ) : (
             /* Reduced-motion: simple stacked list */
-            <div className="grid gap-12">
+            <div className="grid gap-10 sm:gap-12">
               {projects.map((project) => (
                 <ProjectCard
                   key={project.id}
