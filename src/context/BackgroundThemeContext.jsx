@@ -4,14 +4,14 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { backgroundThemes } from "@/lib/threeConfig";
 
 const BackgroundThemeContext = createContext({
-  theme: "ember",
+  theme: "nebula",
   setTheme: () => {},
 });
 
 export function BackgroundThemeProvider({ children }) {
-  const [theme, setTheme] = useState("ember");
+  const [theme, setTheme] = useState("nebula");
 
-  // Restore the saved choice once on mount.
+  // Restore the saved choice once on mount, otherwise default stays "nebula".
   useEffect(() => {
     const saved = window.localStorage.getItem("bg-theme");
     if (saved && backgroundThemes[saved]) setTheme(saved);
