@@ -411,12 +411,20 @@ export default function HeroObject() {
 
       const scene = new THREE.Scene();
       const camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 100);
-      camera.position.z = 4.2;
+      // Pull the camera back so the rings (radius up to ~2.12 on planet theme)
+      // never get clipped by the canvas edge — the orb needs breathing room.
+      camera.position.z = 5.4;
 
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
       renderer.setSize(w, h);
       renderer.setClearColor(0x000000, 0);
+      const canvas = renderer.domElement;
+      canvas.style.display = "block";
+      canvas.style.position = "absolute";
+      canvas.style.inset = "0";
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
       mount.appendChild(renderer.domElement);
 
       const group = new THREE.Group();
@@ -467,6 +475,13 @@ export default function HeroObject() {
         camera.aspect = nw / nh;
         camera.updateProjectionMatrix();
         renderer.setSize(nw, nh);
+        // Ensure the canvas fills its mount div exactly without overflow.
+        const canvas = renderer.domElement;
+        canvas.style.display = "block";
+        canvas.style.position = "absolute";
+        canvas.style.inset = "0";
+        canvas.style.width = "100%";
+        canvas.style.height = "100%";
       };
       window.addEventListener("resize", onResize);
       cleanupFns.push(() => {
@@ -517,5 +532,5 @@ export default function HeroObject() {
     // Rebuild when the theme (style / accent / dots) changes.
   }, [theme, style, showDots]);
 
-  return <div ref={mountRef} className="h-full w-full" aria-hidden="true" />;
+  return <div ref={mountRef} className="relative h-full w-full overflow-visible" aria-hidden="true" />;
 }
