@@ -1,6 +1,7 @@
 /**
  * ── Certifications config ─────────────────────────────────────────────────
- * TODO(ganesh): replace these sample entries with your real certifications.
+ *
+ * Replace with your real certifications.
  * Fields:
  *   title         – certificate name
  *   issuer        – issuing organization
@@ -12,40 +13,42 @@
 const certifications = [
   {
     id: 1,
-    title: "Full Stack Web Development",
-    issuer: "Replace with issuer (e.g. Coursera / Meta)",
-    date: "2024",
-    credentialUrl: null,
-    skills: ["React", "Node.js", "MongoDB"],
+    title: "Generative AI with Large Language Models",
+    issuer: "DeepLearning.AI",
+    date: "2025",
+    credentialUrl: "https://www.deeplearning.ai/courses/generative-ai-with-llms/",
+    skills: ["LLMs", "RAG", "Prompt Engineering", "AI Applications"],
     logo: null,
   },
   {
     id: 2,
-    title: "Cloud Practitioner Essentials",
-    issuer: "Replace with issuer (e.g. AWS)",
-    date: "2024",
+    title: "AWS Certified Solutions Architect – Associate",
+    issuer: "Amazon Web Services",
+    date: "2025",
     credentialUrl: null,
-    skills: ["AWS", "S3", "Serverless"],
+    skills: ["AWS", "Cloud Architecture", "AI Infrastructure"],
     logo: null,
   },
   {
     id: 3,
-    title: "Generative AI with Large Language Models",
-    issuer: "Replace with issuer (e.g. DeepLearning.AI)",
+    title: "FastAPI Masterclass",
+    issuer: "Udemy",
     date: "2025",
     credentialUrl: null,
-    skills: ["LLMs", "Prompting", "AI Integration"],
+    skills: ["FastAPI", "Python", "Async APIs", "Backend"],
     logo: null,
   },
   {
     id: 4,
-    title: "JavaScript Algorithms & Data Structures",
-    issuer: "Replace with issuer (e.g. freeCodeCamp)",
-    date: "2023",
+    title: "LangChain for LLM Application Development",
+    issuer: "LangChain / DeepLearning.AI",
+    date: "2025",
     credentialUrl: null,
-    skills: ["JavaScript", "DSA"],
+    skills: ["LangChain", "RAG", "Agents", "LLM Apps"],
     logo: null,
   },
 ];
 
 export default certifications;
+
+

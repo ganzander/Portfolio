@@ -4,31 +4,41 @@ import ThemedBackground from "@/components/three/ThemedBackground";
 import ScrollFX from "@/components/scroll/ScrollFX";
 import Navbar from "@/components/layout/Navbar";
 import { BackgroundThemeProvider } from "@/context/BackgroundThemeContext";
+import { JsonLd, personSchema } from "@/components/ui/json-ld";
 
 export const metadata = {
-  title: "Ganesh Kumar Mangla | Backend AI Engineer — AI Systems, RAG & Scalable Architecture",
+  title: "Ganesh Kumar Mangla | Backend AI Engineer — Agentic Systems, RAG & LLM Infrastructure",
   description:
-    "Backend AI Engineer specializing in production-ready AI agents, LangChain/LangGraph RAG pipelines, LLM infrastructure, Python, Node.js, and high-performance backend architecture. 4+ shipped products.",
+    "Backend AI Engineer specializing in production-ready multi-agent systems, LangGraph/LangChain RAG pipelines, MCP servers, and scalable LLM infrastructure built on FastAPI and Node.js. 5+ shipped AI products.",
   keywords: [
     "Backend AI Engineer",
     "AI Engineer",
-    "Backend Engineer",
     "AI Agent Engineer",
     "LangGraph Developer",
-    "LangChain",
+    "LangChain Engineer",
+    "MCP Server Developer",
     "RAG Architecture",
     "LLM Infrastructure",
-    "FastAPI",
-    "Node.js Backend",
-    "Python AI",
+    "Multi-Agent Systems",
     "Vector Databases",
+    "FastAPI",
+    "Python AI",
+    "Anthropic Claude",
+    "AWS Bedrock",
     "Ganesh Kumar Mangla",
   ],
   openGraph: {
     title: "Ganesh Kumar Mangla | Backend AI Engineer",
     description:
-      "Backend AI Engineer specializing in production-ready AI agents, RAG systems, and scalable backend architecture. Open to full-time & freelance.",
+      "Backend AI Engineer specializing in production-ready multi-agent systems, RAG pipelines, MCP servers, and scalable LLM infrastructure. Open to full-time & freelance.",
     type: "website",
+    images: ["/ganesh.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ganesh Kumar Mangla | Backend AI Engineer",
+    description:
+      "Production AI systems — LangGraph agents, RAG pipelines, MCP servers, and scalable LLM backends.",
     images: ["/ganesh.jpg"],
   },
 };
@@ -52,6 +62,7 @@ export default function RootLayout({ children }) {
         style={{ cursor: "url('/cursor.png')" }}
       >
         <BackgroundThemeProvider>
+          <JsonLd data={personSchema} />
           <ThemedBackground />
           <ScrollFX />
           <Navbar />

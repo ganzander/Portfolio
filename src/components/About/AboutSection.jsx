@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const PARAGRAPH =
-  "Hey, I'm Ganesh — an AI Engineer passionate about building production-ready intelligent systems. From autonomous AI agents and RAG pipelines to scalable backend architectures, I enjoy transforming complex ideas into reliable products that solve real-world business problems.";
+  "Hey, I'm Ganesh — a Backend AI Engineer building production-ready agentic systems, RAG pipelines, and scalable LLM infrastructure. I transform complex AI capabilities into reliable backend services that real users and teams depend on every day.";
 
 export default function AboutSection() {
   const sectionRef = useRef(null);
@@ -81,7 +81,7 @@ export default function AboutSection() {
             ref={headingRef}
             className="zentry mb-8 text-4xl font-medium leading-none md:text-8xl"
           >
-            Engineering <span className="text-gradient">Agentic AI</span>
+            Engineering <span className="text-gradient">AI Systems</span>
           </h2>
 
           <p

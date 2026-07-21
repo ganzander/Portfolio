@@ -64,8 +64,7 @@ export default function HeroSection() {
               transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
               className="max-w-xl text-lg font-medium text-foreground/70 md:text-2xl"
             >
-              {site.role} building production-ready AI agents, scalable backend
-              systems, and LLM-powered applications.
+              {site.shortTagline}
             </motion.h3>
 
             <motion.div

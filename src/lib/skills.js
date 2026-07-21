@@ -1,131 +1,73 @@
-import { Monitor, Server, Bot, Cloud } from "lucide-react";
+import { Bot, Server, Cloud } from "lucide-react";
 
 export const skillCategories = [
   {
-    title: "Backend",
-    icon: Server,
-    blurb: "APIs built to scale",
-    skills: [
-      {
-        name: "Node.js",
-        icon: "/tech/nodejs.svg",
-        core: true,
-        description:
-          "Event-driven server runtime for APIs, workers and realtime services.",
-      },
-      {
-        name: "Express.js",
-        icon: "/tech/express.svg",
-        description:
-          "Minimal, middleware-driven HTTP framework for REST services and gateways.",
-      },
-      {
-        name: "FastAPI",
-        icon: "/tech/fastapi.svg",
-        description:
-          "Typed Python APIs with automatic docs — used for HRMS backend work at Torit.",
-      },
-      {
-        name: "PostgreSQL",
-        icon: "/tech/postgresql.svg",
-        core: true,
-        description:
-          "Relational database with advanced features for complex data modeling and querying.",
-      },
-      {
-        name: "MongoDB",
-        icon: "/tech/mongodb.svg",
-        core: true,
-        description:
-          "Document modelling, aggregation pipelines and Mongoose schemas for flexible data.",
-      },
-      {
-        name: "REST APIs",
-        icon: "/tech/api.svg",
-        description:
-          "Well-shaped resources, auth flows, pagination and error contracts that front-ends love.",
-      },
-      {
-        name: "JWT / OAuth",
-        icon: "/tech/jwt.svg",
-        description:
-          "Token-based auth, Google sign-in and role-based access control done right.",
-      },
-      {
-        name: "WebSockets",
-        icon: "/tech/websocket.svg",
-        description:
-          "Real-time bidirectional communication for live chat, notifications, and streaming data.",
-      },
-    ],
-  },
-  {
-    title: "Agentic AI",
+    title: "AI Engineering",
     icon: Bot,
-    blurb: "Production-ready AI systems",
+    blurb: "Agentic systems that reason, retrieve, and act",
     skills: [
       {
         name: "LangGraph",
         icon: "/tech/langgraph.svg",
         core: true,
         description:
-          "Building stateful, multi-agent workflows with conditional routing, memory, and human-in-the-loop execution.",
+          "Stateful multi-agent workflows — orchestrator-worker patterns, conditional routing, memory, and human-in-the-loop execution in production.",
       },
       {
         name: "LangChain",
         icon: "/tech/langchain.svg",
         core: true,
         description:
-          "Developing LLM applications with tool calling, RAG pipelines, structured outputs, and agent orchestration.",
+          "LLM application framework for tool calling, RAG pipelines, structured outputs, and agent orchestration at scale.",
       },
       {
         name: "LangSmith",
         icon: "/tech/langsmith.svg",
         core: true,
         description:
-          "Tracing, evaluating, and debugging LLM applications to improve reliability and performance.",
+          "Observability layer — tracing every agent step, evaluating outputs, and regression-testing LLM applications.",
       },
       {
         name: "MCP",
         icon: "/tech/mcp.svg",
         core: true,
         description:
-          "Integrating external tools, APIs, and enterprise data sources through the Model Context Protocol.",
-      },
-      {
-        name: "Anthropic Claude",
-        icon: "/tech/anthropic-claude.svg",
-        core: true,
-        description:
-          "Building AI applications using Claude models for reasoning, coding, and long-context workflows.",
-      },
-      {
-        name: "Gemini",
-        icon: "/tech/gemini.svg",
-        core: true,
-        description:
-          "Developing multimodal AI applications using Gemini for text, vision, and structured reasoning tasks.",
-      },
-      {
-        name: "AWS Bedrock",
-        icon: "/tech/aws-bedrock.svg",
-        core: true,
-        description:
-          "Deploying secure enterprise AI solutions with managed foundation models, knowledge bases, and agents.",
-      },
-      {
-        name: "Azure OpenAI",
-        icon: "/tech/azure-openai.svg",
-        core: true,
-        description:
-          "Building enterprise-grade AI applications with GPT models, embeddings, and Azure AI services.",
+          "Building Model Context Protocol servers to expose enterprise data (ERP, CRM) as first-class tools for AI agents.",
       },
       {
         name: "RAG & Vector DBs",
         icon: "/tech/rag.svg",
         core: true,
         description:
-          "ChromaDB, Azure AI Search — embedding pipelines and hybrid search for contextual AI retrieval.",
+          "Embedding pipelines, hybrid search (semantic + keyword), and vector stores — ChromaDB, pgvector, Azure AI Search.",
+      },
+      {
+        name: "Anthropic Claude",
+        icon: "/tech/anthropic-claude.svg",
+        core: true,
+        description:
+          "Frontier LLMs for reasoning, tool use, and long-context workflows — the reasoning engine behind production agents.",
+      },
+      {
+        name: "Google Gemini",
+        icon: "/tech/gemini.svg",
+        core: true,
+        description:
+          "Multimodal AI for text, vision, and structured reasoning — used for document understanding and retrieval augmentation.",
+      },
+      {
+        name: "AWS Bedrock",
+        icon: "/tech/aws-bedrock.svg",
+        core: true,
+        description:
+          "Managed foundation models, knowledge bases, and agents — deploying enterprise AI with guardrails and cost control.",
+      },
+      {
+        name: "Azure OpenAI",
+        icon: "/tech/azure-openai.svg",
+        core: true,
+        description:
+          "GPT models, embeddings, and Azure AI Search for enterprise-grade retrieval and generation pipelines.",
       },
       {
         name: "CrewAI",
@@ -133,123 +75,140 @@ export const skillCategories = [
         description:
           "Multi-agent collaboration frameworks for autonomous task delegation and workflow automation.",
       },
-    ],
-  },
-  {
-    title: "Frontend",
-    icon: Monitor,
-    blurb: "Interfaces that feel alive",
-    skills: [
       {
-        name: "React",
-        icon: "/tech/react.svg",
-        core: true,
+        name: "Prompt Engineering",
+        icon: "/tech/langchain.svg",
         description:
-          "My component workhorse — hooks, context, and performance-tuned rendering for complex interactive UIs.",
+          "System prompts, chain-of-thought, structured output schemas, and prompt optimization for production reliability.",
       },
       {
-        name: "Next.js",
-        icon: "/tech/nextjs-w.svg",
-        core: true,
+        name: "AI Guardrails",
+        icon: "/tech/mcp.svg",
         description:
-          "App-router, server components, API routes and image optimization — my default full-stack framework.",
-      },
-      {
-        name: "TailwindCSS",
-        icon: "/tech/tailwindcss.svg",
-        description:
-          "Utility-first styling for fast, consistent, responsive design systems without leaving the markup.",
-      },
-      {
-        name: "GSAP",
-        icon: "/tech/gsap.svg",
-        core: true,
-        description:
-          "ScrollTrigger pins, scrubbed timelines and micro-interactions — the engine behind this site's scrollytelling.",
-      },
-      {
-        name: "Framer Motion",
-        icon: "/tech/framer.svg",
-        description:
-          "Declarative React animations — layout transitions, gestures and presence animations.",
-      },
-      {
-        name: "Three.js / R3F",
-        icon: "/tech/three.svg",
-        core: true,
-        description:
-          "WebGL scenes, shaders and particle systems — like the themed backgrounds, 3D avatars, and this very globe.",
-      },
-      {
-        name: "Redux",
-        icon: "/tech/redux.svg",
-        description:
-          "Predictable state management for complex application data flows and side-effect handling.",
+          "Output validation, content filtering, and safety layers to keep AI responses on-policy and hallucination-free.",
       },
     ],
   },
   {
-    title: "Cloud & DevOps",
-    icon: Cloud,
-    blurb: "Ship fast, scale smart",
+    title: "Backend Systems",
+    icon: Server,
+    blurb: "APIs and infrastructure built to scale",
     skills: [
       {
-        name: "AWS",
-        icon: "/tech/aws.svg",
+        name: "FastAPI",
+        icon: "/tech/fastapi.svg",
         core: true,
         description:
-          "EC2, S3, Bedrock, and serverless services — deploying resilient, scalable cloud infrastructure.",
+          "High-performance async Python APIs — streaming endpoints, WebSocket support, and auto-generated OpenAPI docs for AI backends.",
       },
       {
-        name: "Azure",
-        icon: "/tech/azure.svg",
+        name: "Node.js",
+        icon: "/tech/nodejs.svg",
         core: true,
         description:
-          "Azure OpenAI, AI Search, and cloud-native deployments for enterprise-grade AI workloads.",
+          "Event-driven runtime for real-time services, WebSocket servers, and API gateways powering agent backends.",
+      },
+      {
+        name: "Express.js",
+        icon: "/tech/express.svg",
+        description:
+          "Minimal HTTP framework for REST APIs, middleware pipelines, and backend services.",
+      },
+      {
+        name: "PostgreSQL",
+        icon: "/tech/postgresql.svg",
+        core: true,
+        description:
+          "Relational database with pgvector for embeddings — structured data and semantic search in one store.",
+      },
+      {
+        name: "MongoDB",
+        icon: "/tech/mongodb.svg",
+        core: true,
+        description:
+          "Document modelling for unstructured content — news articles, agent memory, and flexible schema data.",
+      },
+      {
+        name: "WebSockets",
+        icon: "/tech/websocket.svg",
+        description:
+          "Full-duplex real-time communication for streaming agent responses to multiple concurrent users.",
+      },
+      {
+        name: "REST APIs",
+        icon: "/tech/api.svg",
+        description:
+          "Well-shaped resources, auth flows, pagination, and error contracts — clean interfaces for AI service integration.",
+      },
+      {
+        name: "JWT / OAuth",
+        icon: "/tech/jwt.svg",
+        description:
+          "Token-based auth, role-based access control, and secure API gateways for multi-tenant AI services.",
       },
       {
         name: "Docker",
         icon: "/tech/docker.svg",
         core: true,
         description:
-          "Containerized development and deployment — consistent environments from local to production.",
+          "Containerized AI services — consistent environments from local development through production deployment.",
       },
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: Cloud,
+    blurb: "Ship fast, monitor reliably",
+    skills: [
       {
-        name: "CI/CD",
-        icon: "/tech/cicd.svg",
+        name: "AWS",
+        icon: "/tech/aws.svg",
         core: true,
         description:
-          "GitHub Actions pipelines for automated build, test, and zero-downtime deployments.",
+          "EC2, S3, Bedrock, ECS — deploying resilient, scalable infrastructure for AI workloads.",
       },
       {
-        name: "Nginx",
-        icon: "/tech/nginx.svg",
+        name: "Azure",
+        icon: "/tech/azure.svg",
+        core: true,
         description:
-          "Reverse proxy, load balancing, SSL termination, and static asset serving in production.",
+          "Azure OpenAI, AI Search, Container Apps — enterprise-grade AI deployment and CI/CD pipelines.",
       },
       {
         name: "Supabase",
         icon: "/tech/supabase.svg",
         description:
-          "PostgreSQL-backed backend-as-a-service with real-time subscriptions, auth, and storage.",
+          "PostgreSQL-backed backend-as-a-service with auth, row-level security, and real-time subscriptions.",
+      },
+      {
+        name: "CI/CD",
+        icon: "/tech/cicd.svg",
+        description:
+          "GitHub Actions and Azure Pipelines — automated testing, container builds, and zero-downtime AI service deployments.",
+      },
+      {
+        name: "Nginx",
+        icon: "/tech/nginx.svg",
+        description:
+          "Reverse proxy, load balancing, and SSL termination for high-traffic AI endpoints.",
       },
       {
         name: "Vercel",
         icon: "/tech/vercel-w.svg",
         description:
-          "Zero-config deploys, edge network and preview environments for every project.",
+          "Edge deployment and preview environments for frontend interfaces to AI backends.",
       },
       {
         name: "DigitalOcean",
         icon: "/tech/digitalocean.svg",
         description:
-          "Full server infrastructure management — droplets, networking, SSL, and production hosting.",
+          "Droplet-based infrastructure for hosting and scaling AI services cost-effectively.",
       },
       {
         name: "Git / GitHub",
         icon: "/tech/git.svg",
         description:
-          "Branch discipline, code review, clean history, and collaborative workflows across every project.",
+          "Branch discipline, code review, and collaborative workflows across every AI project.",
       },
     ],
   },

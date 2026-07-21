@@ -7,6 +7,7 @@ import ThemeSwitcher from "./ThemeSwitcher";
 
 const LINKS = [
   { label: "About", id: "about-section" },
+  { label: "AI Focus", id: "ai-focus-section" },
   { label: "Skills", id: "skills-section" },
   { label: "Projects", id: "project-section" },
   { label: "Experience", id: "experience-section" },
