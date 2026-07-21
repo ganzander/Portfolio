@@ -402,8 +402,6 @@ export default function HeroObject() {
     let renderer, frameId;
     let disposed = false;
     const cleanupFns = [];
-    const target = { x: 0, y: 0 };
-    const eased = { x: 0, y: 0 };
 
     import("three").then((THREE) => {
       if (disposed || !mount) return;
@@ -470,29 +468,21 @@ export default function HeroObject() {
         camera.updateProjectionMatrix();
         renderer.setSize(nw, nh);
       };
-      const onPointer = (e) => {
-        const r = mount.getBoundingClientRect();
-        target.x = ((e.clientX - r.left) / r.width - 0.5) * 2;
-        target.y = ((e.clientY - r.top) / r.height - 0.5) * 2;
-      };
       window.addEventListener("resize", onResize);
-      window.addEventListener("pointermove", onPointer);
       cleanupFns.push(() => {
         window.removeEventListener("resize", onResize);
-        window.removeEventListener("pointermove", onPointer);
       });
 
       const clock = new THREE.Clock();
 
       const render = () => {
         const t = clock.getElapsedTime();
-        eased.x += (target.x - eased.x) * 0.05;
-        eased.y += (target.y - eased.y) * 0.05;
 
-        group.rotation.y = t * 0.18 + eased.x * 0.55;
-        // bounded pitch wobble (an ever-growing t * 0.05 would slowly tumble
-        // the orb — and tilt the planet's horizontal rings over time)
-        group.rotation.x = Math.sin(t * 0.12) * 0.07 + eased.y * 0.35;
+        // The orb (and its rings) rotate on a fixed timeline only — no
+        // cursor/camera tie means the rings stay in place when the pointer
+        // moves, so the planet's disc plane never tips unexpectedly.
+        group.rotation.y = t * 0.18;
+        group.rotation.x = Math.sin(t * 0.12) * 0.07;
 
         updateStyle(t);
         if (particles) particles.rotation.y = -t * 0.1;
